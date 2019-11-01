@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+
 
 @Component({
   selector: 'app-root',

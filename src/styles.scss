@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Fonw awesom free
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+// bootstrap 4
+@import "~bootstrap/dist/css/bootstrap.css";
+
+// custom
+input{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+// automatically added when angular material was installed
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
