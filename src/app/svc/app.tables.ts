@@ -1,11 +1,14 @@
 /***********************************************************************
-* Automatically generated on 10/28/2019 9:21:29 PM
+* Automatically generated on 11/3/2019 5:58:31 PM
 ***********************************************************************/
 
 import { HttpClient } from '@angular/common/http';
-import { TableBase } from '../api/svc/app-common.datatable'; 
-import { TableRowBase }from '../api/svc/app-common.datarow'; 
-import { ColumnInfo } from '../api/mod/app-column.model';
+import { TableBase } from '../services/app-common.datatable'; 
+import { TableRowBase }from '../services/app-common.datarow'; 
+import { ColumnInfo } from '../services/app-column.model';
+
+
+
 
 
 export class TblChild extends TableBase {
@@ -73,6 +76,9 @@ export class TblChildRow extends TableRowBase{
 
  
 }
+
+
+
 
 export class TblChildB extends TableBase {
 

@@ -8,4 +8,42 @@
 
 
 Client side Api implementation:
-- copy entire services to new project
+- copy entire api folder to new project
+
+Server side Api implementation
+- create new Web API project
+- test by running (Ctrl+F5), and call http://localhost:<port>/api/<controllername> (e.g. values)
+  <controllername> is taken from the name of the controller class but without the Controller word.
+  e.g. ValuesController => called as http://localhost:<port>/api/Values
+
+- copy app.settings.json file to the root of the new API project
+
+- NOTE: bypass authorization by commenting [Authorize] line
+
+- Add reference to ... in Global.asax
+	using DataAccess;
+	using System.Configuration;
+
+- Add the following lines inside the Application_Start of Global.asax
+
+            /*************************** custom calls ******************************************/
+
+            // Initialize data access connection and other properties
+            DAL.connectionString = ConfigurationManager.ConnectionStrings["cnsAppAPI"].ConnectionString;
+            DALGlobals.APP_SETTINGS = DataAccess.AppGlobals2.AppSetings;
+            DALGlobals.GeneralRetObj = new ReturnObjectExternal();
+            AppDataset.configPath = "";
+            AppDataset.clientDevPath = "";
+
+            DAL.LogMessage("Application Started ..");
+
+            // Initialize dataset
+            AppDataset.Initialize();
+
+
+
+GitHub:
+- create new repository
+- copy bk.bat from existing project
+- modify multiple project backup batch file to execute bk.bat for each project and save it into a new batch file
+- run first commit

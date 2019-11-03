@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class DetPlantComponent implements OnInit {
 
   public row:any = {
+    "field0":"value 0",
     "field1":"value 1",
     "field2":"value 2"
   }

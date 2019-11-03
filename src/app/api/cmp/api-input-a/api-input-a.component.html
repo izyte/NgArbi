@@ -1,2 +1,7 @@
-<label class="m-0">{{xl(label)}}</label>
-<input  type="text" value="" [(ngModel)]="par.source[fieldName]"/>
+<!--div class="form-group">
+<label class="m-0" [attr.for]="'inp_' + fieldName">{{xl(label)}}</label>
+<input  type="text" [attr.id]="'inp_' + fieldName" [attr.name]="'inp_' + fieldName" value="" [(ngModel)]="par.source[fieldName]"/>
+</div-->
+
+<label [attr.for]="'inp_' + fieldName">{{xl(label)}}</label>
+<input class="form-control p-0" type="text" [attr.id]="'inp_' + fieldName" [attr.name]="'inp_' + fieldName" value="" [(ngModel)]="par.source[fieldName]"/>
