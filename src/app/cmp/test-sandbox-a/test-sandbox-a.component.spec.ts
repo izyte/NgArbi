@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApiInputBComponent } from './api-input-b.component';
+import { TestSandboxAComponent } from './test-sandbox-a.component';
 
-describe('ApiInputBComponent', () => {
-  let component: ApiInputBComponent;
-  let fixture: ComponentFixture<ApiInputBComponent>;
+describe('TestSandboxAComponent', () => {
+  let component: TestSandboxAComponent;
+  let fixture: ComponentFixture<TestSandboxAComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ApiInputBComponent ]
+      declarations: [ TestSandboxAComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ApiInputBComponent);
+    fixture = TestBed.createComponent(TestSandboxAComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,7 +1,27 @@
 - create new project (ng new ngarbi)
 - install angular material (ng add @angular/material)
-- install bootstrap (npm install --save bootstrap)
-- import bootstrap css into styles.scss (@import "~bootstrap/dist/css/bootstrap.css")
+- install bootstrap:
+
+   npm i bootstrap --save
+   npm i --save @ng-bootstrap/ng-bootstrap
+
+on angular.json
+            "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.scss"
+            ],
+
+
+on app.module.ts:
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+imports [..,NgbModule, ..]
+
+NgbModule 
+
+get resources from https://ng-bootstrap.github.io/
+
+
 - install font awesome (npm i @fortawesome/fontawesome-free --save)
 - import font awesome css into styles.scss (@import "../node_modules/@fortawesome/fontawesome-free/css/all.css";)
 
@@ -47,3 +67,7 @@ GitHub:
 - copy bk.bat from existing project
 - modify multiple project backup batch file to execute bk.bat for each project and save it into a new batch file
 - run first commit
+
+
+Breadboarding:
+https://breadboarding-poc.netlify.com

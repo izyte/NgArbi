@@ -1,0 +1,28 @@
+<app-api-form-a [formObject]="frmObj" 
+[source]="row" 
+smallControls="true" 
+labelFontSize="0.9" labelWidth="150"
+    helpWidth="250" elementPosition="CL"
+
+    >
+    <div class="p-2">
+        <div class="d-flex" style="flex-wrap: wrap;">
+                <app-api-input-a label="Name" fieldName="plnt_name" placeHolder="Enter Plant Name"></app-api-input-a>
+                <app-api-input-a label="Description" fieldName="plnt_desc" 
+                    placeHolder="Enter Plant Description" 
+                    prepend="Plant Description"
+                    rows="1">
+                </app-api-input-a>
+            <app-api-input-a 
+                [lookupSource]="lkpCountries"
+                label="Country" fieldName="plnt_ctry_id" placeHolder="Select Country"></app-api-input-a>
+
+            <app-api-input-a   label="Area" fieldName="plnt_area" placeHolder="Enter Plant Area" append="m²">
+            </app-api-input-a>
+        </div>
+    </div>
+    <p>Field1: {{frmObj.value.plnt_name}}</p>
+    <p>Field2: {{frmObj.value.plnt_desc}}</p>
+    <p>Field3: {{frmObj.value.plnt_area}}</p>
+
+</app-api-form-a>

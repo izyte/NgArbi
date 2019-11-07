@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand navbar-dark p-0 pl-2" [style.background]="backColor" style="height:48px;">
+    <a class="btn btn-sm mr-4 p-1" href="#" role="button"><i class="fa text text-white fa-th"
+            style="font-size:1.4em;"></i></a>
+
+    <i class="fa mr-2 text-light" [ngClass]="iconClass()" style="font-size:1.5em;"></i>
+    <a class="navbar-brand" href="#">{{title}}</a>
+    <button *ngIf="false" class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse p-0 m-0 h-100" id="navbarSupportedContent">
+        <ul class="navbar-nav  mr-auto" *ngIf="false">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" *ngIf="false">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+
+            <!--li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li-->
+        </ul>
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item text-muted">
+                <span class="nav-link">Current Document - Location</span>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto" *ngIf="false">
+            <li class="nav-item nav-link text-white">|</li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">Current User</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white px-0" href="#">Sign Out</a>
+            </li>
+        </ul>
+        <span class="nav-link text-white px-0">|</span>
+
+        <div class="dropdown h-100">
+            <button type="button" class="btn h-100 dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">Current User</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+
+        <button class="btn h-100">Sign Out</button>
+
+
+        <div *ngIf="false" class="btn-toolbar mv-0 ml-auto h-100" role="toolbar"
+            aria-label="Toolbar with button groups">
+            <div class="btn-group m-0 p-0 mr-2" role="group" aria-label="First group" style="border-radius: 0px;">
+                <button type="button" class="btn bg-transparent text-white">1</button>
+                <button type="button" class="btn btn-secondary">2</button>
+                <button type="button" class="btn btn-secondary">3</button>
+                <button type="button" class="btn btn-secondary">4</button>
+            </div>
+            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                <button type="button" class="btn btn-secondary">5</button>
+                <button type="button" class="btn btn-secondary">6</button>
+                <button type="button" class="btn btn-secondary">7</button>
+            </div>
+            <div class="btn-group" role="group" aria-label="Third group">
+                <button type="button" class="btn btn-secondary">8</button>
+            </div>
+        </div>
+
+        <!--form class="form-inline my-2 my-lg-0">
+        <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0 btn-sm" type="submit">Search</button>
+      </form-->
+    </div>
+</nav>

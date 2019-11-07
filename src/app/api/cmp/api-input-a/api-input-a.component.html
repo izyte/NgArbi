@@ -1,7 +1,42 @@
-<!--div class="form-group">
-<label class="m-0" [attr.for]="'inp_' + fieldName">{{xl(label)}}</label>
-<input  type="text" [attr.id]="'inp_' + fieldName" [attr.name]="'inp_' + fieldName" value="" [(ngModel)]="par.source[fieldName]"/>
-</div-->
+<div class="d-flex flex-column px-1">
+    <div class="form-group p-0 m-0 d-sm-flex" [ngClass]="inputClass">
+        <label class="m-0 mx-1 p-0" *ngIf="label" [ngClass]="labelClass" [style.width]="lblWidth" [for]="ctrlId"
+            [style.font-size.em]="lblFontSize">{{xl(label)}}</label>
+        <div class="d-flex flex-grow-1" [ngClass]="innerInputClass" [ngStyle]="innerInputStyle">
+            <div class="input-group p-0 m-0" [ngClass]="groupClass" [formGroup]="par.formObject">
+                <!-- prepend -->
+                <div *ngIf="prepend" class="input-group-prepend" [style.height]="ctrlHeight">
+                    <span class="input-group-text" id="basic-addon1">{{prepend}}</span>
+                </div>
+                <!-- select -->
+                <select *ngIf="isSelectInput" class="form-control m-0" [ngClass]="controlClass" [ngStyle]="controlStyle"
+                    [attr.id]="ctrlId" [formControlName]="fieldName" [attr.aria-describedby]="helpId">
+                    <option value="{{opt.value}}" *ngFor="let opt of lkpSource;let i=index;">{{opt.disp}}</option>
+                </select>
+                <!-- textarea -->
+                <textarea *ngIf="isTextArea" [ngClass]="controlClass" [ngStyle]="controlStyle" [rows]="rows"
+                    [style.height]="ctrlHeight" [attr.id]="ctrlId" [formControlName]="fieldName"
+                    class="form-control m-0" [attr.aria-describedby]="helpId" [placeholder]="placeHolder">
+                </textarea>
 
-<label [attr.for]="'inp_' + fieldName">{{xl(label)}}</label>
-<input class="form-control p-0" type="text" [attr.id]="'inp_' + fieldName" [attr.name]="'inp_' + fieldName" value="" [(ngModel)]="par.source[fieldName]"/>
+                <!-- text input -->
+                <input *ngIf="isTextInput" class="form-control m-0" [ngClass]="controlClass" [ngStyle]="controlStyle"
+                    [style.height]="ctrlHeight" [attr.id]="ctrlId" [formControlName]="fieldName" type="text"
+                    [attr.aria-describedby]="helpId" [placeholder]="placeHolder">
+
+                <!-- append -->
+                <div *ngIf="append" class="input-group-append" [style.height]="ctrlHeight">
+                    <span class="input-group-text" id="basic-addon2">{{append}}</span>
+                </div>
+            </div>
+            <div class="pl-1 text-muted" style="overflow: hidden;" [ngClass]="helpClass" [ngStyle]="helpStyle"
+                [style.width]="hlpWidth" [style.font-size.em]="lblFontSize * 0.7">
+                The quick brown fox jumps over the lazy dog! The quick brown fox jumps over the lazy dog!
+            </div>
+            <small *ngIf="false" class="form-text text-muted m-0 p-0 ml-1" [style.height]="ctrlHeight"
+                style="background: yellow;margin:0px 0px 0px 0px;flex-grow: 1;"
+                [style.font-size.em]="lblFontSize * 0.65" [ngClass]="helpClass">We'll never .</small>
+        </div>
+    </div>
+
+</div>

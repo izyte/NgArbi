@@ -1,31 +1,44 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+//import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
+
+
+import { AppDataset } from './svc/app-dataset.service';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApiInputAComponent } from './api/cmp/api-input-a/api-input-a.component';
-import { ApiInputBComponent } from './api/cmp/api-input-b/api-input-b.component';
 import { ApiFormAComponent } from './api/cmp/api-form-a/api-form-a.component';
 import { ApiFormBComponent } from './api/cmp/api-form-b/api-form-b.component';
 import { DetPlantComponent } from './cmp/det-plant/det-plant.component';
+import { NavBarComponent } from './cmp/nav-bar/nav-bar.component';
+import { TestSandboxAComponent } from './cmp/test-sandbox-a/test-sandbox-a.component';
+import { TestFormAComponent } from './cmp/test-form-a/test-form-a.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ApiInputAComponent,
-    ApiInputBComponent,
     ApiFormAComponent,
     ApiFormBComponent,
-    DetPlantComponent
+    DetPlantComponent,
+    NavBarComponent,
+    TestSandboxAComponent,
+    TestFormAComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    //FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AppDataset],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

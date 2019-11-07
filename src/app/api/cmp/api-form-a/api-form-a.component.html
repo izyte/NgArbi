@@ -1,5 +1,15 @@
-<form class="form">
+<form [formGroup]="formObject">
+    
     <ng-content></ng-content>
+    <!--
+    <input id="usename" formControlName="username" />
+    <span *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched">Please enter a valid
+        username</span>
+    <input id="email" formControlName="email" />
+    <span *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">Please enter a valid email</span>
+    <input id="gender" formControlName="gender" />
+
+    -->
 </form>
 
 <!--form>

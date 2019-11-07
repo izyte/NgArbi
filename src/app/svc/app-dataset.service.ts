@@ -1,22 +1,46 @@
+import { TableBase } from './../api/svc/app-common.datatable';
 import { DatasetBase } from '../api/svc/app-common.dataset';
 import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /**Application tables *****/
-import { TblUsers } from './app.tables';
-import { TblPolarReports } from './app.tables';
-import { TblUserParams, TblUserParamRow } from './app.tables';
-import { TblLookups, TblLookupRow } from './app.tables';
-import { TblParent, TblParentRow } from './app.tables';
-import { TblLink, TblLinkRow } from './app.tables';
-import { TblChild, TblChildRow } from './app.tables';
-import { TblChildB, TblChildBRow } from './app.tables';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppDataset extends DatasetBase {
+
+  APP_TITLE:string = "My Application";
+  APP_ICON:string = "fa-id-card";
+
+  NAV_BACK:string = "#2b579a";
+
+
+  testRow:any = {
+    "table":{
+
+    },
+    "plnt_id":1,
+    "plnt_ctry_id":1,
+    "plnt_name":"plant1",
+    "plnt_desc":"This is just a test plant",
+    "plnt_population":75,
+    "plnt_area":88750,
+    "plnt_area_pop":88750,
+    "plnt_frac_pop":0.5,
+    "plnt_pop_dens_lpd_id":1,
+    "plnt_temp_amb":20,
+    "plnt_press_atm":1,
+    "plnt_cofst_ubsc":5,
+    "plnt_cofst_lbsc":0.0005,
+    "plnt_cofst_ubbc":0.5,
+    "plnt_cofst_lbbc":0.1,
+    "plnt_cofst_ubecg":100000,
+    "plnt_cofst_lbecg":10,
+    "plnt_cofst_ubecl":3000,
+    "plnt_cofst_lbecl":30,
+  }
 
   constructor(public http: HttpClient) { 
     super(http);
@@ -26,67 +50,13 @@ export class AppDataset extends DatasetBase {
   public apiUrl:string = "http://localhost:6072/api/app";
 
   // Instantiate data tables start
-  public tblUsers:TblUsers = this.AddTable(new TblUsers(this.http,this.apiUrl,this.tables));
-  public tblUserParams:TblUserParams = 
-    this.AddTable(new TblUserParams(this.http,this.apiUrl,this.tables,this.tblUsers));
-  public tblPolarReports:TblPolarReports = 
-    this.AddTable(new TblPolarReports(this.http,this.apiUrl,this.tables));
-  public tblLookups:TblLookups = this.AddTable(new TblLookups(this.http,this.apiUrl,this.tables));
   
-  public tblParent:TblParent = this.AddTable(new TblParent(this.http,this.apiUrl,this.tables));
-  public tblLink:TblLink = this.AddTable(new TblLink(this.http,this.apiUrl,this.tables,this.tblParent));
-  public tblChild:TblChild = this.AddTable(new TblChild(this.http,this.apiUrl,this.tables,this.tblLink));
-  public tblChildB:TblChildB = this.AddTable(new TblChildB(this.http,this.apiUrl,this.tables,this.tblParent));
-
+  
   // Instantiate data tables end
 
-  UserParamsByUserID(userId:number, reset?:boolean):Array<TblUserParamRow>{
-
-    if(reset == undefined) reset=false;
-    let ret:Array<TblUserParamRow> = [];
-
-    ret = this.tblUserParams.rows.filter(e=>e.uprm_user_id == userId);
-
-    return ret;
-  }
-
-  private _LookupDescSubs:Subscription = null;
-  LookupDesc(group:number, key:number,lookupField?:string):string{
-
-    let ret:any = this.tblLookups.GetRowById(key);
-    if(lookupField==undefined)lookupField="lkp_desc_a";
-
-    if(ret==null){
-      let grp:Array<TblLookupRow>=this.tblLookups.GetRowsByGroup(group);
-      return "-";
-    }else{
-      //console.log(ret);
-      //return ret["lkp_id"] + ", " + ret["lkp_grp_id"] + ", " + ret["lkp_desc_a"] + ", " + ret["lkp_desc_b"];
-      return ret[lookupField];
-    }
-    
-  }
 
   /************************** Application Specific Methods ******************************************/
-  IsLookupParam(prm:TblUserParamRow):boolean{
-    let lkpType:TblLookupRow = this.tblLookups.GetRowById(prm.uprm_type_lkp_id);
-    if(lkpType==null) return false;
-    if(lkpType.lkp_long_1 == 0 || prm.uprm_type_lkp_id == 8010)return false;
-    return true;
-  }
-  ParamValue(prm:TblUserParamRow):string{
-    let lkpType:TblLookupRow = this.tblLookups.GetRowById(prm.uprm_type_lkp_id);
-
-    if(lkpType==null) return "";
-
-    if(lkpType.lkp_long_1 == 0 || prm.uprm_type_lkp_id == 8010){
-      return prm.uprm_value_text;
-    }else{
-      let val:number = prm.uprm_value_lkp_id;
-      return this.LookupDesc(prm.uprm_type_lkp_id,val);
-
-    }
-  }
+  
 
 
 }

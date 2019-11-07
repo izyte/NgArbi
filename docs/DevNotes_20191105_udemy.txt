@@ -1,0 +1,336 @@
+template driven vs rective form
+- ngModel without assignment
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+<!--
+	ngSubmit form directive 
+-->
+</form>
+
+
+ts:
+onSubmit(form:NgForm){
+	NgForm.controls => contains all the html control objects
+	NgForm.value => contains the key/value pair fields embeded in the form
+}
+
+Accessing @ViewChild():
+
+<form (ngSubmit)="onSubmit()" #f>
+<!--
+	ngSubmit form directive 
+-->
+</form>
+
+@ViewChild('f') signupForm : NgForm;
+onSubmit(){
+	NgForm.controls => contains all the html control objects
+	NgForm.value => contains the key/value pair fields embeded in the form
+}
+
+
+Form Validation!:
+email directive (angular specific that validate an email field)
+angular dyanmicall add and remove classes to indicate control states
+e.g. ng-dirty, ng-touched, ng-invalid ...
+
+- global validation state can be added to submit's [disabled]="<boolean value>" property. where value is derived from the state of individual controls.
+
+
+#email="ngModel" => make reference to the element javascript representation from the template ....
+
+Set Default Values with ngModel property:
+============================================
+
+<input
+	[ngModel] = "<default value>"
+/>
+
+
+Using ngModel with Two-Way binding:
+===================================
+
+already known
+
+Grouping form controls:
+=======================
+ngModelGroup directive...
+e.g.  ngModelGroup="userData" => userData becomes the key of the group in the form's value property (type: FormGroup)
+      #userData="ngModelGroup" => to gain access to the group form within the template.
+
+Handling Radio Buttons:
+=========================
+
+
+Setting and Patching Form Values:
+================================
+eg.
+
+this.signupForm.setValue({
+	userData:{
+		username:"",
+		email:""
+	},
+	secret:"pet",
+	questionAnswer:"",
+	gender: "male"
+});
+
+* patchValue is only available from the form object
+this.signupForm.form.patchValue({
+	userData:{
+		email:"'new email'"
+	},
+	secret:"pet",
+	questionAnswer:"",
+	gender: "male"
+});
+
+
+Using Form Data:
+===============
+on submit,
+populate a separate object whose properties are bound to the summary display
+
+Resetting a form:
+=================
+this.signupForm.reset();
+
+
+REACTIVE FORMS!!!!!
+======================
+
+Reactive Setup:
+================
+e.g.
+signupForm: FormGroup;	=> from @angular/forms;
+FormControl;	=> from @angular/forms;
+
+* FormsModule is not! required
+* ReactiveFormsModule is required!
+
+Creating form in Code:
+========================
+normally done on ngOnInit()
+e.g.
+
+ngOnInit(){
+ this.signupForm = new FormGroup({
+    'username' : new FormControl(null),
+    'email' : new FormControl(null),
+    'gender' : new FormControl('male')
+ });
+}
+
+
+Sync HTML and Form:
+===================
+<form [formGroup]="signupForm">
+  <input id="usename" formControlName="username" />
+  <input id="email" formControlName="email" />
+  <input id="gender" formControlName="gender" />
+</form>
+
+Subitting the Form:
+===================
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+...
+</form>
+
+onSubmit(){
+  console.log(this.signupForm);
+}
+
+
+Adding Validation:
+==================
+ngOnInit(){
+ this.signupForm = new FormGroup({
+    'username' : new FormControl(null, Validators.required),
+    'email' : new FormControl(null, [Validators.required, Validators.email]),
+    'gender' : new FormControl('male')
+ });
+}
+
+
+Getting Access to Controls:
+===========================
+<form [formGroup]="signupForm">
+  <input id="usename" formControlName="username" />
+    <span *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched">Please enter a valid username</span>
+  <input id="email" formControlName="email" />
+    <span *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">Please enter a valid email</span>
+  <input id="gender" formControlName="gender" />
+</form>
+
+
+Grouping Controls:
+==================
+ngOnInit(){
+ this.signupForm = new FormGroup({
+    'userData' : new FormGroup(
+	    'username' : new FormControl(null, Validators.required),
+	    'email' : new FormControl(null, [Validators.required, Validators.email]),
+	),
+    'gender' : new FormControl('male')
+ });
+}
+
+//Sync...
+
+<form [formGroup]="signupForm">
+  <div formGroupName="userData>
+    <input id="usename" formControlName="username" />
+	<span *ngIf="!signupForm.get('userData.username').valid && signupForm.get('userData.username').touched">Please enter a valid username</span>
+    <input id="email" formControlName="email" />
+    <span *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched">Please enter a valid email</span>
+  </div>
+  <input id="gender" formControlName="gender" />
+</form>
+
+
+Arrays of Form Controls (FormArray):
+=======================================
+ngOnInit(){
+ this.signupForm = new FormGroup({
+    'userData' : new FormGroup(
+	    'username' : new FormControl(null, Validators.required),
+	    'email' : new FormControl(null, [Validators.required, Validators.email]),
+	),
+    'gender' : new FormControl('male'),
+    'hobbies' : new FormArray([]),
+ });
+}
+
+onAddHobby(){
+    const control = new FormControl(null,Validators.required);
+    (<FormArray>this.signupForm.get('hobbies')).push(control);
+}
+
+<form [formGroup]="signupForm">
+  <div formGroupName="userData>
+    <input id="usename" formControlName="username" />
+	<span *ngIf="!signupForm.get('userData.username').valid && signupForm.get('userData.username').touched">Please enter a valid username</span>
+    <input id="email" formControlName="email" />
+    <span *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched">Please enter a valid email</span>
+  </div>
+  <input id="gender" formControlName="gender" />
+  <div formArrayName="hobbies">
+    <h4>Your Hobbies</h4>
+    <button (click)="onAddHobby()">Add Hobby</button>
+  <div *ngFor="let hobbyControl of signupForm.get('hobbies').controls;let i=index">
+	<input type="text" [formControlName]="i">
+  </div>
+  </div>
+</form>
+
+
+Creating Custom Validators:
+============================
+forbiddenNames = ['james','anna'];
+
+forbiddenNames(control: FormControl): {[s:string]: boolean}{
+  if(this.forbiddenNames.indexOf(control.value)!=-1){
+    return{'nameIsForbidden': true};
+  }
+  return null;
+}
+
+ngOnInit(){
+ this.signupForm = new FormGroup({
+    'userData' : new FormGroup(
+	    'username' : new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
+	    'email' : new FormControl(null, [Validators.required, Validators.email]),
+	),
+    'gender' : new FormControl('male'),
+    'hobbies' : new FormArray([]),
+ });
+}
+
+
+Using Error Codes:
+====================
+
+<form [formGroup]="signupForm">
+  <div formGroupName="userData>
+    <input id="usename" formControlName="username" />
+	<span *ngIf="!signupForm.get('userData.username').errors['nameIsForbidden']">Name is invalid!</span>
+	<span *ngIf="!signupForm.get('userData.username').errors['required']">Username is requied</span>
+  </div>
+</form>
+
+
+Creating a custom async validator:
+==================================
+
+forbiddenEmails(control: FormControl): Promise<any> | Observable<any>{
+  const promise = new Promise<any>((resolve, reject) =>{
+    setTimeout(() =>{
+      if(control.value == 'test@test.com'){
+        resolve({'emailIsForbidden': true});
+      }else{
+        resolve(null);
+      }
+    }, 1500);
+  });
+  retun promise;
+}
+
+
+ngOnInit(){
+ this.signupForm = new FormGroup({
+    'userData' : new FormGroup(
+	    'username' : new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
+	    'email' : new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmails),
+	),
+    'gender' : new FormControl('male'),
+    'hobbies' : new FormArray([]),
+ });
+}
+
+
+* inserts ng-pending while promise is not yet ready!!!
+
+Reacting to Status or Value Changes:
+===================================
+
+ngOnInit(){
+ this.signupForm = new FormGroup({
+    'userData' : new FormGroup(
+	    'username' : new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
+	    'email' : new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmails),
+	),
+    'gender' : new FormControl('male'),
+    'hobbies' : new FormArray([]),
+ });
+
+// this.signupForm.valueChanges.subscribe((value)=>console.log(value));
+ this.signupForm.statusChanges.subscribe((status)=>console.log(status));
+}
+
+
+Setting and Patching Values:
+===============================
+
+imsa smep
+=========
+ref library, download...
+actin iems hang when adding record
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
