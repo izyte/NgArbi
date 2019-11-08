@@ -27,10 +27,49 @@ export class ApiInputAComponent implements OnInit {
 
   @Input() lookupSource: any = null;
 
+  @Input() readOnly: boolean;
+
   constructor(@Inject(ApiFormAComponent) private par: ApiFormAComponent) {}
+
+  ctrlId: string = "ctrl_" + this.fieldName;
+  helpId: string = "help_" + this.fieldName;
+
+  helpStyle: any;
+  lblFontSize: Number;
+  ctrlHeight: string;
+  isReadOnly: boolean;
+  lblWidth: string;
+  hlpWidth: string;
+
+  controlClass:any;
+  controlStyle:any;
+  labelClass:any;
+  inputClass:any;
+  helpClass:any;
+  innerInputClass:any;
+  innerInputStyle:any;
+  groupClass:any;
 
   ngOnInit() {
     let row: any = this.par.source;
+
+    this.ctrlHeight = this._ctrlHeight;
+    this.hlpWidth = this._hlpWidth;
+    this.helpStyle = this._helpStyle;
+    this.lblFontSize = this._lblFontSize;
+    this.isReadOnly = this._isReadOnly;
+    this.lblWidth = this._lblWidth;
+
+    this.controlClass=this._controlClass;
+    this.controlStyle=this._controlStyle;
+    this.labelClass=this._labelClass;
+    this.inputClass = this._inputClass;
+    this.helpClass = this._helpClass;
+
+    this.innerInputClass=this._innerInputClass;
+    this.innerInputStyle=this._innerInputStyle;
+
+    this.groupClass=this._groupClass;
 
     this.par.formObject.addControl(
       this.fieldName,
@@ -40,11 +79,11 @@ export class ApiInputAComponent implements OnInit {
     if (this.lkpSource) console.log(this.lkpSource);
   }
 
-  get lblFontSize(): Number {
+  get _lblFontSize(): Number {
     return this.labelFontSize > 0 ? this.labelFontSize : this.par.labelFontSize;
   }
 
-  get ctrlHeight(): string {
+  get _ctrlHeight(): string {
     if (this.isTextArea) return "auto";
     return this.controlHeight > 0
       ? String(this.controlHeight) + "px"
@@ -53,69 +92,59 @@ export class ApiInputAComponent implements OnInit {
       : "auto";
   }
 
-  get helpStyle(): any {
+  get _isReadOnly(): boolean {
+    //if(this.par.readOnly) return true;
+    return this.readOnly == undefined ? this.par.readOnly : this.readOnly;
+  }
+
+  //helpStyle:any=this._helpStyle;
+  get _helpStyle(): any {
     let pos: string = this.elemPos;
     return {
-      height: pos == "RH" ? String(this.ctrlHeight) + "px" : "auto",
+      height: pos == "RH" ? this.ctrlHeight : "auto",
+      width: pos == "RH" ? this.hlpWidth : "auto",
       "padding-bottom": pos == "R" ? "1px" : "auto"
     };
   }
 
-  _lblWidth: string;
-  get lblWidth(): string {
+  get _lblWidth(): string {
     let pos: string = this.elemPos;
     if (pos == "R" || pos == "RH") {
-      if (!this._lblWidth) {
-        this._lblWidth =
-          this.labelWidth > 0
-            ? String(this.labelWidth) + "px"
-            : this.par.labelWidth > 0
-            ? String(this.par.labelWidth) + "px"
-            : "auto";
-      }
-      return this._lblWidth;
+      return this.labelWidth > 0
+        ? String(this.labelWidth) + "px"
+        : this.par.labelWidth > 0
+        ? String(this.par.labelWidth) + "px"
+        : "auto";
     } else {
       return "auto";
     }
   }
 
-  _helpWidth: string;
-  get hlpWidth(): string {
+  get _hlpWidth(): string {
     if (this.elemPos == "RH") {
-      if (!this._helpWidth) {
-        this._helpWidth =
-          this.helpWidth > 0
-            ? String(this.helpWidth) + "px"
-            : this.par.helpWidth > 0
-            ? String(this.par.helpWidth) + "px"
-            : "auto";
-      }
-      return this._helpWidth;
+      return this.helpWidth > 0
+        ? String(this.helpWidth) + "px"
+        : this.par.helpWidth > 0
+        ? String(this.par.helpWidth) + "px"
+        : "auto";
     } else {
       return "auto";
     }
   }
 
-  get ctrlId(): string {
-    return "ctrl_" + this.fieldName;
-  }
-  get helpId(): string {
-    return "help_" + this.fieldName;
-  }
-
-  get controlClass(): any {
+  get _controlClass(): any {
     return {
       "form-control-sm": this.par.smallControls || this.smallControl
     };
   }
 
-  get controlStyle(): any {
+  get _controlStyle(): any {
     return {
       "margin-top": "5px"
     };
   }
 
-  get labelClass(): any {
+  get _labelClass(): any {
     /*
     arrangement
     C | CL:
@@ -155,7 +184,7 @@ export class ApiInputAComponent implements OnInit {
     };
   }
 
-  get inputClass(): any {
+  get _inputClass(): any {
     let pos: string = this.elemPos;
 
     return {
@@ -164,14 +193,14 @@ export class ApiInputAComponent implements OnInit {
     };
   }
 
-  get helpClass(): any {
+  get _helpClass(): any {
     let pos: string = this.elemPos;
     return {
       "text-right": pos == "CR" || pos == "CRB"
     };
   }
 
-  get innerInputClass(): any {
+  get _innerInputClass(): any {
     let pos: string = this.elemPos;
     return {
       "flex-column": pos != "RH",
@@ -179,8 +208,8 @@ export class ApiInputAComponent implements OnInit {
     };
   }
 
-  get innerInputStyle():any{
-    if( this.label =="") return {"margin-top": "2px"};
+  get _innerInputStyle(): any {
+    if (this.label == "") return { "margin-top": "2px" };
     return {};
   }
 
@@ -208,7 +237,7 @@ export class ApiInputAComponent implements OnInit {
     //return "R";
   }
 
-  get groupClass(): any {
+  get _groupClass(): any {
     let pos: string = this.elemPos;
     let bottomLabel: boolean = pos == "CRB" || pos == "CLB";
     return {
@@ -218,6 +247,6 @@ export class ApiInputAComponent implements OnInit {
   }
 
   xl(text: string): string {
-    return this.elemPos + "_" + text;
+    return this._lblWidth + "_" + this.elemPos + "_" + text;
   }
 }

@@ -10,7 +10,10 @@ export class ApiFormAComponent implements OnInit {
 
   @Input() source:any={};
   @Input() formObject:FormGroup=null;
+
   @Input() smallControls:boolean=false;
+  @Input() readOnly:boolean=false;
+
   @Input() labelFontSize:Number=1;
   @Input() labelWidth:Number=-1;
 

@@ -9,18 +9,18 @@
                     <span class="input-group-text" id="basic-addon1">{{prepend}}</span>
                 </div>
                 <!-- select -->
-                <select *ngIf="isSelectInput" class="form-control m-0" [ngClass]="controlClass" [ngStyle]="controlStyle"
-                    [attr.id]="ctrlId" [formControlName]="fieldName" [attr.aria-describedby]="helpId">
+                <select *ngIf="isSelectInput && !readOnly" class="form-control ctrl_select m-0" [ngClass]="controlClass" [ngStyle]="controlStyle"
+                [style.height]="ctrlHeight" [attr.id]="ctrlId" [formControlName]="fieldName" [attr.aria-describedby]="helpId">
                     <option value="{{opt.value}}" *ngFor="let opt of lkpSource;let i=index;">{{opt.disp}}</option>
                 </select>
                 <!-- textarea -->
                 <textarea *ngIf="isTextArea" [ngClass]="controlClass" [ngStyle]="controlStyle" [rows]="rows"
                     [style.height]="ctrlHeight" [attr.id]="ctrlId" [formControlName]="fieldName"
-                    class="form-control m-0" [attr.aria-describedby]="helpId" [placeholder]="placeHolder">
+                    class="form-control m-0 ctrl_input" [attr.aria-describedby]="helpId" [placeholder]="placeHolder">
                 </textarea>
 
                 <!-- text input -->
-                <input *ngIf="isTextInput" class="form-control m-0" [ngClass]="controlClass" [ngStyle]="controlStyle"
+                <input *ngIf="isTextInput" class="form-control  m-0 ctrl_input" [ngClass]="controlClass" [ngStyle]="controlStyle"
                     [style.height]="ctrlHeight" [attr.id]="ctrlId" [formControlName]="fieldName" type="text"
                     [attr.aria-describedby]="helpId" [placeholder]="placeHolder">
 
@@ -29,13 +29,14 @@
                     <span class="input-group-text" id="basic-addon2">{{append}}</span>
                 </div>
             </div>
-            <div class="pl-1 text-muted" style="overflow: hidden;" [ngClass]="helpClass" [ngStyle]="helpStyle"
-                [style.width]="hlpWidth" [style.font-size.em]="lblFontSize * 0.7">
+            <div class="pl-1 text-muted ctrl_help" [ngClass]="helpClass" [ngStyle]="helpStyle"
+                 [style.font-size.em]="lblFontSize * 0.7" 
+                >
                 The quick brown fox jumps over the lazy dog! The quick brown fox jumps over the lazy dog!
             </div>
-            <small *ngIf="false" class="form-text text-muted m-0 p-0 ml-1" [style.height]="ctrlHeight"
+            <!--small *ngIf="false" class="form-text text-muted m-0 p-0 ml-1" [style.height]="ctrlHeight"
                 style="background: yellow;margin:0px 0px 0px 0px;flex-grow: 1;"
-                [style.font-size.em]="lblFontSize * 0.65" [ngClass]="helpClass">We'll never .</small>
+                [style.font-size.em]="lblFontSize * 0.65" [ngClass]="helpClass">We'll never .</small-->
         </div>
     </div>
 
