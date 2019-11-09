@@ -8,13 +8,20 @@
                 <div *ngIf="prepend" class="input-group-prepend" [style.height]="ctrlHeight">
                     <span class="input-group-text" id="basic-addon1">{{prepend}}</span>
                 </div>
+
+                <!-- checkbox -->
+                <!-- radio button -->
+                <!-- date picker -->
+
                 <!-- select -->
                 <select *ngIf="isSelectInput && !readOnly" class="form-control ctrl_select m-0" [ngClass]="controlClass" [ngStyle]="controlStyle"
-                [style.height]="ctrlHeight" [attr.id]="ctrlId" [formControlName]="fieldName" [attr.aria-describedby]="helpId">
+                [style.height]="ctrlHeight" [attr.id]="ctrlId" [formControlName]="fieldName" [attr.aria-describedby]="helpId"
+                [style.font-size.em]="controlFontSize">
                     <option value="{{opt.value}}" *ngFor="let opt of lkpSource;let i=index;">{{opt.disp}}</option>
                 </select>
                 <!-- textarea -->
                 <textarea *ngIf="isTextArea" [ngClass]="controlClass" [ngStyle]="controlStyle" [rows]="rows"
+                    [style.font-size.em]="controlFontSize"
                     [style.height]="ctrlHeight" [attr.id]="ctrlId" [formControlName]="fieldName"
                     class="form-control m-0 ctrl_input" [attr.aria-describedby]="helpId" [placeholder]="placeHolder">
                 </textarea>
@@ -22,6 +29,7 @@
                 <!-- text input -->
                 <input *ngIf="isTextInput" class="form-control  m-0 ctrl_input" [ngClass]="controlClass" [ngStyle]="controlStyle"
                     [style.height]="ctrlHeight" [attr.id]="ctrlId" [formControlName]="fieldName" type="text"
+                    [style.font-size.em]="controlFontSize"
                     [attr.aria-describedby]="helpId" [placeholder]="placeHolder">
 
                 <!-- append -->

@@ -14,9 +14,11 @@ export class ApiFormAComponent implements OnInit {
   @Input() smallControls:boolean=false;
   @Input() readOnly:boolean=false;
 
+  
   @Input() labelFontSize:Number=1;
   @Input() labelWidth:Number=-1;
 
+  @Input() controlFontSize:Number=1;
   @Input() controlHeight:number=-1;         // 'px'
 
   @Input() helpWidth:Number=-1;
