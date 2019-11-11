@@ -23,6 +23,15 @@ export class TestFormAComponent implements OnInit {
     { value: 3, disp: "Malaysia" }
   ];
 
+  lkpLocalPopulationDensity: Array<any> = [
+    { value: 0, disp: "" },
+    { value: 1, disp: "None" },
+    { value: 2, disp: "Farms" },
+    { value: 3, disp: "Factory" },
+    { value: 4, disp: "Village" },
+    { value: 5, disp: "Town" },
+  ];
+
   constructor(private ds: AppDataset) {
     this.row = this.ds.testRow;
   }

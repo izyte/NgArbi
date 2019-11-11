@@ -60,8 +60,25 @@ Server side Api implementation
             // Initialize dataset
             AppDataset.Initialize();
 
+- Set Connection String name "cnsAppAPI" to point to proper connection string
 
+- Create a new controller named AppController and copy the contents of the template project (rename back the namespace to the original namespace assigned to the project.)
+- Modify // Web API routes in the WebApiConfig.cs
 
+...
+
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{table}/{key}/{keyField}",
+                defaults: new {
+                        table = RouteParameter.Optional
+                        , key = RouteParameter.Optional
+                        , keyField = RouteParameter.Optional
+                }
+            );
+...
+
+============================================================
 GitHub:
 - create new repository
 - copy bk.bat from existing project
@@ -90,3 +107,5 @@ Label  Input
 Help
 
 
+Radio Button snag....
+when using reactive form with radio button, bind value as [value]="src.value" instead of using checked to initialize selected option properly

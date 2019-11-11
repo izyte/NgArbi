@@ -11,25 +11,46 @@
 
                 <!-- checkbox -->
                 <!-- radio button -->
+
+                <div *ngIf="isRadioInput" [formGroup]="par.formObject">
+                    <!--input *ngFor="let item of radSource" type="radio" value="{{item.value}}"-->
+                    <label class="form-check-label mr-1" *ngFor="let rad of radSource;let i=index" 
+                        [style.font-size.em]="lblFontSize" [for]="ctrlId+i" >
+                        <input  class="mr-1" [formControlName]="fieldName" *ngIf="rad.disp!=''" [attr.id]="ctrlId+i" type="radio"
+                        [value]="rad.value">{{rad.disp}}
+                    </label>
+
+                    <!--ng-template ngFor let-rad let-i="index" [ngForOf]="radSource">
+                        
+                        <label  [for]="ctrlId+i" *ngIf="rad.disp" class="px-1"><input [formControlName]="fieldName" *ngIf="rad.disp!=''" [attr.id]="ctrlId+i" type="radio"
+                            [value]="rad.value">{{rad.disp}}</label>
+                    </ng-template-->
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" value="" >Option 3
+                        </label>
+                    </div>
+                </div>
                 <!-- date picker -->
 
                 <!-- select -->
-                <select *ngIf="isSelectInput && !readOnly" class="form-control ctrl_select m-0" [ngClass]="controlClass" [ngStyle]="controlStyle"
-                [style.height]="ctrlHeight" [attr.id]="ctrlId" [formControlName]="fieldName" [attr.aria-describedby]="helpId"
-                [style.font-size.em]="controlFontSize">
+                <select *ngIf="isSelectInput && !readOnly" class="form-control ctrl_select m-0" [ngClass]="controlClass"
+                    [ngStyle]="controlStyle" [style.height]="ctrlHeight" [attr.id]="ctrlId"
+                    [formControlName]="fieldName" [attr.aria-describedby]="helpId"
+                    [style.font-size.em]="controlFontSize">
                     <option value="{{opt.value}}" *ngFor="let opt of lkpSource;let i=index;">{{opt.disp}}</option>
                 </select>
                 <!-- textarea -->
                 <textarea *ngIf="isTextArea" [ngClass]="controlClass" [ngStyle]="controlStyle" [rows]="rows"
-                    [style.font-size.em]="controlFontSize"
-                    [style.height]="ctrlHeight" [attr.id]="ctrlId" [formControlName]="fieldName"
-                    class="form-control m-0 ctrl_input" [attr.aria-describedby]="helpId" [placeholder]="placeHolder">
+                    [style.font-size.em]="controlFontSize" [style.height]="ctrlHeight" [attr.id]="ctrlId"
+                    [formControlName]="fieldName" class="form-control m-0 ctrl_input" [attr.aria-describedby]="helpId"
+                    [placeholder]="placeHolder">
                 </textarea>
 
                 <!-- text input -->
-                <input *ngIf="isTextInput" class="form-control  m-0 ctrl_input" [ngClass]="controlClass" [ngStyle]="controlStyle"
-                    [style.height]="ctrlHeight" [attr.id]="ctrlId" [formControlName]="fieldName" type="text"
-                    [style.font-size.em]="controlFontSize"
+                <input *ngIf="isTextInput" class="form-control  m-0 ctrl_input" [ngClass]="controlClass"
+                    [ngStyle]="controlStyle" [style.height]="ctrlHeight" [attr.id]="ctrlId"
+                    [formControlName]="fieldName" type="text" [style.font-size.em]="controlFontSize"
                     [attr.aria-describedby]="helpId" [placeholder]="placeHolder">
 
                 <!-- append -->
@@ -38,8 +59,7 @@
                 </div>
             </div>
             <div class="pl-1 text-muted ctrl_help" [ngClass]="helpClass" [ngStyle]="helpStyle"
-                 [style.font-size.em]="lblFontSize * 0.7" 
-                >
+                [style.font-size.em]="lblFontSize * 0.7">
                 The quick brown fox jumps over the lazy dog! The quick brown fox jumps over the lazy dog!
             </div>
             <!--small *ngIf="false" class="form-text text-muted m-0 p-0 ml-1" [style.height]="ctrlHeight"

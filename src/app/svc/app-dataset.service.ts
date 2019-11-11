@@ -29,7 +29,7 @@ export class AppDataset extends DatasetBase {
     "plnt_area":88750,
     "plnt_area_pop":88750,
     "plnt_frac_pop":0.5,
-    "plnt_pop_dens_lpd_id":1,
+    "plnt_pop_dens_lpd_id":4,
     "plnt_temp_amb":20,
     "plnt_press_atm":1,
     "plnt_cofst_ubsc":5,

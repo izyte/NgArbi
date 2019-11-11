@@ -26,6 +26,7 @@ export class ApiInputAComponent implements OnInit {
   @Input() smallControl: boolean = false;
 
   @Input() lookupSource: any = null;
+  @Input() radioSource: any = null;
 
   @Input() readOnly: boolean;
 
@@ -76,7 +77,14 @@ export class ApiInputAComponent implements OnInit {
       new FormControl(row[this.fieldName])
     );
     //console.log("Props:",this.label + ": " , this.fieldName + " - " , this.par.formObject);
-    if (this.lkpSource) console.log(this.lkpSource);
+    if (this.lkpSource) console.log("LookupSource:",this.lkpSource);
+    if (this.radSource) console.log("radioSource:",
+      "value=",
+      this.par.source[this.fieldName],
+      this.par.source,
+      this.isRadioInput,this.radSource);
+    
+
   }
 
   get _lblFontSize(): Number {
@@ -217,12 +225,21 @@ export class ApiInputAComponent implements OnInit {
     return this.lookupSource;
   }
 
+  get radSource(): any {
+    return this.radioSource;
+  }
+
   get isSelectInput(): boolean {
     return this.lkpSource != null;
   }
 
+  get isRadioInput(): boolean {
+    return this.radioSource != null;
+  }
+  
+
   get isTextInput(): boolean {
-    return !this.isTextArea && !this.isSelectInput;
+    return !this.isTextArea && !this.isSelectInput && !this.isRadioInput;
   }
 
   get isTextArea(): boolean {
