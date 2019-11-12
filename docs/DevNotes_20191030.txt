@@ -109,3 +109,17 @@ Help
 
 Radio Button snag....
 when using reactive form with radio button, bind value as [value]="src.value" instead of using checked to initialize selected option properly
+
+
+=============================
+Continuing with client-side
+api
+
+
+=============================
+TypeScrip Deconstructing
+
+var rect = { x: 0, y: 10, width: 15, height: 20 };
+
+// Destructuring assignment
+var {x, y, width, height} = rect;

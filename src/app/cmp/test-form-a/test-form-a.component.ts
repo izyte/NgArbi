@@ -1,3 +1,4 @@
+import { TblUsers } from './../../svc/app.tables';
 import { AppDataset } from "./../../svc/app-dataset.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
@@ -36,5 +37,9 @@ export class TestFormAComponent implements OnInit {
     this.row = this.ds.testRow;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    //this.ds.tblUsers.rows[0].user_desc;
+
+  }
 }
