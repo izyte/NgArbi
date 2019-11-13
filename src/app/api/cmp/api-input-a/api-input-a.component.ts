@@ -13,6 +13,7 @@ export class ApiInputAComponent implements OnInit {
   @Input() labelWidth: number = -1; // 'px'
   @Input() helpWidth: number = -1; // 'px'
 
+  @Input() controlFontSize: number;
   @Input() controlHeight: number = -1; // 'px'
   @Input() rows: number = 1; // 'px'
 
@@ -30,13 +31,13 @@ export class ApiInputAComponent implements OnInit {
 
   @Input() readOnly: boolean;
 
-  constructor(@Inject(ApiFormAComponent) private par: ApiFormAComponent) {}
+  constructor(@Inject(ApiFormAComponent) public par: ApiFormAComponent) {}
 
   ctrlId: string = "ctrl_" + this.fieldName;
   helpId: string = "help_" + this.fieldName;
 
   helpStyle: any;
-  lblFontSize: Number;
+  lblFontSize: number;
   ctrlHeight: string;
   isReadOnly: boolean;
   lblWidth: string;
@@ -72,6 +73,8 @@ export class ApiInputAComponent implements OnInit {
 
     this.groupClass=this._groupClass;
 
+    if(!this.controlFontSize) this.controlFontSize = this.par.controlFontSize;
+
     this.par.formObject.addControl(
       this.fieldName,
       new FormControl(row[this.fieldName])
@@ -87,7 +90,7 @@ export class ApiInputAComponent implements OnInit {
 
   }
 
-  get _lblFontSize(): Number {
+  get _lblFontSize(): number {
     return this.labelFontSize > 0 ? this.labelFontSize : this.par.labelFontSize;
   }
 
@@ -246,6 +249,11 @@ export class ApiInputAComponent implements OnInit {
     return this.rows > 1;
   }
 
+  get helpFontSize(): number{
+    //return this.lblFontSize * 0.7;
+     return Number(this.lblFontSize) * 0.7;
+  }
+
   get elemPos(): string {
     let ret: string = this.elementPosition
       ? this.elementPosition
@@ -264,6 +272,6 @@ export class ApiInputAComponent implements OnInit {
   }
 
   xl(text: string): string {
-    return this._lblWidth + "_" + this.elemPos + "_" + text;
+    return this.lblFontSize + "_" + this._lblWidth + "_" + this.elemPos + "_" + text;
   }
 }

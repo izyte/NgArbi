@@ -46,8 +46,12 @@ export class TableRowBase{
         this._isDirty = !this._isPristine;
     }
 
-    get Table():any{
+    public _Table():any{
         return this._parentTable;
+    }
+
+    get Table():any{
+        return this._Table();
     }
 
     get keyVal():any{
