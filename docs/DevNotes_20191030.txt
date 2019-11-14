@@ -140,4 +140,15 @@ inside compiler settings (tsconfig.json)
 angular material vs bootstrap
 "The Best Parts of Bootstrap 4 You are Missing in Angular Material" https://www.amadousall.com
 
+================================
+Object Destructuring
+Destructuring is useful because it allows you to do in a single line, what would otherwise require multiple lines. Consider the following case:
+var rect = { x: 0, y: 10, width: 15, height: 20 };
 
+// Destructuring assignment
+var {x, y, width, height} = rect;
+console.log(x, y, width, height); // 0,10,15,20
+
+rect.x = 10;
+({x, y, width, height} = rect); // assign to existing variables using outer parentheses
+console.log(x, y, width, height); // 10,10,15,20
