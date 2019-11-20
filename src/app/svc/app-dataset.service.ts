@@ -50,7 +50,7 @@ export class AppDataset extends DatasetBase {
   }
 
   // setup aplication source api url
-  public apiUrl: string = "http://localhost:16598/api/app";
+  public apiUrl: string = "http://soga-alv/NgArbi/api/app";
 
 //<INSTANTIATE>
 public tblPlants:TblPlants = this.AddTable(new TblPlants(this.http, this.apiUrl, this.tables));
