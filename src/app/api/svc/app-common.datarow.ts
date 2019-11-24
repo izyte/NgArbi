@@ -1,3 +1,4 @@
+import { ComponentFactoryResolver } from '@angular/core';
 import { ColumnInfo } from '../mod/app-column.model';
 export class TableRowBase{
 
@@ -46,12 +47,8 @@ export class TableRowBase{
         this._isDirty = !this._isPristine;
     }
 
-    public _Table():any{
-        return this._parentTable;
-    }
-
     get Table():any{
-        return this._Table();
+        return this._parentTable;
     }
 
     get keyVal():any{
@@ -159,7 +156,6 @@ export class TableRowBase{
         if(this._parentTable==null){
             console.log("No table attached to the data row");
         }else{
-            console.log("_requestDate:",this._requestDate);
             this._parentTable.columns.forEach((c:ColumnInfo) => {
                 if(c.keyPosition==-1 && !c.IsStampField)
                     console.log(c.name + ": ",this[c.name]);
@@ -187,8 +183,20 @@ export class TableRowBase{
 
     private ChildTable(childTableCode:string):any{
         let child:any=null;
+        //this._parentTable.Links(),this._parentTable.tables
+
+
         if(this._parentTable.childrenTable)child = this._parentTable.ChildTable(childTableCode);
         return child;
+    }
+
+    public get Tables():any{
+        if(!this._parentTable) return {};
+        return this._parentTable.tables
+    }
+    public get Links():Array<any>{
+        if(!this._parentTable) return [];
+        return this._parentTable.Links()
     }
 
     private _ChildRow:any={};
@@ -284,13 +292,22 @@ export class TableRowBase{
     }
 
     public ChildRows(childTableCode?:string):Array<any>{
+
+
         /** "lnk|lnk_par_id", "chib|chib_par_id", GetRowsByGroup() ***/
         let ret:Array<any>=[];
-        let child:any=this.ChildTable(childTableCode);
+        let link:any = this.Links.find(l=>(l.child_code==childTableCode))
+
+        if(!link)return [];
+
+        let child:any=this.Tables[childTableCode]; //this.Tables.find(t => t.tableCode==childTableCode);
+        //console.log("ChildRows...("+ childTableCode + ")",this.Links,this.Tables,child);
+        //console.log("child:",child);
 
         // GetRowsByGroup is used to get rows based on the 
         // parent key - to - child group definition
-        if(child) ret = child.GetRowsByGroup();
+        if(child) ret = child.GetRowsByGroup(this);
+
         return ret;
     }    
 

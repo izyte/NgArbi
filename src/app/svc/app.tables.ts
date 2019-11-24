@@ -1,11 +1,12 @@
 /***********************************************************************
-* Automatically generated on 11/13/2019 8:48:42 PM
+* Automatically generated on 11/24/2019 7:06:46 PM
 ***********************************************************************/
 
 import { HttpClient } from '@angular/common/http';
 import { TableBase } from '../api/svc/app-common.datatable'; 
 import { TableRowBase }from '../api/svc/app-common.datarow'; 
 import { ColumnInfo } from '../api/mod/app-column.model';
+
 
 
 
@@ -19,8 +20,8 @@ export class TblPlants extends TableBase {
 	private _tableLinks:Array<string>=[];
 	private _links:Array<any>=[];
 
-  constructor(public http:HttpClient,public apiUrl:string, public tables?:Array<any>,public parentTable?:any) { 
-    super(http, apiUrl, parentTable); 
+  constructor(public http:HttpClient,public apiUrl:string, public tables?:Array<any>) { 
+    super(http, apiUrl); 
     
     this.derivedTable = this;
 
@@ -50,7 +51,6 @@ export class TblPlants extends TableBase {
 	this.columns.push(new ColumnInfo('plnt_created', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('plnt_created_by', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 
-    if(parentTable!=undefined) parentTable.AddChildTable(this);
     this.InitializeTable();
 
   }
@@ -102,7 +102,7 @@ export class TblPlantsRow extends TableRowBase{
   }
 
   // Returs the table object where the row is a member of.
-  public get Table():TblPlants{ return super._Table(); }
+  public get Table():TblPlants{ return super.Table; }
 
  
 }
@@ -124,8 +124,8 @@ export class TblUserPlant extends TableBase {
   }
 ];
 
-  constructor(public http:HttpClient,public apiUrl:string, public tables?:Array<any>,public parentTable?:any) { 
-    super(http, apiUrl, parentTable); 
+  constructor(public http:HttpClient,public apiUrl:string, public tables?:Array<any>) { 
+    super(http, apiUrl); 
     
     this.derivedTable = this;
 
@@ -135,7 +135,6 @@ export class TblUserPlant extends TableBase {
 	this.columns.push(new ColumnInfo('upln_user_id', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('upln_plnt_id', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 
-    if(parentTable!=undefined) parentTable.AddChildTable(this);
     this.InitializeTable();
 
   }
@@ -167,7 +166,7 @@ export class TblUserPlantRow extends TableRowBase{
   }
 
   // Returs the table object where the row is a member of.
-  public get Table():TblUserPlant{ return super._Table(); }
+  public get Table():TblUserPlant{ return super.Table; }
 
 
 
@@ -249,8 +248,8 @@ export class TblUsers extends TableBase {
   }
 ];
 
-  constructor(public http:HttpClient,public apiUrl:string, public tables?:Array<any>,public parentTable?:any) { 
-    super(http, apiUrl, parentTable); 
+  constructor(public http:HttpClient,public apiUrl:string, public tables?:Array<any>) { 
+    super(http, apiUrl); 
     
     this.derivedTable = this;
 
@@ -266,7 +265,6 @@ export class TblUsers extends TableBase {
 	this.columns.push(new ColumnInfo('user_tag', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('user_tag2', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 
-    if(parentTable!=undefined) parentTable.AddChildTable(this);
     this.InitializeTable();
 
   }
@@ -304,7 +302,7 @@ export class TblUsersRow extends TableRowBase{
   }
 
   // Returs the table object where the row is a member of.
-  public get Table():TblUsers{ return super._Table(); }
+  public get Table():TblUsers{ return super.Table; }
 
  
 }
