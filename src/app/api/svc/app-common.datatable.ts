@@ -43,7 +43,7 @@ export class TableBase extends AppCommonMethods {
     let ret: any = this.__Item["r_" + String(key)];
     if (!ret && groupId != undefined) {
       //this.GetRowById(key);
-      this.GetRowsByGroup(groupId);
+      this.GetRowsByGroup({key:groupId});
     }
     return ret;
   }
@@ -206,7 +206,7 @@ export class TableBase extends AppCommonMethods {
       });
     }
 
-    if (!ret.value && groupId != undefined) this.GetRowsByGroup(groupId);
+    if (!ret.value && groupId != undefined) this.GetRowsByGroup({key:groupId});
 
     return ret;
   }
@@ -459,8 +459,6 @@ export class TableBase extends AppCommonMethods {
     if (args.subsKey != undefined)
       urlParams = (url.indexOf("?") == -1 ? "?" : "&") + "skey=" + args.subsKey;
 
-    this._cl("upln url:..",url + urlParams,"args:",args);
-
     this.pendingRequest = true;
 
 
@@ -571,16 +569,13 @@ export class TableBase extends AppCommonMethods {
 
   private _TblSubs: any = {};
 
-  GetRowsByGroup(
-    key?: any,
-    keyField?: string,
-    onSuccess?: Function,
-    onError?: Function,
-    row?: any
-  ): Array<any> {
+  GetRowsByGroup(args:{key?: any,keyField?: string,
+    onSuccess?: Function,onError?: Function,row?: any}): Array<any> {
 
     let parKey: string;
     let tbl:any;
+
+    let {key, keyField, onSuccess, onError, row} = args;
 
     if (typeof key == "object") {
       // key supplied is a row object which is expected to contain
@@ -726,11 +721,8 @@ export class TableBase extends AppCommonMethods {
 
       this.Get({
         onSuccess: e => {
-          console.log("resolve",resolve);
           this.UnSubscribe(e);
-          if(resolve!=undefined) {
-            resolve(e);
-          }
+          if(resolve!=undefined) resolve(e);
         },
         onError: e => {
           //if(onError)onError(e);

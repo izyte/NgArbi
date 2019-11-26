@@ -238,7 +238,7 @@ export class TableRowBase{
             if(!ret){
                 if(groupId!=-1){
                     // group id is supplied, retreive all records belonging to the group
-                    childTable.GetRowsByGroup(groupId);
+                    childTable.GetRowsByGroup({key:groupId});
                 }else{
                     // group is is not suppiied, get individual record...
                     ret =childTable.GetRowById(this[localField]);
@@ -284,7 +284,7 @@ export class TableRowBase{
             }
             this._ChildRow[childRowKey] = ret;
 
-            if(!ret && groupId!=-1)childTable.GetRowsByGroup(groupId);
+            if(!ret && groupId!=-1)childTable.GetRowsByGroup({key:groupId});
         }else{
             //if(childRowKey!="chi")console.log("childRowKey",childRowKey);
             ret = row;
@@ -295,31 +295,19 @@ export class TableRowBase{
         return ret;
     }
 
-    public ChildRows(childTableCode?:string):Array<any>{
+    public ChildRows(childTableCode?:string,resolve?:Function,reject?:Function):Array<any>{
 
-
-        /** "lnk|lnk_par_id", "chib|chib_par_id", GetRowsByGroup() ***/
         let ret:Array<any>=[];
         let link:any = this.Links.find(l=>(l.child_code==childTableCode))
 
         if(!link)return [];
 
-
-
         let child:any=this.Tables[childTableCode]; //this.Tables.find(t => t.tableCode==childTableCode);
-        //console.log("ChildRows...("+ childTableCode + ")",this.Links,this.Tables,child);
-        //console.log("child:",child);
-
 
         // GetRowsByGroup is used to get rows based on the 
         // parent key - to - child group definition
-        if(child) ret = child.GetRowsByGroup(this);
-
-        if(childTableCode =="upln" && child){
-            console.log("Link object:", link, "Child:", child,"ret:",ret);
-        }        
-
-
+        if(child) ret = child.GetRowsByGroup({key:this,onSuccess:resolve,onError:reject});
+ 
         return ret;
     }    
 

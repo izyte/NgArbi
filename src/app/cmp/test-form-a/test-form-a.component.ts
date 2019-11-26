@@ -57,10 +57,18 @@ export class TestFormAComponent implements OnInit {
     let userId:number = 1;
     let user:TblUsersRow = this.ds.tblUsers.GetRowById(userId, (e)=>{
       let u:TblUsersRow=this.ds.tblUsers.GetRowById(userId);
-      let up:Array<TblUserPlantRow> = u.ChildRows("upln");
+      //let up:Array<TblUserPlantRow> = u.ChildRows("upln");
+      //this.ds._cl("user:",u,"upln count:",up.length);
+      this.ds._cl("user:",u,"upln count:");
     });
     if(user){
-      console.log("Users:",this.ds.tblUsers,"!Linked Plants: ",user.ChildRows("upln"))
+      this.ds._cl("Users:",this.ds.tblUsers,"!Linked Plants: ",user.ChildRows("upln"));
     }
+  }
+
+  TestFunctionB(){
+    let userId:number = 1;
+    let user:TblUsersRow = this.ds.tblUsers.GetRowById(userId);
+    this.ds._cl("UserRow",user);
   }
 }
