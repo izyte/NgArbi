@@ -1,4 +1,4 @@
-import { TblUsers } from './../../svc/app.tables';
+import { TblUsers, TblUsersRow } from './../../svc/app.tables';
 import { AppDataset } from "./../../svc/app-dataset.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
@@ -39,7 +39,21 @@ export class TestFormAComponent implements OnInit {
 
   ngOnInit() {
 
-    //this.ds.tblUsers.rows[0].user_desc;
+    // get user record
+    let userId:number = 1;
+    this.ds.tblUsers.GetRowById(userId,(e)=>{
+      let user:TblUsersRow = this.ds.tblUsers.GetRowById(userId);
+      console.log("Resolved",e,"User:",user);
+      user.ChildRows("upln")
+    });
 
+    //this.ds.tblUsers.rows[0].user_desc;
+    //console.log("tblPlants",this.ds.tblPlants)
+
+  }
+
+  TestFunction(){
+    let user:TblUsersRow = this.ds.tblUsers.GetRowById(1);
+    console.log("Users:",this.ds.tblUsers,user.ChildRows("upln"));
   }
 }

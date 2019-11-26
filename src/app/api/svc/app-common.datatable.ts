@@ -706,7 +706,7 @@ export class TableBase extends AppCommonMethods {
     return ret;
   }
 
-  GetRowById(key: number): any {
+  GetRowById(key: number, resolve?:Function, reject?:Function): any {
     let keyField: string = this.keyCol.name;
     let _newSubsKey: string = this.newSubsKey;
     let row: any = this.GetRows().find(r => r[keyField] == key);
@@ -717,9 +717,11 @@ export class TableBase extends AppCommonMethods {
       this.Get({
         onSuccess: e => {
           this.UnSubscribe(e);
+          if(resolve!=undefined) resolve(e);
         },
         onError: e => {
           //if(onError)onError(e);
+          if(reject!=undefined) reject(e);
         },
         key: key,
         subsKey: _newSubsKey
