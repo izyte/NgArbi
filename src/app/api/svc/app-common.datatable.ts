@@ -387,6 +387,7 @@ export class TableBase extends AppCommonMethods {
     let prmKey: string = "";
     let prmKeyFields: string = "";
 
+
     if (args) {
       // key must have a final value of v0`v1`...`vN
       // values are separated by back-ticks
@@ -438,11 +439,13 @@ export class TableBase extends AppCommonMethods {
       }
     }
 
+
     let url: string =
       this.tblUrl +
       (prmKey.length != 0
         ? "/" + prmKey + (prmKeyFields.length != 0 ? "/" + prmKeyFields : "")
         : "");
+
 
     // these two tests is important to preceed any alteration to the
     // url (eg. adding auto-generated parameters for each request)
@@ -456,7 +459,10 @@ export class TableBase extends AppCommonMethods {
     if (args.subsKey != undefined)
       urlParams = (url.indexOf("?") == -1 ? "?" : "&") + "skey=" + args.subsKey;
 
+    this._cl("upln url:..",url + urlParams,"args:",args);
+
     this.pendingRequest = true;
+
 
     let ret: Subscription = this.http.get<AppReturn>(url + urlParams).subscribe(
       (data: any) => {
@@ -577,16 +583,25 @@ export class TableBase extends AppCommonMethods {
     let tbl:any;
 
     if (typeof key == "object") {
+      // key supplied is a row object which is expected to contain
+      // the key value to be passed as group key of records in the child table
       tbl=key.Table;
       if (tbl) {
-        if (tbl.currentRow) {
+
+        parKey = tbl.keyCol.name;
+        key = key[parKey];
+
+        /*if (tbl.currentRow) {
           parKey = tbl.keyCol.name;
           key = tbl.currentRow[parKey];
         } else {
           key = undefined;
-        }
+          this.cl([this.tableCode + ": no current row",this.tableCode=="upln"])
+        }*/
+
       } else {
         key = undefined;
+        this._cl(this.tableCode + ": no table",this.tableCode=="upln");
       }
     }
 
@@ -663,12 +678,7 @@ export class TableBase extends AppCommonMethods {
       this._UnSubscribeCounter++;
       for (var key in this._TblSubs) {
         let subs: any = this._TblSubs[key];
-        console.log(
-          "Unsubscribe abandoned!",
-          abandoned,
-          Date.now(),
-          this._UnSubscribeCounter
-        );
+        this._cl("Unsubscribe abandoned!",abandoned,Date.now(),this._UnSubscribeCounter);
         if (subs) {
           // if subscription is not null
           let when: number = subs.when;

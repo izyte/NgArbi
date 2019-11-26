@@ -18,4 +18,25 @@ export class AppCommonMethods{
         }
     }
 
+    public _cl(...args:Array<any>){
+        if(args.length==0) return;
+        let disp:any = args[args.length-1];
+        if(typeof(disp)=="boolean"){
+            if(disp)console.log(args);
+        }else{
+            console.log(args);
+        }
+    }
+
+    public cl(args:Array<any>){
+        if(args.length==0) return;
+        let disp:any = args[args.length-1];
+        if(typeof(disp)=="boolean"){
+            if(disp)console.log(args);
+        }else{
+            console.log(args);
+        }
+        
+    }
+
 }

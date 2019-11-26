@@ -54,6 +54,6 @@ export class TestFormAComponent implements OnInit {
 
   TestFunction(){
     let user:TblUsersRow = this.ds.tblUsers.GetRowById(1);
-    console.log("Users:",this.ds.tblUsers,user.ChildRows("upln"));
+    console.log("Users:",this.ds.tblUsers,"Linked Plants: ",user.ChildRows("upln"));
   }
 }

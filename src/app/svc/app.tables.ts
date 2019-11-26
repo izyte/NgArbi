@@ -1,5 +1,5 @@
 /***********************************************************************
-* Automatically generated on 11/24/2019 7:59:46 PM
+* Automatically generated on 11/26/2019 7:43:53 PM
 ***********************************************************************/
 
 import { HttpClient } from '@angular/common/http';
@@ -132,7 +132,7 @@ export class TblUserPlant extends TableBase {
     this.tableCode="upln";
 
 	this.columns.push(new ColumnInfo('upln_id', 'number', '', '', 0, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('upln_user_id', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('upln_user_id', 'number', '', '', -1, -1, 0, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('upln_plnt_id', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 
     this.InitializeTable();

@@ -300,13 +300,21 @@ export class TableRowBase{
 
         if(!link)return [];
 
+
+
         let child:any=this.Tables[childTableCode]; //this.Tables.find(t => t.tableCode==childTableCode);
         //console.log("ChildRows...("+ childTableCode + ")",this.Links,this.Tables,child);
         //console.log("child:",child);
 
+
         // GetRowsByGroup is used to get rows based on the 
         // parent key - to - child group definition
         if(child) ret = child.GetRowsByGroup(this);
+
+        if(childTableCode =="upln" && child){
+            console.log("Link object:", link, "Child:", child,"ret:",ret);
+        }        
+
 
         return ret;
     }    
