@@ -1,5 +1,7 @@
 import { ComponentFactoryResolver } from '@angular/core';
 import { ColumnInfo } from '../mod/app-column.model';
+import { AppCommonMethods } from "./app-common.methods";
+
 export class TableRowBase{
 
     public _parentTable:any=null;
@@ -142,8 +144,10 @@ export class TableRowBase{
     }
 
     SetAsCurrent():void{
+        // asisgn the current record as the currentRow of the parent table
         if(!this._parentTable) return;
         this._parentTable.__currentRow(this);
+        this._parentTable._cl("CurrentRow:",this);
     }
 
     Post():void{

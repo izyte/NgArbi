@@ -63,4 +63,13 @@ public tblUsers:TblUsers = this.AddTable(new TblUsers(this.http, this.apiUrl, th
   */
 
   /************************** Application Specific Methods ******************************************/
+
+  get currentUser():TblUsersRow{
+    return this.tblUsers.currentRow;
+  }
+
+  get currentPlant():TblPlantsRow{
+    return this.tblPlants.currentRow;
+  }
+
 }

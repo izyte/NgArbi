@@ -1,4 +1,4 @@
-import { TblUsers, TblUsersRow } from './../../svc/app.tables';
+import { TblUsers, TblUsersRow, TblUserPlantRow } from './../../svc/app.tables';
 import { AppDataset } from "./../../svc/app-dataset.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
@@ -40,9 +40,10 @@ export class TestFormAComponent implements OnInit {
   ngOnInit() {
 
     // get user record
-    let userId:number = 1;
+    let userId:number = 2;
     this.ds.tblUsers.GetRowById(userId,(e)=>{
       let user:TblUsersRow = this.ds.tblUsers.GetRowById(userId);
+
       console.log("Resolved",e,"User:",user);
       user.ChildRows("upln")
     });
@@ -53,7 +54,13 @@ export class TestFormAComponent implements OnInit {
   }
 
   TestFunction(){
-    let user:TblUsersRow = this.ds.tblUsers.GetRowById(1);
-    console.log("Users:",this.ds.tblUsers,"Linked Plants: ",user.ChildRows("upln"));
+    let userId:number = 1;
+    let user:TblUsersRow = this.ds.tblUsers.GetRowById(userId, (e)=>{
+      let u:TblUsersRow=this.ds.tblUsers.GetRowById(userId);
+      let up:Array<TblUserPlantRow> = u.ChildRows("upln");
+    });
+    if(user){
+      console.log("Users:",this.ds.tblUsers,"!Linked Plants: ",user.ChildRows("upln"))
+    }
   }
 }

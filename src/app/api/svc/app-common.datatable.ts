@@ -726,8 +726,11 @@ export class TableBase extends AppCommonMethods {
 
       this.Get({
         onSuccess: e => {
+          console.log("resolve",resolve);
           this.UnSubscribe(e);
-          if(resolve!=undefined) resolve(e);
+          if(resolve!=undefined) {
+            resolve(e);
+          }
         },
         onError: e => {
           //if(onError)onError(e);

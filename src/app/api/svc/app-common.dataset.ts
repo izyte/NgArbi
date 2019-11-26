@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ColumnInfo } from '../mod/app-column.model';
-import { AppCommonMethods } from '../svc/app-common.methods'; 
+import { AppCommonMethods } from './app-common.methods'; 
 
 export class DatasetBase extends AppCommonMethods {
 
