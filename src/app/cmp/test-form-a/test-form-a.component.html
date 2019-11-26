@@ -21,6 +21,18 @@
     <p>Field2: {{frmObj.value.plnt_desc}}</p>
     <p>Field3: {{frmObj.value.plnt_area}}</p>
     <p>Density: {{frmObj.value.plnt_pop_dens_lpd_id}}</p>
-
+    <table class="table table-sm mx-2 table-striped table-bordered table-hover" style="width: 800px;">
+        <thead  class="thead-dark">
+            <tr style="display: flex;">
+                <th style="display:block;width:200px;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">Plant</th>
+                <th style="display:block;width:600px;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let r of ds.tblPlants.rows" style="display: flex;">
+                <td style="display:block;width:200px;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">{{r.plnt_name}}</td>
+                <td style="display:block;width:600px;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">{{r.plnt_desc}}</td></tr>
+        </tbody>
+    </table>
 </app-api-form-a>
 <button class="btn btn-primary" (click)="TestFunction()">Test Function</button>
