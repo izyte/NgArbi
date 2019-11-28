@@ -1,4 +1,4 @@
-<app-api-form-a [formObject]="frmObj" [source]="row" smallControls="true" labelFontSize="0.9" labelWidth="150"
+<app-api-form-a [formObject]="frmObj" [source]="ds.currentPlant" smallControls="true" labelFontSize="0.9" labelWidth="150"
     helpWidth="250" elementPosition="CL" controlHeight="27" readOnly="false">
     <div class="p-2">
         <div class="d-flex" style="flex-wrap: wrap;">
@@ -29,11 +29,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let r of ds.tblPlants.rows" style="display: flex;" (click)="r.SetAsCurrent()">
-                <td style="display:block;width:200px;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">{{r.plnt_name}}</td>
-                <td style="display:block;width:600px;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">{{r.plnt_desc}}</td></tr>
+            <tr *ngFor="let l of UserPlantLinks()" 
+                style="display: flex;" (click)="l.ChildRow('plnt').SetAsCurrent()">
+                <td style="display:block;width:200px;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">{{l.plnt_name}}</td>
+                <td style="display:block;width:600px;white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">{{l.plnt_desc}}</td></tr>
         </tbody>
     </table>
 </app-api-form-a>
-<button class="btn btn-primary" (click)="TestFunction()">Test Function</button>
-<button class="btn btn-primary" (click)="TestFunctionB()">Test Function B</button>
+<button class="btn btn-primary mr-2" (click)="TestFunction()">Test Function</button>
+<button class="btn btn-primary mr-2" (click)="TestFunctionB()">Test Function B</button>
+<button class="btn btn-primary mr-2" (click)="TestFunctionC()">Test Function C</button>

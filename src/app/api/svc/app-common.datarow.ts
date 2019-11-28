@@ -207,6 +207,7 @@ export class TableRowBase{
     public ChildRow(childTableCode:string,localField?:string, groupId?:number, reset?:boolean):any{
         /**
          * Get one to one record from the child table
+         * !If groupId==-1 get 1 to 1 record match from the linked child table
          */
 
         if(localField==undefined)localField = "";
@@ -217,7 +218,7 @@ export class TableRowBase{
         let childRowKey:string = childTableCode + (localField.length!=0 ? "_" + localField : "");
 
         let ret:any = {};
-        let row:any = this._ChildRow[childRowKey];
+        let row:any = this._ChildRow[childRowKey];  // #row_exist#
         if(!row || reset || this.isCurrent){
             let childTable:any = this._parentTable.tables[childTableCode];
 
@@ -238,6 +239,10 @@ export class TableRowBase{
             if(!ret){
                 if(groupId!=-1){
                     // group id is supplied, retreive all records belonging to the group
+                    // in this case, all records will be retrieved but will
+                    // initially return a null value. once the group of
+                    // records are retreived where the desired row belongs to,
+                    // the correct row will be retured by the line #row_exist#
                     childTable.GetRowsByGroup({key:groupId});
                 }else{
                     // group is is not suppiied, get individual record...
