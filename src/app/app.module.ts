@@ -18,6 +18,7 @@ import { DetPlantComponent } from './cmp/det-plant/det-plant.component';
 import { NavBarComponent } from './cmp/nav-bar/nav-bar.component';
 import { TestSandboxAComponent } from './cmp/test-sandbox-a/test-sandbox-a.component';
 import { TestFormAComponent } from './cmp/test-form-a/test-form-a.component';
+import { TestFormBComponent } from './cmp/test-form-b/test-form-b.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TestFormAComponent } from './cmp/test-form-a/test-form-a.component';
     DetPlantComponent,
     NavBarComponent,
     TestSandboxAComponent,
-    TestFormAComponent
+    TestFormAComponent,
+    TestFormBComponent
   ],
   imports: [
     BrowserModule,

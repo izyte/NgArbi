@@ -272,6 +272,7 @@ export class ApiInputAComponent implements OnInit {
   }
 
   xl(text: string): string {
-    return this.lblFontSize + "_" + this._lblWidth + "_" + this.elemPos + "_" + text;
+    //return this.lblFontSize + "_" + this._lblWidth + "_" + this.elemPos + "_" + text;
+    return text;
   }
 }
