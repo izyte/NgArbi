@@ -3,13 +3,13 @@
         <button class="btn btn-sm btn-primary m-1" (click)="PostData()">Post Data</button>
 </span>
 
-<app-api-form-a [formObject]="frmObj" [source]="this.ds.currentPlant" smallControls="true" labelFontSize="0.9" labelWidth="150"
-    helpWidth="250" elementPosition="CL" controlHeight="27" readOnly="false">
+<app-api-form-a [formObject]="frmObj" [source]="this.ds.currentPlant" smallControls="true" labelFontSize="0.9" labelWidth="100"
+    helpWidth="250" elementPosition="C" controlHeight="27" readOnly="false">
     <h5><span *ngIf="!this.frmObj.pristine">(dirty!) </span>Plant '{{this.ds.currentPlant.plnt_name}}' is currently selected!</h5>
     <div *ngIf="this.ds.currentPlant" class="p-0 container-fluid">
         <div class="row p-0 m-0" style="background: yellow;">
-            <app-api-input-a class="flex-grow-1" label="Name" fieldName="plnt_name" placeHolder="Enter Plant Name"></app-api-input-a>
-            <app-api-input-a class="flex-grow-1" label="Description" fieldName="plnt_desc" placeHolder="Enter Plant Description"></app-api-input-a>
+            <app-api-input-a class="col p-0" label="Name" fieldName="plnt_name" placeHolder="Enter Plant Name"></app-api-input-a>
+            <app-api-input-a class="col p-0" label="Description" fieldName="plnt_desc" placeHolder="Enter Plant Description"></app-api-input-a>
         </div>
     </div>
     <div class="p-2" style="background: red;">
