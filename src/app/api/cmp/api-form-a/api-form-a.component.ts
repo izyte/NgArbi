@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-api-form-a',
@@ -27,7 +27,11 @@ export class ApiFormAComponent implements OnInit {
 
   @Input() test:string="";
 
+  @Output() change = new EventEmitter<any>();
+
   public testPublic:string = "the quick";
+
+  public formattedMessage:string;
 
   constructor() { 
 
@@ -36,7 +40,9 @@ export class ApiFormAComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.formObject)
+    //console.log(this.formObject)
+    console.log("Init Form-A")
   }
+
 
 }

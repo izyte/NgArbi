@@ -49,10 +49,25 @@ export class TestFormAComponent implements OnInit {
       user.ChildRows("upln")
     });
 
+
+    this.onChanges();
+
     //this.ds.tblUsers.rows[0].user_desc;
     //console.log("tblPlants",this.ds.tblPlants)
 
   }
+
+
+  onChanges(): void {
+    if(!this.frmObj){
+      console.log("Form object is not yet initialized!")
+    }
+    console.log("frmObj",this.frmObj);
+    this.frmObj.valueChanges.subscribe(val => {
+      console.log("On change trigger!")
+    });
+  }
+
 
   TestFunction(){
     let userId:number = 1;

@@ -4,8 +4,9 @@
 </span>
 
 <app-api-form-a [formObject]="frmObj" [source]="this.ds.currentPlant" smallControls="true" labelFontSize="0.9" labelWidth="100"
-    helpWidth="250" elementPosition="C" controlHeight="27" readOnly="false">
-    <h5><span *ngIf="!this.frmObj.pristine">(dirty!) </span>Plant '{{this.ds.currentPlant.plnt_name}}' is currently selected!</h5>
+    helpWidth="250" elementPosition="C" controlHeight="27" readOnly="false"
+    (change)="onFieldChange($event)">
+    <h5 *ngIf="this.ds.currentPlant"><span *ngIf="!this.frmObj.pristine">(dirty!) </span>Plant '{{this.ds.currentPlant.plnt_name}}' is currently selected!</h5>
     <div *ngIf="this.ds.currentPlant" class="p-0 container-fluid">
         <div class="row p-0 m-0" style="background: yellow;">
             <app-api-input-a class="col p-0" label="Name" fieldName="plnt_name" placeHolder="Enter Plant Name"></app-api-input-a>
@@ -22,7 +23,7 @@
     </div>    
     <span *ngIf="!this.ds.currentPlant">No Plant is currently selected!</span>
     <h1>
-        Sample Text
+        Msg:{{this.formattedMessage}}
     </h1>
 
 </app-api-form-a>

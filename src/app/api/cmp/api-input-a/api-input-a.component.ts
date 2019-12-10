@@ -79,6 +79,9 @@ export class ApiInputAComponent implements OnInit {
       this.fieldName,
       new FormControl(row[this.fieldName])
     );
+
+
+
     //console.log("Props:",this.label + ": " , this.fieldName + " - " , this.par.formObject);
     if (this.lkpSource) console.log("LookupSource:",this.lkpSource);
     if (this.radSource) console.log("radioSource:",
@@ -88,7 +91,23 @@ export class ApiInputAComponent implements OnInit {
       this.isRadioInput,this.radSource);
     
 
+    this.onChanges();
+
+
   }
+
+  onChanges(): void {
+    this.par.formObject.get(this.fieldName).valueChanges.subscribe(val => {
+      //this.formattedMessage = `My name is ${val}.`;
+      //console.log("Changes made on field " + this.fieldName);
+      if(this.par.change){
+        this.par.change.emit({
+          "name" : this.fieldName,
+          "ctrl" : this.par.formObject.get(this.fieldName)
+        });
+      }
+    });
+  }  
 
   get _lblFontSize(): number {
     return this.labelFontSize > 0 ? this.labelFontSize : this.par.labelFontSize;

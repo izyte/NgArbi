@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { AppDataset } from './../../svc/app-dataset.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -14,6 +14,8 @@ export class TestFormBComponent implements OnInit {
   constructor(private ds:AppDataset) { }
 
   ngOnInit() {
+    console.log("Initiializing test-form-b component",this.frmObj)
+
     let userId:number = 1;
     this.ds.tblUsers.GetRowById(userId,(d)=>{
       console.log("About to extract userplants!",this.ds.tblUsers.GetRowById(1))
@@ -28,6 +30,8 @@ export class TestFormBComponent implements OnInit {
       }})
     })
 
+    //this.onChanges();
+
   }
 
   PostData(){
@@ -37,5 +41,18 @@ export class TestFormBComponent implements OnInit {
   TestMe(){
     console.log(this.frmObj);
   }
+
+  onFieldChange(event):void{
+    console.log("control",event);
+    //console.log(event.name);
+  }
+
+
+
+  //onChanges(): void {
+  //  this.frmObj.valueChanges.subscribe(val => {
+  //    console.log("On Changes!",val);
+  //  });
+  //}
 
 }
