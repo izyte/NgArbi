@@ -6,11 +6,40 @@
 <app-api-form-a [formObject]="frmObj" [source]="this.ds.currentPlant" smallControls="true" labelFontSize="0.9" labelWidth="100"
     helpWidth="250" elementPosition="C" controlHeight="27" readOnly="false"
     (change)="onFieldChange($event)">
+    <!--Table Start-->
+    <div class="api-table" style="background: none;margin-left:100px;">
+        <ul class="h">
+            <li [ngStyle]="cs(1,true)">Header 1</li>
+            <li [ngStyle]="cs(2,true)">Header 2</li>
+            <li [ngStyle]="cs(3,true)">Header 3</li>
+            <li [ngStyle]="cs(4,true)">Header 4</li>
+            <li [ngStyle]="cs(5,true)">Header 5</li>
+        </ul>
+        <div>
+            <ul>
+                <li [ngStyle]="cs(1)">Row 1 Column 1</li>
+                <li [ngStyle]="cs(2)">Row 1 Column 2</li>
+                <li [ngStyle]="cs(3)">Row 1 Column 3</li>
+                <li [ngStyle]="cs(4)">Row 1 Column 4</li>
+                <li [ngStyle]="cs(5)">Row 1 Column 5</li>
+            </ul>
+            <ul>
+                <li [ngStyle]="cs(1)">Row 2 Column 1</li>
+                <li [ngStyle]="cs(2)">Row 2 Column 2</li>
+                <li [ngStyle]="cs(3)">Row 2 Column 3</li>
+                <li [ngStyle]="cs(4)">Row 2 Column 4</li>
+                <li [ngStyle]="cs(5)">Row 2 Column 5</li>
+            </ul>
+        </div>
+    </div>
+    <!--Table End-->
+
     <h5 *ngIf="this.ds.currentPlant"><span *ngIf="!this.frmObj.pristine">(dirty!) </span>Plant '{{this.ds.currentPlant.plnt_name}}' is currently selected!</h5>
     <div *ngIf="this.ds.currentPlant" class="p-0 container-fluid">
-        <div class="row p-0 m-0" style="background: yellow;">
-            <app-api-input-a class="col p-0" label="Name" fieldName="plnt_name" placeHolder="Enter Plant Name"></app-api-input-a>
-            <app-api-input-a class="col p-0" label="Description" fieldName="plnt_desc" placeHolder="Enter Plant Description"></app-api-input-a>
+        <div class="row p-0 m-0" style="background: none;">
+            <app-api-input-a class="p-0" style="flex:1 1 50%" label="Name" fieldName="plnt_name" placeHolder="Enter Plant Name"></app-api-input-a>
+            <app-api-input-a class="p-0" style="flex:1 1 50%" label="Description" fieldName="plnt_desc" placeHolder="Enter Plant Description"></app-api-input-a>
+            <app-api-input-a class="p-0" style="flex:1 1 50%" label="Description" fieldName="plnt_desc" placeHolder="Enter Plant Description"></app-api-input-a>
         </div>
     </div>
     <div class="p-2" style="background: red;">
@@ -22,8 +51,4 @@
         </select> 
     </div>    
     <span *ngIf="!this.ds.currentPlant">No Plant is currently selected!</span>
-    <h1>
-        Msg:{{this.formattedMessage}}
-    </h1>
-
 </app-api-form-a>

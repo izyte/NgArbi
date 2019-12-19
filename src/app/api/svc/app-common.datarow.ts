@@ -49,6 +49,10 @@ export class TableRowBase{
         this._isDirty = !this._isPristine;
     }
 
+    protected _Table():any{
+        return this.Table;
+    }
+
     get Table():any{
         return this._parentTable;
     }

@@ -98,8 +98,6 @@ export class ApiInputAComponent implements OnInit {
 
   onChanges(): void {
     this.par.formObject.get(this.fieldName).valueChanges.subscribe(val => {
-      //this.formattedMessage = `My name is ${val}.`;
-      //console.log("Changes made on field " + this.fieldName);
       if(this.par.change){
         this.par.change.emit({
           "name" : this.fieldName,

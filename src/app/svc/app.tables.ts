@@ -1,5 +1,5 @@
 /***********************************************************************
-* Automatically generated on 12/10/2019 8:07:46 PM
+* Automatically generated on 12/11/2019 10:11:30 PM
 ***********************************************************************/
 
 import { HttpClient } from '@angular/common/http';
@@ -102,7 +102,7 @@ export class TblPlantsRow extends TableRowBase{
   }
 
   // Returs the table object where the row is a member of.
-  public get Table():TblPlants{ return super.Table; }
+  public get Table():TblPlants{ return super._Table(); }
 
  
 }
@@ -166,7 +166,7 @@ export class TblUserPlantRow extends TableRowBase{
   }
 
   // Returs the table object where the row is a member of.
-  public get Table():TblUserPlant{ return super.Table; }
+  public get Table():TblUserPlant{ return super._Table(); }
 
 
 
@@ -302,7 +302,7 @@ export class TblUsersRow extends TableRowBase{
   }
 
   // Returs the table object where the row is a member of.
-  public get Table():TblUsers{ return super.Table; }
+  public get Table():TblUsers{ return super._Table(); }
 
  
 }

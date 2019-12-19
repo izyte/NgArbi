@@ -31,8 +31,6 @@ export class ApiFormAComponent implements OnInit {
 
   public testPublic:string = "the quick";
 
-  public formattedMessage:string;
-
   constructor() { 
 
     //this.testPublic = this.test;
