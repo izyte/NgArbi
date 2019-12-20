@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { Component, OnInit, Input, Host, Inject } from "@angular/core";
 import { ApiFormAComponent } from "../api-form-a/api-form-a.component";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
@@ -96,14 +97,35 @@ export class ApiInputAComponent implements OnInit {
 
   }
 
+  private subs:Subscription=null;
   onChanges(): void {
-    this.par.formObject.get(this.fieldName).valueChanges.subscribe(val => {
+    /**
+     * Event called when change in value is triggered on the client UI
+     */
+
+     if(this.subs){
+       console.log("unsubscribing!");
+       this.subs.unsubscribe();
+     }else{
+       console.log("subs",this.subs);
+     }
+    
+     this.subs = this.par.formObject.get(this.fieldName).valueChanges.subscribe(val => {
       if(this.par.change){
-        this.par.change.emit({
-          "name" : this.fieldName,
-          "ctrl" : this.par.formObject.get(this.fieldName)
-        });
+
+        let name:string=this.fieldName;
+        let ctrl = this.par.formObject.get(this.fieldName);
+
+        // if source is not null and bindSource is true,
+        // set the value of the source field the same as the 
+        // current value of the control
+        if(this.par.bindSource && this.par.source)this.par.source[name] = ctrl.value;
+
+        // triger function located in the form's instatiating component
+        // and pass control object plus other parameters...
+        this.par.change.emit({ "name" : name,"ctrl" : ctrl});
       }
+      //this.subs.unsubscribe();
     });
   }  
 

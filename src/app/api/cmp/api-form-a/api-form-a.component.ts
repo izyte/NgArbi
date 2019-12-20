@@ -14,6 +14,9 @@ export class ApiFormAComponent implements OnInit {
   @Input() smallControls:boolean=false;
   @Input() readOnly:boolean=false;
 
+  // this causes values of form controls immediately
+  // cascaded to the source object
+  @Input() bindSource:boolean=true;
   
   @Input() labelFontSize: number=1;
   @Input() labelWidth: number=-1;
@@ -44,3 +47,4 @@ export class ApiFormAComponent implements OnInit {
 
 
 }
+

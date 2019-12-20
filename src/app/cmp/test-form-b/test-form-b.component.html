@@ -34,7 +34,7 @@
     </div>
     <!--Table End-->
 
-    <h5 *ngIf="this.ds.currentPlant"><span *ngIf="!this.frmObj.pristine">(dirty!) </span>Plant '{{this.ds.currentPlant.plnt_name}}' is currently selected!</h5>
+    <h5 *ngIf="this.ds.currentPlant"><span *ngIf="this.ds.currentPlant.isDirty">(row dirty! )</span><span *ngIf="!this.frmObj.pristine">(dirty!) </span>Plant '{{this.ds.currentPlant.plnt_name}}' is currently selected!</h5>
     <div *ngIf="this.ds.currentPlant" class="p-0 container-fluid">
         <div class="row p-0 m-0" style="background: none;">
             <app-api-input-a class="p-0" style="flex:1 1 50%" label="Name" fieldName="plnt_name" placeHolder="Enter Plant Name"></app-api-input-a>

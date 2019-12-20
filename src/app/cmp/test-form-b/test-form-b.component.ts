@@ -49,8 +49,13 @@ export class TestFormBComponent implements OnInit {
   }
 
   onFieldChange(event): void {
-    console.log("control", event);
-    //console.log(event.name);
+    // emits control object 
+    
+    if(this.ds.currentPlant){
+      //console.log("control data", this.ds.currentPlant[event.name], event.ctrl.value);
+      //this.ds.currentPlant[event.name] = event.ctrl.value;
+      //this.ds.currentPlant[event.name] = event.ctrl.target.value;
+    }
   }
 
   cs(idx, heading?: boolean): any {
