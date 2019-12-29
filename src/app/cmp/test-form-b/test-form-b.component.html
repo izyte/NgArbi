@@ -39,7 +39,9 @@
         <div class="row p-0 m-0" style="background: none;">
             <app-api-input-a class="p-0" style="flex:1 1 50%" label="Name" fieldName="plnt_name" placeHolder="Enter Plant Name"></app-api-input-a>
             <app-api-input-a class="p-0" style="flex:1 1 50%" label="Description" fieldName="plnt_desc" placeHolder="Enter Plant Description"></app-api-input-a>
-            <app-api-input-a class="p-0" style="flex:1 1 50%" label="Description" fieldName="plnt_desc" placeHolder="Enter Plant Description"></app-api-input-a>
+            <app-api-input-a class="p-0" style="flex:1 1 50%" label="Population" fieldName="plnt_population" placeHolder="Enter Plant Population"></app-api-input-a>
+            <app-api-input-a class="p-0" style="flex:1 1 50%" label="Area" fieldName="plnt_area" placeHolder="Enter Plant Area"></app-api-input-a>
+
         </div>
     </div>
     <div class="p-2" style="background: red;">
@@ -51,4 +53,7 @@
         </select> 
     </div>    
     <span *ngIf="!this.ds.currentPlant">No Plant is currently selected!</span>
+    <span>{{toPostData()}}</span><br/>
+    <span *ngIf="this.ds.currentPlant">Plant Rows: {{this.ds.currentPlant.TableObj.rows.length}}</span>
+    <button class="btn btn-sm btn-primary" (click)="newPlant()">New</button>
 </app-api-form-a>

@@ -21,6 +21,11 @@ export class TableRowBase{
 
     }
 
+    public get parentTable(){
+        return this._parentTable;
+    }
+
+    // to update on posting
     set isEditing(value:boolean){
         this._isEditing = value;
     }
@@ -28,6 +33,7 @@ export class TableRowBase{
         return this._isEditing;
     }
 
+    // to add on posting
     set isPending(value:boolean){
         this._isPending = value;
     }
@@ -35,6 +41,7 @@ export class TableRowBase{
         return this._isPending;
     }    
 
+    // to delete on posting
     set isDeleting(value:boolean){
         this._isDeleting = value;
     }
@@ -50,15 +57,16 @@ export class TableRowBase{
     }
 
     protected _Table():any{
-        return this.Table;
-    }
-
-    get Table():any{
         return this._parentTable;
     }
 
+    get TableObj():any{
+        return this._parentTable;
+        //return null;
+    }
+
     get keyVal():any{
-        return this.Table.keyCol ? this[this.Table.keyCol.name] : null;
+        return this.TableObj.keyCol ? this[this.TableObj.keyCol.name] : null;
     }
 
     get isDirty():boolean{
@@ -126,13 +134,30 @@ export class TableRowBase{
         if(this.isDirty){
             let ret:any = {};
 
-            // include last request date
-            ret["_requestDate"] = this._requestDate;
-
             // include key field(s)
-            this._parentTable.keyFields.forEach((c:ColumnInfo)=>{
-                ret[c.name] = this[c.name];
-            });
+            //this._parentTable.keyFields.forEach((c:ColumnInfo)=>{
+            //    ret[c.name] = this[c.name];
+            //});
+
+            //include key field
+            let keyCol:ColumnInfo = this._parentTable.keyCol;
+            let keyVal:Number = this[keyCol.name]; 
+
+            if(!this.noBackup){
+                // updated record
+                ret["_acn"]="upd";
+            }else if(keyVal < 0){
+                ret["_acn"]="new";
+            }else if(this.isDeleting){
+                ret["_acn"]="del";
+            }else{
+                ret["_acn"]=""
+            }
+
+            // include last request date
+            ret["_rdt"] = this._requestDate;
+
+            ret[keyCol.name] = keyVal;
 
             // capture only the data that were changed
             this._parentTable.forRestoreColumns.forEach((c:ColumnInfo)=>{

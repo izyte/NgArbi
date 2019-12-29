@@ -1,6 +1,8 @@
+import { TblPlants } from './../../svc/app.tables';
 import { FormGroup, FormControl } from "@angular/forms";
 import { AppDataset } from "./../../svc/app-dataset.service";
 import { Component, OnInit } from "@angular/core";
+import { TblPlantsRow } from 'src/app/svc/app.tables';
 
 @Component({
   selector: "app-test-form-b",
@@ -48,6 +50,14 @@ export class TestFormBComponent implements OnInit {
     console.log(this.frmObj);
   }
 
+  toPostData():string{
+    if(this.ds.currentPlant){
+      return "To Post Data: " + JSON.stringify(this.ds.currentPlant.Table.toPostData);
+    }else{
+      return "";
+    }
+  }
+
   onFieldChange(event): void {
     // emits control object 
     
@@ -78,6 +88,13 @@ export class TestFormBComponent implements OnInit {
         width: width,
       };
     }
+  }
+
+  newPlant(){
+    let tblPlant:TblPlants = this.ds.tables["plnt"];
+    let plant:TblPlantsRow = tblPlant.NewRow();
+    plant.SetAsCurrent();
+    console.log(plant, tblPlant);
   }
 
   //onChanges(): void {

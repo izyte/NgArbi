@@ -1,5 +1,5 @@
 /***********************************************************************
-* Automatically generated on 12/20/2019 9:16:54 AM
+* Automatically generated on 12/21/2019 10:57:22 AM
 ***********************************************************************/
 
 import { HttpClient } from '@angular/common/http';
@@ -8,6 +8,126 @@ import { TableRowBase }from '../api/svc/app-common.datarow';
 import { ColumnInfo } from '../api/mod/app-column.model';
 
 
+
+
+
+
+export class TblRefMaterials extends TableBase {
+
+  public rows:Array<TblRefMaterialsRow> = [];
+
+  public tableFieldPrefix="matl_";
+	private _tableLinks:Array<string>=[];
+	private _links:Array<any>=[];
+
+  constructor(public http:HttpClient,public apiUrl:string, public tables?:Array<any>) { 
+    super(http, apiUrl); 
+    
+    this.derivedTable = this;
+
+    this.tableCode="matl";
+
+	this.columns.push(new ColumnInfo('matl_id', 'number', '', '', 0, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_plnt_id', 'number', '', '', -1, -1, 0, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_code', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_matp_id', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_pois_rat', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_matc_id', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_matg_id', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_mgen_id', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_ccde_id', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_isoc_id', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_cr_pc', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_ni_pc', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_hv', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_j_factor', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_m_Creep', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_t_cr_thres', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_t_cr_min', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_t_cr_max', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_s_cr_min', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_s_cr_max', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_creep_a', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_creep_b', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_creep_c', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_creep_d', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_creep_e', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_creep_r', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_creep_ta', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_creep_logta', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_min_uts', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_min_ys', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_created', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_created_by', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_updated', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('matl_updated_by', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+
+    this.InitializeTable();
+
+  }
+
+  Add(row?:TblRefMaterialsRow):TblRefMaterialsRow
+  {
+    return super.Add(row);
+  }
+
+  NewRow():TblRefMaterialsRow{return new TblRefMaterialsRow();}
+  GetRows():Array<TblRefMaterialsRow>{return this.rows;}
+  public set currentRow(value:TblRefMaterialsRow){super.__currentRow(value);}
+  public get currentRow():TblRefMaterialsRow{return super.__currentRow();}
+  public TableLinks():Array<string>{return this._tableLinks;}
+  public Links():Array<any>{return this._links;}
+  public get dirtyRows():Array<TblRefMaterialsRow>{return super.__dirtyRows();}
+  public get newRows():Array<TblRefMaterialsRow>{return super.__newRows();}
+
+  
+}
+
+export class TblRefMaterialsRow extends TableRowBase{
+	constructor(
+		public matl_id?:number, 
+		public matl_plnt_id?:number, 
+		public matl_code?:string, 
+		public matl_matp_id?:number, 
+		public matl_pois_rat?:number, 
+		public matl_matc_id?:number, 
+		public matl_matg_id?:number, 
+		public matl_mgen_id?:number, 
+		public matl_ccde_id?:number, 
+		public matl_isoc_id?:number, 
+		public matl_cr_pc?:number, 
+		public matl_ni_pc?:number, 
+		public matl_hv?:number, 
+		public matl_j_factor?:number, 
+		public matl_m_Creep?:number, 
+		public matl_t_cr_thres?:number, 
+		public matl_t_cr_min?:number, 
+		public matl_t_cr_max?:number, 
+		public matl_s_cr_min?:number, 
+		public matl_s_cr_max?:number, 
+		public matl_creep_a?:number, 
+		public matl_creep_b?:number, 
+		public matl_creep_c?:number, 
+		public matl_creep_d?:number, 
+		public matl_creep_e?:number, 
+		public matl_creep_r?:number, 
+		public matl_creep_ta?:number, 
+		public matl_creep_logta?:number, 
+		public matl_min_uts?:number, 
+		public matl_min_ys?:number, 
+		public matl_created?:Date, 
+		public matl_created_by?:string, 
+		public matl_updated?:string, 
+		public matl_updated_by?:string){
+    super();
+ 
+  }
+
+  // Returs the table object where the row is a member of.
+  public get Table():TblRefMaterials{ return super.TableObj; }
+
+ 
+}
 
 
 
@@ -102,7 +222,7 @@ export class TblPlantsRow extends TableRowBase{
   }
 
   // Returs the table object where the row is a member of.
-  public get Table():TblPlants{ return super._Table(); }
+  public get Table():TblPlants{ return super.TableObj; }
 
  
 }
@@ -166,7 +286,7 @@ export class TblUserPlantRow extends TableRowBase{
   }
 
   // Returs the table object where the row is a member of.
-  public get Table():TblUserPlant{ return super._Table(); }
+  public get Table():TblUserPlant{ return super.TableObj; }
 
 
 
@@ -302,7 +422,7 @@ export class TblUsersRow extends TableRowBase{
   }
 
   // Returs the table object where the row is a member of.
-  public get Table():TblUsers{ return super._Table(); }
+  public get Table():TblUsers{ return super.TableObj; }
 
  
 }

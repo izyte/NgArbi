@@ -34,8 +34,8 @@ export class ApiInputAComponent implements OnInit {
 
   constructor(@Inject(ApiFormAComponent) public par: ApiFormAComponent) {}
 
-  ctrlId: string = "ctrl_" + this.fieldName;
-  helpId: string = "help_" + this.fieldName;
+  get ctrlId(): string {return  "ctrl_" + this.fieldName;}
+  get helpId(): string {return "help_" + this.fieldName;}
 
   helpStyle: any;
   lblFontSize: number;

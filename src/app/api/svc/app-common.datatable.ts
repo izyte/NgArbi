@@ -366,6 +366,10 @@ export class TableBase extends AppCommonMethods {
     if (idx == -1) this._pendingRequests.push(url);
   }
 
+  Save():void{
+    
+  }
+
   Get(args?: {
     onSuccess?: Function;
     onError?: Function;

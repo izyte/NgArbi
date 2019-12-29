@@ -8,6 +8,7 @@ import { Injectable } from "@angular/core";
 import { TblParent, TblParentRow, TblUsers } from './app.tables';
 */
 //<INCLUDES>
+import { TblRefMaterials, TblRefMaterialsRow } from './app.tables';
 import { TblPlants, TblPlantsRow } from './app.tables';
 import { TblUserPlant, TblUserPlantRow } from './app.tables';
 import { TblUsers, TblUsersRow } from './app.tables';
@@ -53,6 +54,7 @@ export class AppDataset extends DatasetBase {
   public apiUrl: string = "http://soga-alv/NgArbi/api/app";
 
 //<INSTANTIATE>
+public tblRefMaterials:TblRefMaterials = this.AddTable(new TblRefMaterials(this.http, this.apiUrl, this.tables));
 public tblPlants:TblPlants = this.AddTable(new TblPlants(this.http, this.apiUrl, this.tables));
 public tblUserPlant:TblUserPlant = this.AddTable(new TblUserPlant(this.http, this.apiUrl, this.tables));
 public tblUsers:TblUsers = this.AddTable(new TblUsers(this.http, this.apiUrl, this.tables));
