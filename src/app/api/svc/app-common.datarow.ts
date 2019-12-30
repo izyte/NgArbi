@@ -66,11 +66,15 @@ export class TableRowBase{
     }
 
     get keyVal():any{
-        return this.TableObj.keyCol ? this[this.TableObj.keyCol.name] : null;
+        return this.TableObj.keyCol ? this[this.TableObj.keyName] : null;
     }
 
     get isDirty():boolean{
-        if(this.noCurrent) return false;
+        //if(this.noCurrent) return false; // !just remarked 2019/12/29 because of possible irrelevance
+
+        // always return dirty for new records created
+        if(this._newId!=undefined) return true;
+
         let withChanges:boolean = false;
         if(this._backupData != null){
             let cols:Array<ColumnInfo> = this._parentTable.columns;
@@ -108,7 +112,7 @@ export class TableRowBase{
         if(this.noCurrent) return false;
         
         let row:any = this._parentTable.currentRow;
-        let keyField:string = this._parentTable.keyCol.name;
+        let keyField:string = this._parentTable.keyName;
 
         return this[keyField] == row[keyField];
     }
@@ -131,8 +135,29 @@ export class TableRowBase{
     }
 
     get toPostData():any{
+        let ret:any = null
+        let tbl:any = this._parentTable;
+        let keyName = tbl.keyName
+        let keyVal:Number = this[keyName]; 
+
+        
+        if(this._newId!=undefined) {
+            ret = {};
+            this[keyName] = -this._newId;
+            ret[keyName] = this[keyName];
+            ret["_acn"]="new";
+            ret["_rdt"]=null;
+            // capture only the data that were changed
+            this._parentTable.forRestoreColumns.forEach((c:ColumnInfo)=>{
+                if(this[c.name] != undefined){
+                    ret[c.name] = this[c.name];
+                }
+            });
+
+        } else 
+        
         if(this.isDirty){
-            let ret:any = {};
+            ret = {};
 
             // include key field(s)
             //this._parentTable.keyFields.forEach((c:ColumnInfo)=>{
@@ -140,8 +165,6 @@ export class TableRowBase{
             //});
 
             //include key field
-            let keyCol:ColumnInfo = this._parentTable.keyCol;
-            let keyVal:Number = this[keyCol.name]; 
 
             if(!this.noBackup){
                 // updated record
@@ -157,7 +180,7 @@ export class TableRowBase{
             // include last request date
             ret["_rdt"] = this._requestDate;
 
-            ret[keyCol.name] = keyVal;
+            ret[keyName] = keyVal;
 
             // capture only the data that were changed
             this._parentTable.forRestoreColumns.forEach((c:ColumnInfo)=>{
@@ -166,10 +189,11 @@ export class TableRowBase{
                 }
             });
 
-            return ret;
-        }else{
-            return null;
-        }
+        }   // if record is dirty [end]
+
+
+
+        return ret;
     }
 
     SetAsCurrent():void{
@@ -374,9 +398,39 @@ export class TableRowBase{
         });
     }
 
-    Delete():void{
 
+
+    Delete():void{
+        
+        let tbl:any = this._parentTable;
+        if(!tbl) return;
+
+        let keyField: string = tbl.keyName;
+        let newRec:boolean=true;
+        let keyVal:any=this[keyField];
+        
+
+        console.log(tbl.Purge(keyVal))
+
+        return;
+
+        if(keyVal) if(Number(keyVal)>0) newRec=false;
+        if(newRec){
+            // immediately remove the record from the table's records collection
+            tbl.Purge(Number(keyVal));
+        }else{
+            this.isDeleting = true;
+            // after setting isDeleting for the current record,
+            // also set isDeleting flag for the children records if already loaded 
+            // in the client dataset to have aid display routine display/action selection
+
+            // on post, delete this record and all children associated....
+
+        }
+
+        //
     }
+
 
     SetNewId(){
         if(this._parentTable == null || this._newId != undefined) return;

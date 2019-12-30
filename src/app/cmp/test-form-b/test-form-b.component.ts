@@ -1,7 +1,8 @@
+import { KeyValuePair } from './../../api/mod/app-common.model';
 import { TblPlants } from './../../svc/app.tables';
 import { FormGroup, FormControl } from "@angular/forms";
 import { AppDataset } from "./../../svc/app-dataset.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef} from "@angular/core";
 import { TblPlantsRow } from 'src/app/svc/app.tables';
 
 @Component({
@@ -9,7 +10,11 @@ import { TblPlantsRow } from 'src/app/svc/app.tables';
   templateUrl: "./test-form-b.component.html",
   styleUrls: ["./test-form-b.component.scss"]
 })
+
 export class TestFormBComponent implements OnInit {
+
+  @ViewChild("ctrl", {static:true, read: ElementRef}) ctrl: ElementRef<any>;  
+
   frmObj: FormGroup = new FormGroup({});
 
   constructor(public ds: AppDataset) {}
@@ -92,10 +97,25 @@ export class TestFormBComponent implements OnInit {
 
   newPlant(){
     let tblPlant:TblPlants = this.ds.tables["plnt"];
-    let plant:TblPlantsRow = tblPlant.NewRow();
+    let plant:TblPlantsRow = tblPlant.Add();
     plant.SetAsCurrent();
-    console.log(plant, tblPlant);
+    console.log(plant, tblPlant," Rows#", tblPlant.rows.length);
   }
+
+  delPlant(){
+    if(this.ds.currentPlant){
+      this.ds.currentPlant.Delete();
+    }
+  }
+  savePlant(){
+    console.log("Save plant!")
+  }
+
+  setAsCurrent(){
+    let elementRef = this.ctrl;
+    console.log(elementRef.nativeElement.value);
+  }
+
 
   //onChanges(): void {
   //  this.frmObj.valueChanges.subscribe(val => {

@@ -45,6 +45,10 @@ export class ApiFormAComponent implements OnInit {
     console.log("Init Form-A")
   }
 
+  Scatter(){
+    console.log("Scattering values to form controls!")
+  }
+
 
 }
 

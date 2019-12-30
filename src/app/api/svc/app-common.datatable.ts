@@ -48,6 +48,21 @@ export class TableBase extends AppCommonMethods {
     return ret;
   }
 
+  public Purge(key:number){
+    let keyField:string = this.keyName;
+    let itemKey:string = "r_" + String(key)
+    let item:any = this.__Item[itemKey];
+
+    console.log(item);
+
+    return;
+
+    //this.rows.find(myObj => myObj.id < 0)
+
+
+    if(item)delete this.__Item[itemKey];
+  }
+
   public pendingRequest: boolean = false;
 
   private _derivedRecords: Array<any> = [];
@@ -77,6 +92,11 @@ export class TableBase extends AppCommonMethods {
   get keyCol(): ColumnInfo {
     return this.keyFields[0];
   }
+
+  get keyName():string{
+    return this.keyCol.name;
+  }
+
   get lkpValue(): ColumnInfo {
     return this.keyCol;
   }
@@ -150,10 +170,13 @@ export class TableBase extends AppCommonMethods {
 
   get toPostData(): any {
     let ret: Array<any> = [];
+
+    // collect all updated/new records
     let toPost: Array<any> = this.__dirtyRows();
     toPost.forEach(e => {
       ret.push(e.toPostData);
     });
+
 
     /*
     let links:Array<string> = this.TableLinks();
@@ -168,16 +191,33 @@ export class TableBase extends AppCommonMethods {
     return ret;
   }
 
-  //protected get currentRow():any{return this._currentRow}
+  set currentKey(value:number){
+    // sets the current record given the id
+  }
+  get currentKey():number{
+
+    if(!this.__currentRow()) return undefined;  // if not current row is set
+    
+    return undefined;
+  }
+
   protected __currentRow(value?: any): any {
-    // check if current row is not null
+    // returns the current row set in the table
+    // this is the same method called from in the specific derived table object's get/set properties
 
     if (value != undefined) {
+
+      // remove restore value of the previous current row
       if (this._currentRow != null) this._currentRow.UnSetRestoreValues();
+
+      // set current row of the table equal to the argument row object
       this._currentRow = value;
+
+      // set restore value of the new current row
       this._currentRow.SetRestoreValues();
     }
 
+    // return current row
     return this._currentRow;
   }
 
@@ -303,24 +343,35 @@ export class TableBase extends AppCommonMethods {
       if (rec[col.name] == undefined) isNew = true;
     });
 
+    let keyField: string = this.keyName;
+
     if (isNew) {
-      rec._newId = this.GetTempId();
+      rec._newId = this.TempId;
+      rec[keyField]= -rec._newId
+
     } else {
       rec._newId = undefined;
     }
 
+    // assign parent/current table of the new record
     rec.currentTable = this._derivedTable;
     rec._parentTable = this._derivedTable;
 
-    let keyField: string = this.keyCol.name;
+    // get unique key field name
+    
+    // get unique key value
     let key: number = rec[keyField];
-    let exiting: any = this.Item(rec[keyField]);
+    let existing: any = this.Item(rec[keyField]);
+    
 
-    if (!exiting) {
+    if (!existing) {
+      
       this._derivedRecords.push(rec);
       this.__Item["r_" + String(key)] = rec;
     } else {
       // (pending) update existing record if not modified or obsolete
+
+      console.log("Did not add the record")
     }
 
     return rec;
@@ -587,11 +638,11 @@ export class TableBase extends AppCommonMethods {
       tbl=key.Table;
       if (tbl) {
 
-        parKey = tbl.keyCol.name;
+        parKey = tbl.keyName;
         key = key[parKey];
 
         /*if (tbl.currentRow) {
-          parKey = tbl.keyCol.name;
+          parKey = tbl.keyName;
           key = tbl.currentRow[parKey];
         } else {
           key = undefined;
@@ -623,7 +674,7 @@ export class TableBase extends AppCommonMethods {
 //    if (key == undefined) {
       // if key value is not supplied, key value will
       // be taken from the parent taable's current row
-//      parKey = this.parentTable.keyCol.name;
+//      parKey = this.parentTable.keyName;
 
 //      key = this.parentTable.currentRow[parKey];
 //    } else {
@@ -717,7 +768,7 @@ export class TableBase extends AppCommonMethods {
   }
 
   GetRowById(key: number, resolve?:Function, reject?:Function): any {
-    let keyField: string = this.keyCol.name;
+    let keyField: string = this.keyName;
     let _newSubsKey: string = this.newSubsKey;
     let row: any = this.GetRows().find(r => r[keyField] == key);
 
@@ -742,14 +793,14 @@ export class TableBase extends AppCommonMethods {
 
   // GetRowById(key:number):any{return null;}  // dummy just suppress errors
   GetRowById_Obsolete(key: number): any {
-    let keyField: string = this.keyCol.name;
+    let keyField: string = this.keyName;
     return this.GetRows().find(r => r[keyField] == key);
   }
 
   SeekRecord(row: Array<any>): any {
     //this
     return this._derivedRecords.find(r => {
-      return row[0] == r[this.keyCol.name];
+      return row[0] == r[this.keyName];
     });
   }
 
@@ -758,7 +809,10 @@ export class TableBase extends AppCommonMethods {
     // if a record is supplied, post only the supplied record
   }
 
+  // redefined in tables.ts to return a new instance of the derived row instead of the base row object
   NewRow(): any {}
+
+  // redefined in tables.ts to return an array of the derived rows instead of array base rows object
   GetRows(): Array<any> {
     return [];
   }
@@ -798,7 +852,7 @@ export class TableBase extends AppCommonMethods {
     this.keyDisplayFields = this.KeyColumns("displayPosition");
   }
 
-  GetNewRows(): Array<any> {
+  get NewRows(): Array<any> {
     return this.GetRows()
       .filter(r => {
         return r._newId != null && r._newId != undefined;
@@ -809,9 +863,11 @@ export class TableBase extends AppCommonMethods {
       });
   }
 
-  GetTempId(): number {
-    let newRows: Array<any> = this.GetNewRows();
+  get TempId(): number {
+    let newRows: Array<any> = this.NewRows;
+    console.log("NewRows,",newRows)
     if (newRows.length == 0) {
+      // if no new record has already been created
       return 1;
     } else {
       //return newRows[newRows.length-1]["_newId"]+1;

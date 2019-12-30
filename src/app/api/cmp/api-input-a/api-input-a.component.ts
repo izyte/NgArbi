@@ -104,10 +104,8 @@ export class ApiInputAComponent implements OnInit {
      */
 
      if(this.subs){
-       console.log("unsubscribing!");
        this.subs.unsubscribe();
      }else{
-       console.log("subs",this.subs);
      }
     
      this.subs = this.par.formObject.get(this.fieldName).valueChanges.subscribe(val => {

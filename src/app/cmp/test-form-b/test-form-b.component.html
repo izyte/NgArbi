@@ -3,6 +3,7 @@
         <button class="btn btn-sm btn-primary m-1" (click)="PostData()">Post Data</button>
 </span>
 
+    <button class="btn btn-sm btn-success mr-2" (click)="savePlant()">Save</button>
 <app-api-form-a [formObject]="frmObj" [source]="this.ds.currentPlant" smallControls="true" labelFontSize="0.9" labelWidth="100"
     helpWidth="250" elementPosition="C" controlHeight="27" readOnly="false"
     (change)="onFieldChange($event)">
@@ -34,7 +35,7 @@
     </div>
     <!--Table End-->
 
-    <h5 *ngIf="this.ds.currentPlant"><span *ngIf="this.ds.currentPlant.isDirty">(row dirty! )</span><span *ngIf="!this.frmObj.pristine">(dirty!) </span>Plant '{{this.ds.currentPlant.plnt_name}}' is currently selected!</h5>
+    <h5 *ngIf="this.ds.currentPlant">({{this.ds.currentPlant.keyVal}})<span *ngIf="this.ds.currentPlant.isDirty">(row dirty! )</span><span *ngIf="!this.frmObj.pristine">(dirty!) </span>Plant '{{this.ds.currentPlant.plnt_name}}' is currently selected!</h5>
     <div *ngIf="this.ds.currentPlant" class="p-0 container-fluid">
         <div class="row p-0 m-0" style="background: none;">
             <app-api-input-a class="p-0" style="flex:1 1 50%" label="Name" fieldName="plnt_name" placeHolder="Enter Plant Name"></app-api-input-a>
@@ -55,5 +56,10 @@
     <span *ngIf="!this.ds.currentPlant">No Plant is currently selected!</span>
     <span>{{toPostData()}}</span><br/>
     <span *ngIf="this.ds.currentPlant">Plant Rows: {{this.ds.currentPlant.TableObj.rows.length}}</span>
-    <button class="btn btn-sm btn-primary" (click)="newPlant()">New</button>
+    <br/><button class="btn btn-sm btn-primary mr-2" (click)="newPlant()">New</button>
+    <button class="btn btn-sm btn-danger mr-2" (click)="delPlant()">Delete</button>
+    <button class="btn btn-sm btn-success mr-2" (click)="savePlant()">Save</button>
+    
+    <input class="form-control" #ctrl value="0" name="ctrl"/>
+    <button class="btn btn-sm btn-info mr-2" (click)="setAsCurrent()">Set As Current</button>
 </app-api-form-a>
