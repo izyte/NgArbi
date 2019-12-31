@@ -14,6 +14,7 @@ import { Subscription } from "rxjs";
 import { AppCommonMethods } from "./app-common.methods";
 import { group } from "@angular/animations";
 import { StringifyOptions } from "querystring";
+import { RecurseVisitor } from '@angular/compiler/src/i18n/i18n_ast';
 
 export class TableBase extends AppCommonMethods {
   constructor(
@@ -193,6 +194,8 @@ export class TableBase extends AppCommonMethods {
 
   set currentKey(value:number){
     // sets the current record given the id
+    let rec:any = this.Item(value);
+    if(rec)rec.SetAsCurrent();
   }
   get currentKey():number{
 

@@ -114,6 +114,8 @@ export class TestFormBComponent implements OnInit {
   setAsCurrent(){
     let elementRef = this.ctrl;
     console.log(elementRef.nativeElement.value);
+    let tblPlant:TblPlants = this.ds.tables["plnt"];
+    tblPlant.currentKey = elementRef.nativeElement.value;
   }
 
 
