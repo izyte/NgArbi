@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-api-form-a',
@@ -47,7 +47,23 @@ export class ApiFormAComponent implements OnInit {
 
   public Scatter(){
     console.log("Scattering values to form controls!",this.formObject)
+    let patchValues:any=null;
+    for (const field in this.formObject.controls) { // 'field' is a string
+
+      // patch value of each
+      if(!patchValues)patchValues = {};
+      patchValues[field] = this.source[field];
+
+      let ctrl:AbstractControl = this.formObject.get(field);
+      console.log(`Old '${field}':`, this.formObject.controls[field].value,ctrl);
+
+    }
+
+    //this.formObject.patchValue{}
+    if(patchValues)this.formObject.patchValue(patchValues);
   }
+
+  
 
 
 }
