@@ -1,3 +1,4 @@
+import { ApiFormAComponent } from './../../api/cmp/api-form-a/api-form-a.component';
 import { KeyValuePair } from './../../api/mod/app-common.model';
 import { TblPlants } from './../../svc/app.tables';
 import { FormGroup, FormControl } from "@angular/forms";
@@ -14,6 +15,9 @@ import { TblPlantsRow } from 'src/app/svc/app.tables';
 export class TestFormBComponent implements OnInit {
 
   @ViewChild("ctrl", {static:true, read: ElementRef}) ctrl: ElementRef<any>;  
+  @ViewChild("testForm", {static:true, read: ElementRef}) frm: ElementRef<ApiFormAComponent>;  
+
+  @ViewChild(ApiFormAComponent, {static:true}) childForm: ApiFormAComponent ;
 
   frmObj: FormGroup = new FormGroup({});
 
@@ -109,6 +113,14 @@ export class TestFormBComponent implements OnInit {
   }
   savePlant(){
     console.log("Save plant!")
+  }
+
+  scatterData(){
+    //console.log(this.frm.nativeElement);
+    //console.log(this.frm.nativeElement.testPublic);
+    console.log("FormObjectFromParent:",this.frmObj);
+    this.childForm.Scatter();
+    
   }
 
   setAsCurrent(){

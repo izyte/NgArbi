@@ -4,7 +4,8 @@
 </span>
 
     <button class="btn btn-sm btn-success mr-2" (click)="savePlant()">Save</button>
-<app-api-form-a [formObject]="frmObj" [source]="this.ds.currentPlant" smallControls="true" labelFontSize="0.9" labelWidth="100"
+<app-api-form-a #testForm
+    [formObject]="frmObj" [source]="this.ds.currentPlant" smallControls="true" labelFontSize="0.9" labelWidth="100"
     helpWidth="250" elementPosition="C" controlHeight="27" readOnly="false"
     (change)="onFieldChange($event)">
     <!--Table Start-->
@@ -63,4 +64,5 @@
     <input class="form-control" #ctrl value="-1" name="ctrl"/>
     <button class="btn btn-sm btn-info mr-2" (click)="setAsCurrent()">Set As Current</button>
     <button class="btn btn-sm btn-success mr-2" (click)="scatterData()">Scatter</button>
+    <button class="btn btn-sm btn-success mr-2" (click)="testForm.Scatter()">Scatter Direct</button>
 </app-api-form-a>
