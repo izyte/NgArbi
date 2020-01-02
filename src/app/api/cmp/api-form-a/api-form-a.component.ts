@@ -8,7 +8,21 @@ import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 })
 export class ApiFormAComponent implements OnInit {
 
-  @Input() source:any={};
+  _source:any=null;
+  @Input() set source(value: any) {
+
+    this._source = value;
+
+    // set values of form controls to the new record's values
+    this.Scatter();
+
+  }
+
+  get source(): any {
+      return this._source;
+  }
+
+
   @Input() formObject:FormGroup=null;
 
   @Input() smallControls:boolean=false;
@@ -46,7 +60,14 @@ export class ApiFormAComponent implements OnInit {
   }
 
   public Scatter(){
-    console.log("Scattering values to form controls!",this.formObject)
+
+    if(!this._source){
+      // place codes for form control values assignment when there is no
+      // record is set to current
+      return;
+    }
+
+
     let patchValues:any=null;
     for (const field in this.formObject.controls) { // 'field' is a string
 
@@ -54,17 +75,13 @@ export class ApiFormAComponent implements OnInit {
       if(!patchValues)patchValues = {};
       patchValues[field] = this.source[field];
 
-      let ctrl:AbstractControl = this.formObject.get(field);
-      console.log(`Old '${field}':`, this.formObject.controls[field].value,ctrl);
+      //let ctrl:AbstractControl = this.formObject.get(field);
+      //console.log(`Old '${field}':`, this.formObject.controls[field].value,ctrl);
 
     }
 
-    //this.formObject.patchValue{}
     if(patchValues)this.formObject.patchValue(patchValues);
   }
-
-  
-
 
 }
 
