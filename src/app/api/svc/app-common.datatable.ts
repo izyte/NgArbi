@@ -201,7 +201,7 @@ export class TableBase extends AppCommonMethods {
 
     if(!this.__currentRow()) return undefined;  // if not current row is set
     
-    return undefined;
+    return this.__currentRow()[this.keyName];
   }
 
   protected __currentRow(value?: any): any {
