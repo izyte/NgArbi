@@ -49,12 +49,44 @@ export class TableBase extends AppCommonMethods {
     return ret;
   }
 
-  public Purge(key:number){
+  public Purge(key:number,removeFromState?:boolean){
+
+    if(removeFromState==undefined) removeFromState=false;
+
     let keyField:string = this.keyName;
     let itemKey:string = "r_" + String(key)
     let item:any = this.__Item[itemKey];
 
-    console.log(item);
+    if(item){
+      item.isDeleting = true;
+      if(removeFromState || item.isNew){
+        // purge from the client's memory
+        console.log("Before deleting property,",this.__Item[itemKey])
+        delete this.__Item[itemKey];  // remove from index object
+        console.log("After deleting property,",this.__Item[itemKey])
+        // remove from rows array
+
+        // find index of object
+        // .findIndex(obj => obj.id == 3
+        let dataRows:Array<any> = this.GetRows();
+        let itemIndex:number = dataRows.findIndex(elem => elem[keyField] == key);
+
+        let numStr:string='';
+        dataRows.forEach(e =>{numStr+= (numStr ? "," : "")+e[keyField];});
+
+        console.log("Rows:",dataRows,"Index:",itemIndex,"Key:",key,"keys:",numStr);
+
+        // remove element from array
+        if(itemIndex!=-1)dataRows.splice(itemIndex,1);
+
+        numStr='';
+        dataRows.forEach(e =>{numStr+= (numStr ? "," : "")+e[keyField];});
+
+        console.log("Rows after purge:",dataRows,"Index:",itemIndex,"Key:",key,"keys:",numStr);
+
+      }
+  
+    }
 
     return;
 
@@ -173,10 +205,9 @@ export class TableBase extends AppCommonMethods {
     let ret: Array<any> = [];
 
     // collect all updated/new records
-    let toPost: Array<any> = this.__dirtyRows();
-    toPost.forEach(e => {
-      ret.push(e.toPostData);
-    });
+    //let toPost: Array<any> = this.__dirtyRows();
+    let toPost: Array<any> = this.GetRows().filter(e => e.toSubmit);
+    toPost.forEach(e => {ret.push(e.toPostData);});
 
 
     /*
@@ -195,7 +226,13 @@ export class TableBase extends AppCommonMethods {
   set currentKey(value:number){
     // sets the current record given the id
     let rec:any = this.Item(value);
-    if(rec)rec.SetAsCurrent();
+    if(rec){
+      rec.SetAsCurrent();
+
+    }else{
+      this._cl("record not found!")
+      this.__currentRow(null);  // set current row to null
+    }
   }
   get currentKey():number{
 
@@ -208,16 +245,25 @@ export class TableBase extends AppCommonMethods {
     // returns the current row set in the table
     // this is the same method called from in the specific derived table object's get/set properties
 
-    if (value != undefined) {
+    let isNull:boolean = this.isNullVal(value);
+
+    if(isNull){
+
+      if (this._currentRow != null) this._currentRow.UnSetRestoreValues();
+      this._currentRow = null;
+
+    }else if (value != undefined) {
 
       // remove restore value of the previous current row
       if (this._currentRow != null) this._currentRow.UnSetRestoreValues();
+
 
       // set current row of the table equal to the argument row object
       this._currentRow = value;
 
       // set restore value of the new current row
       this._currentRow.SetRestoreValues();
+
     }
 
     // return current row

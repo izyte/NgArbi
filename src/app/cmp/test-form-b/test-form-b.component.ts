@@ -60,8 +60,9 @@ export class TestFormBComponent implements OnInit {
   }
 
   toPostData():string{
-    if(this.ds.currentPlant){
-      return "To Post Data: " + JSON.stringify(this.ds.currentPlant.Table.toPostData);
+
+    if(this.withSource){
+      return "To Post Data: " + JSON.stringify(this.ds.tables["plnt"].toPostData);
     }else{
       return "";
     }
@@ -129,7 +130,12 @@ export class TestFormBComponent implements OnInit {
     console.log("Current Key:",tblPlant.currentKey,elementRef.nativeElement.value);
     
     tblPlant.currentKey = elementRef.nativeElement.value;
-    console.log("New Current Key:",tblPlant.currentKey);
+    console.log("New Current Key:",tblPlant.currentKey, elementRef.nativeElement.value);
+  }
+
+
+  get withSource():boolean{
+    return this.childForm.sourceTable != null;
   }
 
 

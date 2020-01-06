@@ -109,7 +109,7 @@ export class ApiInputAComponent implements OnInit {
      }
     
      this.subs = this.par.formObject.get(this.fieldName).valueChanges.subscribe(val => {
-      if(this.par.change){
+      if(this.par.change && !this.par.suspendControlChangeEvent){
 
         let name:string=this.fieldName;
         let ctrl = this.par.formObject.get(this.fieldName);

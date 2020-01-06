@@ -8,10 +8,15 @@ import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 })
 export class ApiFormAComponent implements OnInit {
 
-  _source:any=null;
+  private _source:any=null;
   @Input() set source(value: any) {
 
     this._source = value;
+
+    if(this._source!=null && this._source!=undefined && this._sourceTable==null){
+      // assign source table object to private property _sourceTable
+      this._sourceTable = this._source.parentTable;
+    }    
 
     // set values of form controls to the new record's values
     this.Scatter();
@@ -19,8 +24,19 @@ export class ApiFormAComponent implements OnInit {
   }
 
   get source(): any {
+
       return this._source;
   }
+
+  private _sourceTable:any=null;
+  @Input() set sourceTable(value:any){
+    if(value==null || value==undefined) return;
+    this._sourceTable = value;
+  }
+
+  public suspendControlChangeEvent:boolean=false;
+
+  get sourceTable():any{return this._sourceTable}
 
 
   @Input() formObject:FormGroup=null;
@@ -60,27 +76,32 @@ export class ApiFormAComponent implements OnInit {
   }
 
   public Scatter(){
+    /******************************************************************************
+     * Sets the values of form controls to the equivalent field of the source
+     ******************************************************************************/
 
-    if(!this._source){
-      // place codes for form control values assignment when there is no
-      // record is set to current
-      return;
-    }
+    let patchValues:any={};
+    let ctrl:AbstractControl;
 
-
-    let patchValues:any=null;
     for (const field in this.formObject.controls) { // 'field' is a string
-
       // patch value of each
-      if(!patchValues)patchValues = {};
-      patchValues[field] = this.source[field];
+      ctrl = this.formObject.get(field);
+      if(this._source){
+        if(ctrl.disabled)ctrl.enable();
+        patchValues[field] = this.source[field];
+      }else{
+        if(!ctrl.disabled)ctrl.disable();
+        patchValues[field] = null;
+      }
+    }    
 
-      //let ctrl:AbstractControl = this.formObject.get(field);
-      //console.log(`Old '${field}':`, this.formObject.controls[field].value,ctrl);
+    // suspend control change event to prevent data update when no current record
+    if(!this._source)this.suspendControlChangeEvent=true;  
 
-    }
+    this.formObject.patchValue(patchValues);
 
-    if(patchValues)this.formObject.patchValue(patchValues);
+    if(!this._source)this.suspendControlChangeEvent=false;  // resume control change event
+
   }
 
 }

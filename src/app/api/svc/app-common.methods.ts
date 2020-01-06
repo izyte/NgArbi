@@ -4,6 +4,10 @@ export class AppCommonMethods{
 
     }
 
+    get productionMode():boolean{
+        return  false;
+    }
+
     
     public MSSince(from:any):number{
         // returns milliseconds from the reference indormation
@@ -19,6 +23,8 @@ export class AppCommonMethods{
     }
 
     public _cl(...args:Array<any>){
+        // generic console log  method, shared accross components
+        if(this.productionMode) return; // exit if already in production mode
         if(args.length==0) return;
         let disp:any = args[args.length-1];
         if(typeof(disp)=="boolean"){
@@ -37,6 +43,10 @@ export class AppCommonMethods{
             console.log(args);
         }
         
+    }
+
+    public isNullVal(val:any){
+        return ((val + "") == "null");
     }
 
 }

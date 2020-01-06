@@ -49,6 +49,10 @@ export class TableRowBase{
         return this._isDeleting;
     }
 
+    get isNew():boolean{
+        return this._newId != null;
+    }
+
 
 
     set isPristine(value:boolean){
@@ -69,11 +73,17 @@ export class TableRowBase{
         return this.TableObj.keyCol ? this[this.TableObj.keyName] : null;
     }
 
+    get toSubmit():boolean{
+        if(this.isNew) return true;
+        if(this.isDeleting) return true;
+        return this.isDirty;
+    }
+
     get isDirty():boolean{
         //if(this.noCurrent) return false; // !just remarked 2019/12/29 because of possible irrelevance
 
         // always return dirty for new records created
-        if(this._newId!=undefined) return true;
+        // if(this._newId!=undefined) return true;
 
         let withChanges:boolean = false;
         if(this._backupData != null){
@@ -140,8 +150,13 @@ export class TableRowBase{
         let keyName = tbl.keyName
         let keyVal:Number = this[keyName]; 
 
-        
-        if(this._newId!=undefined) {
+        if(this.isDeleting){
+            ret = {};
+            ret[keyName] = keyVal;
+            ret["_acn"]="del";
+            ret["_rdt"]=null;
+
+        }else if(this.isNew) {
             ret = {};
             this[keyName] = -this._newId;
             ret[keyName] = this[keyName];
@@ -154,9 +169,7 @@ export class TableRowBase{
                 }
             });
 
-        } else 
-        
-        if(this.isDirty){
+        } else if(this.isDirty){
             ret = {};
 
             // include key field(s)
@@ -169,10 +182,6 @@ export class TableRowBase{
             if(!this.noBackup){
                 // updated record
                 ret["_acn"]="upd";
-            }else if(keyVal < 0){
-                ret["_acn"]="new";
-            }else if(this.isDeleting){
-                ret["_acn"]="del";
             }else{
                 ret["_acn"]=""
             }
@@ -190,8 +199,9 @@ export class TableRowBase{
             });
 
         }   // if record is dirty [end]
+        else if(this.isDeleting){
 
-
+        }
 
         return ret;
     }
@@ -409,8 +419,8 @@ export class TableRowBase{
         let newRec:boolean=true;
         let keyVal:any=this[keyField];
         
-
-        console.log(tbl.Purge(keyVal))
+        tbl.Purge(keyVal,true);
+        //console.log(tbl.Purge(keyVal))
 
         return;
 
