@@ -33,11 +33,13 @@ export class ApiFormAComponent implements OnInit {
     if(value==null || value==undefined) return;
     this._sourceTable = value;
   }
-
-  public suspendControlChangeEvent:boolean=false;
-
   get sourceTable():any{return this._sourceTable}
 
+  /****************************************************************************
+   this switch is necessary to prevent update to the current record when a global
+   field values updates are being perfomed (e.g. Scatter() method)
+   ****************************************************************************/
+  public suspendControlChangeEvent:boolean=false;
 
   @Input() formObject:FormGroup=null;
 
@@ -83,6 +85,8 @@ export class ApiFormAComponent implements OnInit {
     let patchValues:any={};
     let ctrl:AbstractControl;
 
+    this.suspendControlChangeEvent=true;   // suspend control change event    
+
     for (const field in this.formObject.controls) { // 'field' is a string
       // patch value of each
       ctrl = this.formObject.get(field);
@@ -95,12 +99,11 @@ export class ApiFormAComponent implements OnInit {
       }
     }    
 
-    // suspend control change event to prevent data update when no current record
-    if(!this._source)this.suspendControlChangeEvent=true;  
 
+    console.log("Scatter",this._source,patchValues)
     this.formObject.patchValue(patchValues);
 
-    if(!this._source)this.suspendControlChangeEvent=false;  // resume control change event
+    this.suspendControlChangeEvent=false;  // resume control change event
 
   }
 

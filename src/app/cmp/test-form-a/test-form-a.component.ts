@@ -45,15 +45,11 @@ export class TestFormAComponent implements OnInit {
     this.ds.tblUsers.GetRowById(userId,(e)=>{
       let user:TblUsersRow = this.ds.tblUsers.GetRowById(userId);
 
-      console.log("Resolved",e,"User:",user);
       user.ChildRows("upln")
     });
 
 
     this.onChanges();
-
-    //this.ds.tblUsers.rows[0].user_desc;
-    //console.log("tblPlants",this.ds.tblPlants)
 
   }
 
@@ -62,7 +58,6 @@ export class TestFormAComponent implements OnInit {
     if(!this.frmObj){
       console.log("Form object is not yet initialized!")
     }
-    console.log("frmObj",this.frmObj);
     this.frmObj.valueChanges.subscribe(val => {
       console.log("On change trigger!")
     });

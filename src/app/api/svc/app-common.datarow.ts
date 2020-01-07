@@ -313,11 +313,9 @@ export class TableRowBase{
                 }
             }
         }else{
-            //if(childRowKey!="chi")console.log("childRowKey",childRowKey);
             ret = row;
         }
 
-        //if(!ret)console.log("ret:",ret,"Group ID",groupId,this._parentTable.tables);
 
         return ret;
     }
@@ -354,11 +352,9 @@ export class TableRowBase{
 
             if(!ret && groupId!=-1)childTable.GetRowsByGroup({key:groupId});
         }else{
-            //if(childRowKey!="chi")console.log("childRowKey",childRowKey);
             ret = row;
         }
 
-        //if(!ret)console.log("ret:",ret,"Group ID",groupId,this._parentTable.tables);
 
         return ret;
     }
@@ -420,7 +416,6 @@ export class TableRowBase{
         let keyVal:any=this[keyField];
         
         tbl.Purge(keyVal,true);
-        //console.log(tbl.Purge(keyVal))
 
         return;
 

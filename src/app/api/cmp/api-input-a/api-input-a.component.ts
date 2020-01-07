@@ -123,7 +123,6 @@ export class ApiInputAComponent implements OnInit {
         // and pass control object plus other parameters...
         this.par.change.emit({ "name" : name,"ctrl" : ctrl});
       }
-      //this.subs.unsubscribe();
     });
   }  
 

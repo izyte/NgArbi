@@ -61,9 +61,8 @@ export class TableBase extends AppCommonMethods {
       item.isDeleting = true;
       if(removeFromState || item.isNew){
         // purge from the client's memory
-        console.log("Before deleting property,",this.__Item[itemKey])
         delete this.__Item[itemKey];  // remove from index object
-        console.log("After deleting property,",this.__Item[itemKey])
+
         // remove from rows array
 
         // find index of object
@@ -250,6 +249,7 @@ export class TableBase extends AppCommonMethods {
     if(isNull){
 
       if (this._currentRow != null) this._currentRow.UnSetRestoreValues();
+      console.log("Set current row to null!...")
       this._currentRow = null;
 
     }else if (value != undefined) {
@@ -626,9 +626,6 @@ export class TableBase extends AppCommonMethods {
     if (!retObj) return;
     let recs: any = retObj.recordsList;
     if (recs) {
-      //console.log("COLS:",this.columns);
-      //console.log("RECS:",recs);
-      // console.log("DataColumns:" , this.DataColumns(retObj.fieldNames));
 
       let dataColumns: Array<ColumnInfo> = this.DataColumns(retObj.fieldNames);
 
@@ -712,23 +709,8 @@ export class TableBase extends AppCommonMethods {
       groupKey = "g" + key;
       if (this._GroupRows[groupKey]) return this._GroupRows[groupKey]; // this affects retreival of data
     }
-    //console.log("this.parentTable",this.tableCode,this.parentTable,this.Links,this.tables);
-    //console.log("this.tableCode:",this.tableCode)
 
     if (this.keyGroupFields.length == 0) return [];
-    // if key value is not supplied and the parentTable is not supplied during creation of the table
-//    if (key == undefined && this.parentTable == null) return [];
-    // if key value is not supplied and the current row of the parent table is not set
-//    if (key == undefined && this.parentTable.currentRow == null) return [];
-//    if (key == undefined) {
-      // if key value is not supplied, key value will
-      // be taken from the parent taable's current row
-//      parKey = this.parentTable.keyName;
-
-//      key = this.parentTable.currentRow[parKey];
-//    } else {
-      //console.log("passed key",key,"this.parentTable",this.tableCode,this.parentTable);
-//    }
 
     if (this._GroupRows[groupKey]) {
       // if group of records is/are already existing in the
@@ -742,8 +724,6 @@ export class TableBase extends AppCommonMethods {
 
     let subsKey: string = this.newSubsKey;
 
-
-    //console.log("KEY!",key);
 
     // call Get method which executes requests from the server when
     // request has not been done before and no pending request already

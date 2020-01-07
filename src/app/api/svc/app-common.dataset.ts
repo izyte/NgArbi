@@ -42,13 +42,13 @@ export class DatasetBase extends AppCommonMethods {
           if(link!=null){
               let keyCol:ColumnInfo = table.keyFields[0];
               let key:number = e[keyCol.name];
-              //console.log("link",link,link.length);
+
               link.forEach(L => {
                   let linkArr:Array<string> = L.split("|");
                   tableCode =linkArr[0];
                   let childTable:any = this.tables[tableCode];
                   let childDirtyRows:Array<any>=childTable.__dirtyRows(key);
-                  //console.log("childDirtyRows",childDirtyRows);
+
                   if(childDirtyRows.length!=0){
                       dirtyData[tableCode]=[];
                       childDirtyRows.forEach(cr=>{
@@ -92,7 +92,7 @@ export class DatasetBase extends AppCommonMethods {
         for(i=0;i<wordArr.length;i++){
             let wordASC:number=255;
             word=wordArr[i];
-            //console.log("=word.length:",word.length);
+
             for(j=1;j<=word.length;j++){
                 wordASC = wordASC ^ (i+j+word.substr(j-1,1).charCodeAt(0));
             }
