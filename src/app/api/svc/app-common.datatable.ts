@@ -50,6 +50,9 @@ export class TableBase extends AppCommonMethods {
   }
 
   public Purge(key:number,removeFromState?:boolean){
+    /**
+     * Executes deletion of record from the client row state collection
+     */
 
     if(removeFromState==undefined) removeFromState=false;
 
@@ -557,6 +560,7 @@ export class TableBase extends AppCommonMethods {
     if (this.IsWithPending(url)) return null;
 
     this.AddRequestFlag(url);
+    console.log("request url:",url);
 
     // url alteration begins here
     let urlParams: string = "";
@@ -686,6 +690,7 @@ export class TableBase extends AppCommonMethods {
 
         parKey = tbl.keyName;
         key = key[parKey];
+        console.log("parKey:",parKey,"key:",key,this.tableCode);
 
         /*if (tbl.currentRow) {
           parKey = tbl.keyName;
@@ -697,7 +702,6 @@ export class TableBase extends AppCommonMethods {
 
       } else {
         key = undefined;
-        this._cl(this.tableCode + ": no table",this.tableCode=="upln");
       }
     }
 
@@ -706,6 +710,7 @@ export class TableBase extends AppCommonMethods {
     let groupKey: string = "";
 
     if (key != undefined) {
+      // check if group rows already defined in the table object and return it if it does
       groupKey = "g" + key;
       if (this._GroupRows[groupKey]) return this._GroupRows[groupKey]; // this affects retreival of data
     }

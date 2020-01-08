@@ -1,5 +1,5 @@
 /***********************************************************************
-* Automatically generated on 1/7/2020 9:33:15 AM
+* Automatically generated on 1/8/2020 10:23:13 AM
 ***********************************************************************/
 
 import { HttpClient } from '@angular/common/http';
@@ -8,6 +8,86 @@ import { TableRowBase }from '../api/svc/app-common.datarow';
 import { ColumnInfo } from '../api/mod/app-column.model';
 
 
+
+
+
+
+export class TblRefExtCoats extends TableBase {
+
+  public rows:Array<TblRefExtCoatsRow> = [];
+
+  public tableFieldPrefix="ecot_";
+	private _tableLinks:Array<string>=[];
+	private _links:Array<any>=[];
+
+  constructor(public http:HttpClient,public apiUrl:string, public tables?:Array<any>) { 
+    super(http, apiUrl); 
+    
+    this.derivedTable = this;
+
+    this.tableCode="ecot";
+
+	this.columns.push(new ColumnInfo('ecot_id', 'number', '', '', 0, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('ecot_plnt_id', 'number', '', '', -1, -1, 0, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('ecot_name', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('ecot_endper', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('ecot_pntnew', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('ecot_supcor', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('ecot_sltcor', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('ecot_modcor', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('ecot_sigcor', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('ecot_sevcor', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('ecot_created', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('ecot_created_by', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('ecot_updated', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('ecot_updated_by', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+
+    this.InitializeTable();
+
+  }
+
+  Add(row?:TblRefExtCoatsRow):TblRefExtCoatsRow
+  {
+    return super.Add(row);
+  }
+
+  NewRow():TblRefExtCoatsRow{return new TblRefExtCoatsRow();}
+  GetRows():Array<TblRefExtCoatsRow>{return this.rows;}
+  public set currentRow(value:TblRefExtCoatsRow){super.__currentRow(value);}
+  public get currentRow():TblRefExtCoatsRow{return super.__currentRow();}
+  public TableLinks():Array<string>{return this._tableLinks;}
+  public Links():Array<any>{return this._links;}
+  public get dirtyRows():Array<TblRefExtCoatsRow>{return super.__dirtyRows();}
+  public get newRows():Array<TblRefExtCoatsRow>{return super.__newRows();}
+
+  
+}
+
+export class TblRefExtCoatsRow extends TableRowBase{
+	constructor(
+		public ecot_id?:number, 
+		public ecot_plnt_id?:number, 
+		public ecot_name?:string, 
+		public ecot_endper?:number, 
+		public ecot_pntnew?:number, 
+		public ecot_supcor?:number, 
+		public ecot_sltcor?:number, 
+		public ecot_modcor?:number, 
+		public ecot_sigcor?:number, 
+		public ecot_sevcor?:number, 
+		public ecot_created?:Date, 
+		public ecot_created_by?:string, 
+		public ecot_updated?:Date, 
+		public ecot_updated_by?:string){
+    super();
+ 
+  }
+
+  // Returs the table object where the row is a member of.
+  public get Table():TblRefExtCoats{ return super.TableObj; }
+
+ 
+}
 
 
 

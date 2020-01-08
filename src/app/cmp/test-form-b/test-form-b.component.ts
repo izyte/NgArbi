@@ -20,6 +20,7 @@ export class TestFormBComponent implements OnInit {
   @ViewChild(ApiFormAComponent, {static:true}) childForm: ApiFormAComponent ;
 
   frmObj: FormGroup = new FormGroup({});
+  frmObjSub: FormGroup = new FormGroup({});
 
   constructor(public ds: AppDataset) {}
 
@@ -37,13 +38,17 @@ export class TestFormBComponent implements OnInit {
         onSuccess: e => {
           if (this.ds.tblPlants.rows.length != 0) {
             this.ds.tblPlants.rows[0].SetAsCurrent();
+            // extract all linked table records
+            // a) Materials
+            this.ds.tblRefMaterials.GetRowsByGroup({key:this.ds.currentPlant,onSuccess:(data)=>{
+              console.log("matl:",data);
+
+              this.ds.tblRefExtCoats.GetRowsByGroup({key:this.ds.currentPlant,onSuccess:(data)=>{
+                console.log("ecot:",data);
+              }})
+            }})
           }
-          console.log(
-            "Plants extracted:",
-            this.ds.currentPlant,
-            this.ds.tblUserPlant.rows,
-            this.ds.tblPlants.rows
-          );
+          console.log("App Dataset:",this.ds);
         }
       });
     });

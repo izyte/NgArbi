@@ -210,7 +210,6 @@ export class TableRowBase{
         // asisgn the current record as the currentRow of the parent table
         if(!this._parentTable) return;
         this._parentTable.__currentRow(this);
-        this._parentTable._cl("CurrentRow:",this);
     }
 
     Post():void{
@@ -415,7 +414,7 @@ export class TableRowBase{
         let newRec:boolean=true;
         let keyVal:any=this[keyField];
         
-        tbl.Purge(keyVal,true);
+        tbl.Purge(keyVal);
 
         return;
 

@@ -73,8 +73,7 @@ export class ApiFormAComponent implements OnInit {
   }
 
   ngOnInit() {
-    //console.log(this.formObject)
-    console.log("Init Form-A")
+
   }
 
   public Scatter(){
@@ -99,8 +98,6 @@ export class ApiFormAComponent implements OnInit {
       }
     }    
 
-
-    console.log("Scatter",this._source,patchValues)
     this.formObject.patchValue(patchValues);
 
     this.suspendControlChangeEvent=false;  // resume control change event

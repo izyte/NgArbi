@@ -20,6 +20,8 @@ import { TestSandboxAComponent } from './cmp/test-sandbox-a/test-sandbox-a.compo
 import { TestFormAComponent } from './cmp/test-form-a/test-form-a.component';
 import { TestFormBComponent } from './cmp/test-form-b/test-form-b.component';
 import { SandboxComponent } from './cmp/sandbox/sandbox.component';
+import { ApiTableAComponent } from './api/cmp/api-table-a/api-table-a.component';
+import { ApiTableColumnAComponent } from './api/cmp/api-table-column-a/api-table-column-a.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { SandboxComponent } from './cmp/sandbox/sandbox.component';
     TestSandboxAComponent,
     TestFormAComponent,
     TestFormBComponent,
-    SandboxComponent
+    SandboxComponent,
+    ApiTableAComponent,
+    ApiTableColumnAComponent
   ],
   imports: [
     BrowserModule,
