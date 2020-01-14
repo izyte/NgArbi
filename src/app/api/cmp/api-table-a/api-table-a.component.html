@@ -1,1 +1,45 @@
-<p>api-table-a works!</p>
+<div #tableContainer ng-change="resizing()">
+    <div *ngIf="true" class="api-table" [ngStyle]="tableStyle">
+        <!--header-->
+
+        <div class="coltemp" [ngStyle]="headerStyle">
+            <ul>
+                <li *ngFor="let c of tableOptions.columns;let i=index;" 
+                    [ngStyle]="headerCellStyle(c)">tmp</li>
+            </ul>
+        </div>
+        
+        <div class="thead" [ngStyle]="headerStyle">
+            <ul>
+                <li *ngFor="let c of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]">
+                    {{c.heading}}<i *ngIf="!c.noFilter" class="fa fa-caret-down f-icon" aria-hidden="true" (click)="popupFilter(c)"></i>
+                    
+                </li>
+            </ul>
+        </div>
+
+        <div class="tbody" [ngStyle]="detailStyle">
+            <ul *ngFor="let r of tableData;let ri=index;" class="striped">
+                <div>
+                    <li *ngFor="let rc of tableOptions.columns;let i=index;" 
+                        [style.width.px]="this.colWidths[i]">
+                        {{r[rc.data]}}</li>
+
+                </div>
+            </ul>
+        </div>
+
+        <!--details-->
+    </div>
+    <app-api-data-filter-a></app-api-data-filter-a>
+
+    <div class="d-flex">
+        <span class="mr-1">{{this.appCommon.browserName}}</span>
+        <button class="btn btn-sm btn-primary mr-1" (click)="testMe()">Test Me</button>
+        <div [innerHTML]="debugStatus"></div>
+    </div>
+    <h5>Icon:<i class="fa fa-caret-down" aria-hidden="true"></i></h5>
+
+
+
+</div>

@@ -76,12 +76,14 @@
             <button class="btn btn-sm btn-success mr-2" (click)="scatterData()">Scatter</button>
             <button class="btn btn-sm btn-success mr-2" (click)="testForm.Scatter()">Scatter Direct</button>
         </div>
-        <app-api-form-a #testFormChild [formObject]="frmObjSub" >
+        <app-api-form-a *ngIf="false" #testFormChild [formObject]="frmObjSub" >
             <div class="card">
                 <div class="card-header p-1"><h5>This is the header of a subform!</h5></div>
                 <div class="card-details p-1">Sample Details</div>
                 <div class="card-footer p-1">Sample Footer</div>
             </div>
         </app-api-form-a>
+
+        <app-api-table-a [tableId]="1" [tableWidth]="null"></app-api-table-a> 
     </div><!--End of flex-column container-->
 </app-api-form-a>

@@ -1,0 +1,29 @@
+/*******************************************************************
+The following varibles are for overriding the default values defined
+in the table component
+*******************************************************************/
+// ****** background color of the table
+// $tbl-background: none;
+
+// ****** Table header cells background color
+// $tbl-header-background: #2b579a;
+
+// ****** Table header cells text color
+// $tbl-header-foreground: white;
+
+// ****** Table detail cells background color
+// $tbl-detail-background: none;
+
+// ****** Table detail row background color of even ordered children
+// $tbl-stripe-dark: #f2f2f2;
+// ****** Table detail row background color of odd ordered children
+// $tbl-stripe-light: white;
+
+// ****** Table detail row background when hovered
+// $tbl-detail-hover: #ececec;
+
+
+// $tbl-border-color: #dee2e6; /* color taken from  bootstrap table border color*/
+// $tbl-border-color-table:$border-color;
+// ******************************************************************* end
+

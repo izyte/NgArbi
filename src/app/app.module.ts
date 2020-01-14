@@ -22,6 +22,7 @@ import { TestFormBComponent } from './cmp/test-form-b/test-form-b.component';
 import { SandboxComponent } from './cmp/sandbox/sandbox.component';
 import { ApiTableAComponent } from './api/cmp/api-table-a/api-table-a.component';
 import { ApiTableColumnAComponent } from './api/cmp/api-table-column-a/api-table-column-a.component';
+import { ApiDataFilterAComponent } from './api/cmp/api-data-filter-a/api-data-filter-a.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ApiTableColumnAComponent } from './api/cmp/api-table-column-a/api-table
     TestFormBComponent,
     SandboxComponent,
     ApiTableAComponent,
-    ApiTableColumnAComponent
+    ApiTableColumnAComponent,
+    ApiDataFilterAComponent
   ],
   imports: [
     BrowserModule,

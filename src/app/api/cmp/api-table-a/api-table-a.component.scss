@@ -1,0 +1,200 @@
+// Default color defined
+$tbl-background: none;
+$tbl-header-background: #2b579a;
+
+$tbl-stripe-dark: #f2f2f2;
+$tbl-stripe-light: white;
+
+$tbl-detail-hover: #ececec;
+
+$tbl-header-foreground: white;
+$tbl-detail-background: none;
+
+$tbl-border-color: #dee2e6; /* color taken from  bootstrap table border color*/
+$tbl-border-color-table:$tbl-border-color;
+$varsExist:1;
+
+//@if $varsExist {
+//  
+//}
+
+// this file must exist in the application's root folder during development.
+// this import will allow override values for table variable as defined above
+@import "./src/app/AppGlobalVariables.scss";
+
+#tableContainer {
+}
+
+.api-table {
+  padding: 0px 0px;
+  margin-bottom: 10px;
+
+  background: $tbl-background;
+  overflow-y: auto;
+  overflow-x: none;
+  border:1px solid $tbl-border-color-table;
+  /*position:relative; putting this rule causes the header to loose the fixed position*/
+
+  // display conditionally only when container is overflowing
+  /*.thead {
+    padding-right: 17px; 
+    @supports not (text-decoration-style: solid) {
+      padding-right: 16px !important; 
+    }
+  }*/
+
+  .thead ul li,
+  .tbody ul li,
+  
+  .coltemp ul li,
+  .thead ul div li,
+  .tbody ul div li,
+  .coltemp ul div li{
+    border-right: 1px solid $tbl-border-color;
+    border-bottom: 1px solid $tbl-border-color;
+    padding: 3px 5px;
+    font-size: 0.8rem;
+
+  }
+
+
+  .thead ul li div,
+  .thead ul li,
+  .tbody ul div li
+  {
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+    display:block;
+  }
+
+  .coltemp {
+    position: absolute;
+    z-index: -1;
+    ul{
+      list-style-type: none;
+      margin: 0px 0px;
+      padding: 0px 0px;
+      display: flex;
+      width: 100%;
+    }
+  }
+
+  .thead {
+    position: absolute;
+    z-index: 1;
+
+    ul {
+      display: flex;
+      width: 100%;
+      background: $tbl-header-background;
+      color: $tbl-header-foreground;
+
+      list-style-type: none;
+      margin: 0px 0px;
+      padding: 0px 0px;
+      li {
+        //flex-grow: 1;
+        border-top: 1px solid $tbl-border-color;
+        //display: flex;
+        //justify-content: space-between;
+        //position: absolute;
+        .f-icon {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .tbody {
+    background: $tbl-detail-background;
+    margin-top: 26px;
+    width: 100%;
+    ul {
+      display: flex;
+
+      list-style-type: none;
+      margin: 0px 0px;
+      padding: 0px 0px;
+
+      /*
+      .striped:nth-child(even) {
+        background: $tbl-stripe-dark;
+      }
+      .striped:nth-child(odd) {
+          background: $tbl-stripe-light;
+      }*/
+
+      div{
+          display:flex;
+          width:100%;
+          li{
+              //flex-grow:1;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow:hidden;
+              display: block;
+          }
+      }
+
+      div:hover{
+        background:  $tbl-detail-hover;
+      }
+
+
+    }
+
+    ul.striped:nth-child(even){
+        background: $tbl-stripe-dark;
+    }
+    ul.striped:nth-child(odd) {
+        background: $tbl-stripe-light;
+    }
+
+  }
+
+  ul.h {
+    li {
+      color: white;
+      padding: 4px 10px;
+      font-weight: bold;
+    }
+  }
+  /*ul,
+  div ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0px 0px;
+    padding: 0px 0px;
+    li {
+      border-right: 1px solid $tbl-border-color;
+      border-bottom: 1px solid $tbl-border-color;
+      padding: 3px 5px;
+      font-size: 0.8rem;
+    }
+    li:nth-child(1) {
+      border-left: 1px solid $tbl-border-color;
+    }
+  }*/
+}
+
+.api-table.hovered{
+    .tbody{
+        ul{
+            //background: $tbl-detail-hover;
+            div:hover{
+                background: lime !important;
+            }
+        }
+    }
+}
+
+/* scratch pad*/
+.container {
+  height: 200px;
+  width: 500px;
+  overflow-y: scroll;
+}
+
+.inContainer {
+  position: absolute;
+}
