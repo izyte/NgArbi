@@ -11,11 +11,11 @@ $tbl-header-foreground: white;
 $tbl-detail-background: none;
 
 $tbl-border-color: #dee2e6; /* color taken from  bootstrap table border color*/
-$tbl-border-color-table:$tbl-border-color;
-$varsExist:1;
+$tbl-border-color-table: $tbl-border-color;
+$varsExist: 1;
 
 //@if $varsExist {
-//  
+//
 //}
 
 // this file must exist in the application's root folder during development.
@@ -32,7 +32,7 @@ $varsExist:1;
   background: $tbl-background;
   overflow-y: auto;
   overflow-x: none;
-  border:1px solid $tbl-border-color-table;
+  border: 1px solid $tbl-border-color-table;
   /*position:relative; putting this rule causes the header to loose the fixed position*/
 
   // display conditionally only when container is overflowing
@@ -45,33 +45,32 @@ $varsExist:1;
 
   .thead ul li,
   .tbody ul li,
-  
   .coltemp ul li,
   .thead ul div li,
   .tbody ul div li,
-  .coltemp ul div li{
+  .coltemp ul div li {
     border-right: 1px solid $tbl-border-color;
     border-bottom: 1px solid $tbl-border-color;
     padding: 3px 5px;
     font-size: 0.8rem;
-
   }
 
-
-  .thead ul li div,
-  .thead ul li,
-  .tbody ul div li
-  {
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    overflow:hidden;
-    display:block;
+  .thead ul li {
+    padding-right: 0px;
+    border-right: none;
+  }
+  .thead ul li div span,
+  .tbody ul div li {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
   }
 
   .coltemp {
     position: absolute;
     z-index: -1;
-    ul{
+    ul {
       list-style-type: none;
       margin: 0px 0px;
       padding: 0px 0px;
@@ -85,6 +84,7 @@ $varsExist:1;
     z-index: 1;
 
     ul {
+      // column headers main wrapper
       display: flex;
       width: 100%;
       background: $tbl-header-background;
@@ -94,13 +94,28 @@ $varsExist:1;
       margin: 0px 0px;
       padding: 0px 0px;
       li {
-        //flex-grow: 1;
         border-top: 1px solid $tbl-border-color;
-        //display: flex;
-        //justify-content: space-between;
-        //position: absolute;
-        .f-icon {
-          cursor: pointer;
+        div {
+          // colummn header flex wrapper
+          width: 100%;
+          display: flex;
+
+          .col-sep {
+            // column heading separator
+            cursor: ew-resize;
+            border: 1px inset white;
+            width: 1px;
+            background: white;
+            margin: 0px;
+            padding: 0px;
+          }
+
+          .f-icon {
+            // filter icon
+            cursor: pointer;
+            margin-left: auto;
+            margin-right: auto;
+          }
         }
       }
     }
@@ -124,32 +139,29 @@ $varsExist:1;
           background: $tbl-stripe-light;
       }*/
 
-      div{
-          display:flex;
-          width:100%;
-          li{
-              //flex-grow:1;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-              overflow:hidden;
-              display: block;
-          }
+      div {
+        display: flex;
+        width: 100%;
+        li {
+          //flex-grow:1;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          display: block;
+        }
       }
 
-      div:hover{
-        background:  $tbl-detail-hover;
+      div:hover {
+        background: $tbl-detail-hover;
       }
-
-
     }
 
-    ul.striped:nth-child(even){
-        background: $tbl-stripe-dark;
+    ul.striped:nth-child(even) {
+      background: $tbl-stripe-dark;
     }
     ul.striped:nth-child(odd) {
-        background: $tbl-stripe-light;
+      background: $tbl-stripe-light;
     }
-
   }
 
   ul.h {
@@ -177,15 +189,15 @@ $varsExist:1;
   }*/
 }
 
-.api-table.hovered{
-    .tbody{
-        ul{
-            //background: $tbl-detail-hover;
-            div:hover{
-                background: lime !important;
-            }
-        }
+.api-table.hovered {
+  .tbody {
+    ul {
+      //background: $tbl-detail-hover;
+      div:hover {
+        background: lime !important;
+      }
     }
+  }
 }
 
 /* scratch pad*/

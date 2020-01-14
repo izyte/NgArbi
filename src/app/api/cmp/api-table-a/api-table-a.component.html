@@ -4,16 +4,20 @@
 
         <div class="coltemp" [ngStyle]="headerStyle">
             <ul>
-                <li *ngFor="let c of tableOptions.columns;let i=index;" 
-                    [ngStyle]="headerCellStyle(c)">tmp</li>
+                <li *ngFor="let c of tableOptions.columns;let i=index;" [ngStyle]="headerCellStyle(c)">&nbsp;</li>
             </ul>
         </div>
-        
+
         <div class="thead" [ngStyle]="headerStyle">
             <ul>
-                <li *ngFor="let c of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]">
-                    {{c.heading}}<i *ngIf="!c.noFilter" class="fa fa-caret-down f-icon" aria-hidden="true" (click)="popupFilter(c)"></i>
-                    
+                <li *ngFor="let c of tableOptions.columns;let i=index;let last = last"
+                    [style.width.px]="this.colWidths[i]-0">
+                    <div>
+                        <span [style.width.px]="this.colWidths[i]-(c.noFilter ? 5 : 30)">{{c.heading}}</span>
+                        <i *ngIf="!c.noFilter" class="fa fa-caret-down f-icon" aria-hidden="true"
+                            (click)="popupFilter(c)"></i>
+                        <div *ngIf="!last" class="col-sep">&nbsp;</div>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -21,8 +25,7 @@
         <div class="tbody" [ngStyle]="detailStyle">
             <ul *ngFor="let r of tableData;let ri=index;" class="striped">
                 <div>
-                    <li *ngFor="let rc of tableOptions.columns;let i=index;" 
-                        [style.width.px]="this.colWidths[i]">
+                    <li *ngFor="let rc of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]">
                         {{r[rc.data]}}</li>
 
                 </div>

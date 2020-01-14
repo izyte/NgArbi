@@ -1,7 +1,7 @@
 import { NavBarComponent } from './../../../cmp/nav-bar/nav-bar.component';
 import { AppCommonMethodsService } from "./../../svc/app-common-methods.service";
 import { AppCommonMethods } from "./../../svc/app-common.methods";
-import { Component, OnInit, ViewChild, ElementRef, Input, HostListener } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef, Input, HostListener, AfterViewInit } from "@angular/core";
 import { IfStmt } from '@angular/compiler';
 
 @Component({
@@ -9,7 +9,7 @@ import { IfStmt } from '@angular/compiler';
   templateUrl: "./api-table-a.component.html",
   styleUrls: ["./api-table-a.component.scss"]
 })
-export class ApiTableAComponent implements OnInit {
+export class ApiTableAComponent implements OnInit, AfterViewInit {
 
   @Input() tableId:number = 0;
   @Input() tableWidth:number = 1024;
@@ -36,7 +36,7 @@ export class ApiTableAComponent implements OnInit {
     return {
       columns: [
         { heading: "Item No.", width:50 , data: "field_1", type: null,noFilter:true },
-        { heading: "Column 2 Column 2", width:200, data: "field_2", type: null },
+        { heading: "Column 2 Column 2 Column 2 Column 2", width:200, data: "field_2", type: null },
         { heading: "Column 3 Column 3 Column 3 Column 3", data: "field_3", type: null },
         { heading: "Column 4", data: "field_4", type: null },
         { heading: "Column 5", data: "field_5", type: null }
@@ -214,10 +214,14 @@ export class ApiTableAComponent implements OnInit {
     console.log("Launch filter for ",e.data)
   }
 
-
+  ngAfterViewInit(){
+    // this section executes after all components were rendered
+    console.log("AfterViewInit....")
+    this.newColumnWidths(); // forces columnwidths to be reset!
+  }
 
   ngOnInit() {
-    this.newColumnWidths();
+    console.log("OnInit....")
   }
   testMe(){
     console.log("tblCont",this.tblCont.nativeElement,
