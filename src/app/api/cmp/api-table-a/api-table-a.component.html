@@ -1,13 +1,21 @@
-<div #tableContainer ng-change="resizing()">
+<div #tableContainer>
+    <div *ngIf="false" class="d-flex" style="font-size:.8em;"><span>Widths:</span>
+        <input *ngFor="let c of tableOptions.columns;let i=index;" 
+            type="text" class="form-control text-center p-0 ml-0"
+            style="width:75px;font-size: 1em;" [value]="this.colWidths[i]" />
+            <input class="form-control text-center p-0 ml-0" type="text" 
+            style="width:75px;font-size: 1em;"
+            [value]="this.handleLeft">
+    </div>
     <div *ngIf="true" class="api-table" [ngStyle]="tableStyle">
-        <!--header-->
-
+        <!--template header-->
         <div class="coltemp" [ngStyle]="headerStyle">
             <ul>
                 <li *ngFor="let c of tableOptions.columns;let i=index;" [ngStyle]="headerCellStyle(c)">&nbsp;</li>
             </ul>
         </div>
 
+        <!--displayed header start-->
         <div class="thead" [ngStyle]="headerStyle">
             <ul>
                 <li *ngFor="let c of tableOptions.columns;let i=index;let last = last"
@@ -16,12 +24,14 @@
                         <span [style.width.px]="this.colWidths[i]-(c.noFilter ? 5 : 30)">{{c.heading}}</span>
                         <i *ngIf="!c.noFilter" class="fa fa-caret-down f-icon" aria-hidden="true"
                             (click)="popupFilter(c)"></i>
-                        <div *ngIf="!last" class="col-sep">&nbsp;</div>
+                        <div *ngIf="!last" class="col-sep" (mousedown)="mouseSep($event,i)">&nbsp;</div>
                     </div>
                 </li>
             </ul>
         </div>
+        <!--displayed header end-->
 
+        <!--details start-->
         <div class="tbody" [ngStyle]="detailStyle">
             <ul *ngFor="let r of tableData;let ri=index;" class="striped">
                 <div>
@@ -31,8 +41,17 @@
                 </div>
             </ul>
         </div>
+        <!--details end-->
 
-        <!--details-->
+        <div #dragHandle style="border:none;position:absolute;z-index:2;
+                background: gray;
+                border-left:1px solid white;
+                border-right:1px solid white;" [style.top.px]="handleTop" [style.left.px]="handleLeft"
+            [style.height.px]="handleHeight" [style.width.px]="handleWidth">&nbsp;</div>
+        <div #dragMask *ngIf="this.showMask" (mouseup)="mouseMask($event)" (mouseout)="mouseMask($event)"
+            (mousemove)="mouseMask($event)" style="position:absolute;background: black;opacity: 0.5;
+                z-index:3;width:100%; height:100%;top:0px;left:0px;cursor:ew-resize;">&nbsp;</div>
+
     </div>
     <app-api-data-filter-a></app-api-data-filter-a>
 

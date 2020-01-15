@@ -2,7 +2,6 @@ import { NavBarComponent } from './../../../cmp/nav-bar/nav-bar.component';
 import { AppCommonMethodsService } from "./../../svc/app-common-methods.service";
 import { AppCommonMethods } from "./../../svc/app-common.methods";
 import { Component, OnInit, ViewChild, ElementRef, Input, HostListener, AfterViewInit } from "@angular/core";
-import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: "app-api-table-a",
@@ -19,12 +18,19 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
   @Input() tableBordered:boolean = true;
 
   @ViewChild("tableContainer", { static: true, read: ElementRef }) tblCont: ElementRef<any>;
+  @ViewChild("dragHandle", { static: true, read: ElementRef }) dragHandle: ElementRef<any>;
+  
 
   @HostListener('window:resize') newColumnWidths() {
     //console.log("tblCont (" + this.tableId + "): ",this.tblCont);
     let tmp:Array<number> = this._colWidths;
   }
 
+  leftCol:any=null;
+  currSep:any=null;
+  rightCol:any=null;
+
+  showMask:boolean = false;
   debugStatus:string = "Sample debug text";
   colWidths:Array<number>=[];
 
@@ -35,13 +41,35 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
   get tableOptions() {
     return {
       columns: [
-        { heading: "Item No.", width:50 , data: "field_1", type: null,noFilter:true },
+        { heading: "Item No.", width:50 , data: "field_1", type: null,noFilter:false },
         { heading: "Column 2 Column 2 Column 2 Column 2", width:200, data: "field_2", type: null },
         { heading: "Column 3 Column 3 Column 3 Column 3", data: "field_3", type: null },
         { heading: "Column 4", data: "field_4", type: null },
         { heading: "Column 5", data: "field_5", type: null }
       ]
     };
+  }
+
+  
+  get tableHeader():any{
+    return this.tblCont.nativeElement.querySelector('.thead');
+  }
+
+  get handleTop():number{
+    return this.tableHeader.offsetTop+2;
+  }
+
+  handleLeft:number = 0;
+  /*
+  get handleLeft():number{
+    if(!this.currSep) return 0;
+    return this.currSep.offsetLeft - this.handleWidth/2;
+  }*/
+  get handleHeight():number{
+    return this.tableHeader.offsetHeight-4;
+  }
+  get handleWidth():number{
+    return 3;
   }
 
   get colItems():Array<any>{
@@ -218,6 +246,21 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
     // this section executes after all components were rendered
     console.log("AfterViewInit....")
     this.newColumnWidths(); // forces columnwidths to be reset!
+
+    // select all separators
+    /*let seps:Array<any> = this.tblCont.nativeElement.querySelectorAll(".col-sep");
+    seps.forEach(s=>{
+      console.log("AddListener")
+      s.addEventListener('mousemove',this.mousemoveSep.bind(this));
+      s.addEventListener("mouseenter",this.mousemoveSep.bind(this));
+      s.addEventListener("mouseover",this.mousemoveSep.bind(this));
+    });
+    this.tblCont.nativeElement.querySelectorAll(".col-sep")
+    console.log("Separators:",seps)*/
+  }
+
+  testEvent(event){
+    console.log(event);
   }
 
   ngOnInit() {
@@ -230,4 +273,47 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
       "Table Is Scrollable?:",this.appCommon.isScrollable(this.tblCont.nativeElement.querySelector('.api-table')),
       "ColWidths:",this.colWidths);
   }
+
+  mouseSep(event,idx?:number){
+    if(!this.showMask){
+      if(event.type=="mousemove"){
+        // record separator object parameters
+      }else if(event.type=="mousedown"){
+        console.log("SepObj:",event);
+
+        this.currSep = event.target;
+        if(idx!=undefined){
+          this.leftCol = this.tableOptions.columns[idx];
+          this.rightCol = this.tableOptions.columns[idx+1];
+        }
+
+
+        this.handleLeft = this.currSep.offsetLeft;
+        //console.log("this.currSep:",this.currSep,"this.handleLeft",this.handleLeft);
+        //this.dragHandle.nativeElement.offsetLeft
+        this.showMask = true;
+      }
+    }
+
+  }
+  mouseMask(event){
+    if(this.showMask){
+      if(event.type == "mouseup"){
+        // calculate new column widths on either side of the separator
+
+        this.leftCol = null;
+        this.currSep = null;
+        this.rightCol = null;
+
+        this.showMask = false;
+      }else if(event.type == "mouseout"){
+        this.showMask = false;
+      }else if(event.type == "mousemove"){
+        this.handleLeft = event.clientX - this.handleWidth/2;
+      }
+    }else{
+
+    }
+  }
+
 }
