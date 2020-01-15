@@ -4,7 +4,7 @@
 </span>
 
 <button class="btn btn-sm btn-success mr-2" (click)="savePlant()">Save</button>
-<app-api-form-a #testForm [formObject]="frmObj" [source]="this.ds.currentPlant" smallControls="true" labelFontSize="0.9"
+<app-api-form-a *ngIf="false" #testForm [formObject]="frmObj" [source]="this.ds.currentPlant" smallControls="true" labelFontSize="0.9"
     labelWidth="100" helpWidth="250" elementPosition="C" controlHeight="27" readOnly="false"
     (change)="onFieldChange($event)">
     <div class="d-flex-column">
@@ -84,6 +84,6 @@
             </div>
         </app-api-form-a>
 
-        <app-api-table-a [tableId]="1" [tableWidth]="null"></app-api-table-a> 
     </div><!--End of flex-column container-->
 </app-api-form-a>
+<app-api-table-a [tableId]="1" [tableWidth]="null"></app-api-table-a> 

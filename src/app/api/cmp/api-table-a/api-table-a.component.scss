@@ -25,6 +25,7 @@ $varsExist: 1;
 #tableContainer {
 }
 
+
 .api-table {
   padding: 0px 0px;
   margin-bottom: 10px;
@@ -42,6 +43,16 @@ $varsExist: 1;
       padding-right: 16px !important; 
     }
   }*/
+
+  div.drag-handle {
+    border: none;
+    position: absolute;
+    z-index: 2;
+    background: gray;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+  }
+  
 
   .thead ul li,
   .tbody ul li,
@@ -100,14 +111,20 @@ $varsExist: 1;
           width: 100%;
           display: flex;
 
-          .col-sep {
+          .col-sep,
+          .col-sep-fixed {
             // column heading separator
             cursor: ew-resize;
             border: 1px inset white;
-            width: 1px;
             background: white;
+            width: 1px;
             margin: 0px;
             padding: 0px;
+          }
+          .col-sep-fixed {
+            cursor: default;
+            border: 1px inset #aaaaaa;
+            background: #aaaaaa;
           }
 
           .f-icon {

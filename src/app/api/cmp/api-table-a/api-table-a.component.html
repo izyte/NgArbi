@@ -1,11 +1,20 @@
 <div #tableContainer>
-    <div *ngIf="false" class="d-flex" style="font-size:.8em;"><span>Widths:</span>
+    <div *ngIf="initialized" class="d-flex" style="font-size:.8em;"><span>Widths:</span>
         <input *ngFor="let c of tableOptions.columns;let i=index;" 
             type="text" class="form-control text-center p-0 ml-0"
             style="width:75px;font-size: 1em;" [value]="this.colWidths[i]" />
             <input class="form-control text-center p-0 ml-0" type="text" 
             style="width:75px;font-size: 1em;"
             [value]="this.handleLeft">
+
+            <input class="form-control text-center p-0 ml-0" type="text" 
+            style="width:75px;font-size: 1em;"
+            [value]="this.handleLimitLeft">
+
+            <input class="form-control text-center p-0 ml-0" type="text" 
+            style="width:75px;font-size: 1em;"
+            [value]="this.handleLimitRight">
+                        
     </div>
     <div *ngIf="true" class="api-table" [ngStyle]="tableStyle">
         <!--template header-->
@@ -24,7 +33,8 @@
                         <span [style.width.px]="this.colWidths[i]-(c.noFilter ? 5 : 30)">{{c.heading}}</span>
                         <i *ngIf="!c.noFilter" class="fa fa-caret-down f-icon" aria-hidden="true"
                             (click)="popupFilter(c)"></i>
-                        <div *ngIf="!last" class="col-sep" (mousedown)="mouseSep($event,i)">&nbsp;</div>
+                        <div *ngIf="!last && !c.fixed" class="col-sep" (mousedown)="mouseSep($event,i)">&nbsp;</div>
+                        <div *ngIf="!last && c.fixed" class="col-sep-fixed">&nbsp;</div>
                     </div>
                 </li>
             </ul>
@@ -43,13 +53,13 @@
         </div>
         <!--details end-->
 
-        <div #dragHandle style="border:none;position:absolute;z-index:2;
-                background: gray;
-                border-left:1px solid white;
-                border-right:1px solid white;" [style.top.px]="handleTop" [style.left.px]="handleLeft"
-            [style.height.px]="handleHeight" [style.width.px]="handleWidth">&nbsp;</div>
-        <div #dragMask *ngIf="this.showMask" (mouseup)="mouseMask($event)" (mouseout)="mouseMask($event)"
-            (mousemove)="mouseMask($event)" style="position:absolute;background: black;opacity: 0.5;
+        <div class="drag-handle" *ngIf="this.showMask" 
+            [style.top.px]="handleTop" 
+            [style.left.px]="handleLeft"
+            [style.height.px]="handleHeight" 
+            [style.width.px]="handleWidth">&nbsp;</div>
+        <div class="drag-mask" *ngIf="this.showMask" (mouseup)="mouseMask($event)" (mouseout)="mouseMask($event)"
+            (mousemove)="mouseMask($event)" style="position:absolute;background: white;opacity: 0.3;
                 z-index:3;width:100%; height:100%;top:0px;left:0px;cursor:ew-resize;">&nbsp;</div>
 
     </div>
@@ -58,6 +68,8 @@
     <div class="d-flex">
         <span class="mr-1">{{this.appCommon.browserName}}</span>
         <button class="btn btn-sm btn-primary mr-1" (click)="testMe()">Test Me</button>
+        <button class="btn btn-sm btn-primary mr-1" (click)="insertColumn(3,0)">Move Column</button>
+        
         <div [innerHTML]="debugStatus"></div>
     </div>
     <h5>Icon:<i class="fa fa-caret-down" aria-hidden="true"></i></h5>
