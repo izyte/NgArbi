@@ -45,6 +45,7 @@ import { ApiDataFilterAComponent } from './api/cmp/api-data-filter-a/api-data-fi
   imports: [
     BrowserModule,
     //FormsModule,
+    DragDropModule,
     ReactiveFormsModule,
     NgbModule,
     HttpClientModule,

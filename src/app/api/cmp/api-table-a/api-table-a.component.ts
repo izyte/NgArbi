@@ -1,6 +1,4 @@
-import { NavBarComponent } from "./../../../cmp/nav-bar/nav-bar.component";
 import { AppCommonMethodsService } from "./../../svc/app-common-methods.service";
-import { AppCommonMethods } from "./../../svc/app-common.methods";
 import {
   Component,
   OnInit,
@@ -10,7 +8,8 @@ import {
   HostListener,
   AfterViewInit
 } from "@angular/core";
-import { NgbTypeaheadWindow } from "@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window";
+
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: "app-api-table-a",
@@ -34,7 +33,7 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
 
   @HostListener("window:resize") newColumnWidths() {
     //console.log("tblCont (" + this.tableId + "): ",this.tblCont);
-    let tmp: Array<number> = this._colWidths;
+    setTimeout(()=>{let tmp: Array<number> = this._colWidths;},0);
   }
 
   initialized: boolean = false;
@@ -468,7 +467,8 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
         delete growCol[growCol.length - 1].width;
     }
 
-    setTimeout(()=>{this.newColumnWidths()},10);
+    //setTimeout(()=>{this.newColumnWidths()},10);
+    this.newColumnWidths();
   }
 
   resetReferenceObjects(): void {
@@ -512,6 +512,18 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
 
     console.log("moveCol",moveCol,"this.tableOptions.columns",this.tableOptions.columns);
 
+
+
+  }
+
+  drop(event: CdkDragDrop<any[]>){
+    moveItemInArray( this.tableOptions.columns , event.previousIndex, event.currentIndex);
+    let order:number = 0;
+    this.tableOptions.columns.forEach(e => {
+      e.order = order;
+      order++;
+    });
+    this.newColumnWidths();
   }
 
 }

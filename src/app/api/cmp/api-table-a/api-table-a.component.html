@@ -20,15 +20,20 @@
         <!--template header-->
         <div class="coltemp" [ngStyle]="headerStyle">
             <ul>
-                <li *ngFor="let c of tableOptions.columns;let i=index;" [ngStyle]="headerCellStyle(c)">&nbsp;</li>
+                <li *ngFor="let c of tableOptions.columns;let i=index;" [ngStyle]="headerCellStyle(c)">
+                    &nbsp;{{c.heading}}
+                </li>
             </ul>
         </div>
 
         <!--displayed header start-->
         <div class="thead" [ngStyle]="headerStyle">
-            <ul>
+            <ul cdkDropList cdkDropListOrientation="horizontal" 
+            (cdkDropListDropped)="drop($event)">
                 <li *ngFor="let c of tableOptions.columns;let i=index;let last = last"
-                    [style.width.px]="this.colWidths[i]-0">
+                    [style.width.px]="this.colWidths[i]-0" 
+                    class="headerCell"
+                    cdkDrag>
                     <div>
                         <span [style.width.px]="this.colWidths[i]-(c.noFilter ? 5 : 30)">{{c.heading}}</span>
                         <i *ngIf="!c.noFilter" class="fa fa-caret-down f-icon" aria-hidden="true"
@@ -64,11 +69,20 @@
 
     </div>
     <app-api-data-filter-a></app-api-data-filter-a>
-
+    <div *ngIf="false" cdkDropList cdkDropListOrientation="horizontal" 
+    (cdkDropListDropped)="drop($event)" style="display: flex;background: cyan;width:100%;">
+        <div style="flex-grow: 1;" cdkDrag>1</div>
+        <div style="flex-grow: 1;" cdkDrag>2</div>
+        <div style="flex-grow: 1;" cdkDrag>3</div>
+        <div style="flex-grow: 1;" cdkDrag>4</div>
+        <div style="flex-grow: 1;" cdkDrag>5</div>
+        <div style="flex-grow: 1;" cdkDrag>6</div>
+        <div style="flex-grow: 1;" cdkDrag>7</div>
+    </div>
     <div class="d-flex">
         <span class="mr-1">{{this.appCommon.browserName}}</span>
         <button class="btn btn-sm btn-primary mr-1" (click)="testMe()">Test Me</button>
-        <button class="btn btn-sm btn-primary mr-1" (click)="insertColumn(3,0)">Move Column</button>
+        <button class="btn btn-sm btn-primary mr-1" (click)="insertColumn(tableOptions.columns.length-1,0)">Move Column</button>
         
         <div [innerHTML]="debugStatus"></div>
     </div>

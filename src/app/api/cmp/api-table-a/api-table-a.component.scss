@@ -53,7 +53,7 @@ $varsExist: 1;
     border-right: 1px solid white;
   }
   
-
+  
   .thead ul li,
   .tbody ul li,
   .coltemp ul li,
@@ -106,6 +106,7 @@ $varsExist: 1;
       padding: 0px 0px;
       li {
         border-top: 1px solid $tbl-border-color;
+        cursor: default;
         div {
           // colummn header flex wrapper
           width: 100%;
@@ -205,6 +206,20 @@ $varsExist: 1;
     }
   }*/
 }
+
+.headerCell{
+  border-right: 1px solid $tbl-border-color;
+  border-bottom: 1px solid $tbl-border-color;
+  padding: 3px 5px;
+  font-size: 0.8rem;  
+  color: $tbl-header-foreground;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+}
+
 
 .api-table.hovered {
   .tbody {
