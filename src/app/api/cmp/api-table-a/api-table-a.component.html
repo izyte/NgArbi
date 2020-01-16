@@ -1,20 +1,16 @@
 <div #tableContainer>
     <div *ngIf="initialized" class="d-flex" style="font-size:.8em;"><span>Widths:</span>
-        <input *ngFor="let c of tableOptions.columns;let i=index;" 
-            type="text" class="form-control text-center p-0 ml-0"
+        <input *ngFor="let c of tableOptions.columns;let i=index;" type="text" class="form-control text-center p-0 ml-0"
             style="width:75px;font-size: 1em;" [value]="this.colWidths[i]" />
-            <input class="form-control text-center p-0 ml-0" type="text" 
-            style="width:75px;font-size: 1em;"
+        <input class="form-control text-center p-0 ml-0" type="text" style="width:75px;font-size: 1em;"
             [value]="this.handleLeft">
 
-            <input class="form-control text-center p-0 ml-0" type="text" 
-            style="width:75px;font-size: 1em;"
+        <input class="form-control text-center p-0 ml-0" type="text" style="width:75px;font-size: 1em;"
             [value]="this.handleLimitLeft">
 
-            <input class="form-control text-center p-0 ml-0" type="text" 
-            style="width:75px;font-size: 1em;"
+        <input class="form-control text-center p-0 ml-0" type="text" style="width:75px;font-size: 1em;"
             [value]="this.handleLimitRight">
-                        
+
     </div>
     <div *ngIf="true" class="api-table" [ngStyle]="tableStyle">
         <!--template header-->
@@ -28,17 +24,14 @@
 
         <!--displayed header start-->
         <div class="thead" [ngStyle]="headerStyle">
-            <ul cdkDropList cdkDropListOrientation="horizontal" 
-            (cdkDropListDropped)="drop($event)">
+            <ul cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
                 <li *ngFor="let c of tableOptions.columns;let i=index;let last = last"
-                    [style.width.px]="this.colWidths[i]-0" 
-                    class="headerCell"
-                    cdkDrag>
+                    [style.width.px]="this.colWidths[i]-0" class="headerCell" cdkDrag>
                     <div>
                         <span [style.width.px]="this.colWidths[i]-(c.noFilter ? 5 : 30)">{{c.heading}}</span>
                         <i *ngIf="!c.noFilter" class="fa fa-caret-down f-icon" aria-hidden="true"
                             (click)="popupFilter(c)"></i>
-                        <div *ngIf="!last && !c.fixed" class="col-sep" (mousedown)="mouseSep($event,i)">&nbsp;</div>
+                        <div *ngIf="!last && !c.fixed" class="col-sep" (mousemove)="mouseSep($event,i)">&nbsp;</div>
                         <div *ngIf="!last && c.fixed" class="col-sep-fixed">&nbsp;</div>
                     </div>
                 </li>
@@ -58,19 +51,17 @@
         </div>
         <!--details end-->
 
-        <div class="drag-handle" *ngIf="this.showMask" 
-            [style.top.px]="handleTop" 
-            [style.left.px]="handleLeft"
-            [style.height.px]="handleHeight" 
-            [style.width.px]="handleWidth">&nbsp;</div>
-        <div class="drag-mask" *ngIf="this.showMask" (mouseup)="mouseMask($event)" (mouseout)="mouseMask($event)"
-            (mousemove)="mouseMask($event)" style="position:absolute;background: white;opacity: 0.3;
-                z-index:3;width:100%; height:100%;top:0px;left:0px;cursor:ew-resize;">&nbsp;</div>
+        <div class="drag-handle" *ngIf="this.showMask" [style.top.px]="handleTop" [style.left.px]="handleLeft"
+            [style.height.px]="handleHeight" [style.width.px]="handleWidth">&nbsp;</div>
+        <div class="drag-mask" *ngIf="this.showMask" (mouseup)="mouseMask($event)" (mousedown)="mouseMask($event)"
+            (mouseout)="mouseMask($event)" (mousemove)="mouseMask($event)" style="position:absolute;background: white;opacity: 0.3;
+                z-index:3;width:100%; height:100%;top:0px;left:0px;cursor:ew-resize;"
+            [ngStyle]="{opacity:(_beginDrag ? 0.3 : 0.1)}">&nbsp;</div>
 
     </div>
     <app-api-data-filter-a></app-api-data-filter-a>
-    <div *ngIf="false" cdkDropList cdkDropListOrientation="horizontal" 
-    (cdkDropListDropped)="drop($event)" style="display: flex;background: cyan;width:100%;">
+    <div *ngIf="false" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)"
+        style="display: flex;background: cyan;width:100%;">
         <div style="flex-grow: 1;" cdkDrag>1</div>
         <div style="flex-grow: 1;" cdkDrag>2</div>
         <div style="flex-grow: 1;" cdkDrag>3</div>
@@ -82,8 +73,9 @@
     <div class="d-flex">
         <span class="mr-1">{{this.appCommon.browserName}}</span>
         <button class="btn btn-sm btn-primary mr-1" (click)="testMe()">Test Me</button>
-        <button class="btn btn-sm btn-primary mr-1" (click)="insertColumn(tableOptions.columns.length-1,0)">Move Column</button>
-        
+        <button class="btn btn-sm btn-primary mr-1" (click)="insertColumn(tableOptions.columns.length-1,0)">Move
+            Column</button>
+
         <div [innerHTML]="debugStatus"></div>
     </div>
     <h5>Icon:<i class="fa fa-caret-down" aria-hidden="true"></i></h5>

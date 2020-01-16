@@ -64,7 +64,7 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
             order: 0,
             type: null,
             noFilter: false,
-            fixed: false
+            fixed: true
           },
           {
             heading: "Column 2 Column 2 Column 2 Column 2",
@@ -400,9 +400,10 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
 
   mouseSep(event, idx?: number) {
     if (!this.showMask) {
-      if (event.type == "mousemove") {
+      if (event.type == "mousemoveX") {
         // record separator object parameters
-      } else if (event.type == "mousedown") {
+      } else if (event.type == "mouseout") {
+      } else if (event.type == "mousedownX" || event.type == "mousemove") {
         console.log("SepObj:", event);
 
         this.currSep = event.target;
@@ -422,16 +423,21 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
       }
     }
   }
+  _beginDrag:boolean = false;
   mouseMask(event) {
     if (this.showMask) {
       if (event.type == "mouseup") {
         // calculate new column widths on either side of the separator
 
+        this._beginDrag = false;
         this.commitDrag();
         this.resetReferenceObjects();
 
         this.showMask = false;
+      } else if (event.type == "mousedown") {
+        this._beginDrag = true;
       } else if (event.type == "mouseout") {
+        this._beginDrag = false;
         this.resetReferenceObjects();
         this.showMask = false;
       } else if (event.type == "mousemove") {
@@ -441,9 +447,26 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
           this.handleLimitRight - this.handleWidth
         );
         */
-        this._colDragX =Math.max(event.clientX, this.handleLimitLeft);
 
-        this.handleLeft = this._colDragX;
+        // if current mouse position is not within the separator's position
+        // and showMask is true,
+        if(!this._beginDrag && this.showMask && event.clientX && this.currSep){
+          let diff:number = Math.abs(this.currSep.offsetLeft-event.clientX)
+          if(diff > this.handleWidth){
+            this.resetReferenceObjects();
+            this.showMask = false;
+          }
+        }
+
+        
+        // execute the following only if the left mouse button is down
+
+        console.log("event.button",event.button);
+        if(this._beginDrag){
+          this._colDragX =Math.max(event.clientX, this.handleLimitLeft);
+          this.handleLeft = this._colDragX;
+        }
+
       }
     } else {
     }
