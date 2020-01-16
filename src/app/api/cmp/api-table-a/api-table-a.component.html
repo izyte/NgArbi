@@ -40,15 +40,18 @@
         <!--displayed header end-->
 
         <!--details start-->
-        <div class="tbody" [ngStyle]="detailStyle">
-            <ul *ngFor="let r of tableData;let ri=index;" class="striped">
+
+      
+
+        <cdk-virtual-scroll-viewport  itemSize="20" class="tbody" [ngStyle]="detailStyle">
+            <ul *cdkVirtualFor="let r of tableData;let ri=index;" class="striped">
                 <div>
                     <li *ngFor="let rc of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]">
                         {{r[rc.data]}}</li>
 
                 </div>
             </ul>
-        </div>
+        </cdk-virtual-scroll-viewport>
         <!--details end-->
 
         <div class="drag-handle" *ngIf="this.showMask" [style.top.px]="handleTop" [style.left.px]="handleLeft"

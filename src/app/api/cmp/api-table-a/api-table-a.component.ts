@@ -170,6 +170,18 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
 
   get tableData(): Array<any> {
     if (this.options.data == undefined) {
+
+      let rows:number = 100;
+      let cols:number = this.tableOptions.columns.length;
+
+      this.options.data = []
+
+      for(let r=1;r<=rows;r++){
+          let obj = {};
+          for(let c=1;c<=cols;c++){obj["field_" + c] = "Row " + r + " Column " + c;}
+          this.options.data.push(obj);
+      }
+/*
       this.options.data = [
         {
           field_1: "Row 1 Column 1",
@@ -235,6 +247,9 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
           field_5: "Row 9 Column 5"
         }
       ];
+
+*/
+
     }
 
     return this.options.data;
@@ -243,7 +258,7 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
   get tableStyle(): any {
     return {
       width: this._tableWidth,
-      height: "150px"
+      height: "300px"
     };
   }
 
