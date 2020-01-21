@@ -5,6 +5,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 //import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+// @angular/cdk imports
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
@@ -45,6 +47,7 @@ import { ApiDataFilterAComponent } from './api/cmp/api-data-filter-a/api-data-fi
   imports: [
     BrowserModule,
     //FormsModule,
+    ScrollingModule,
     DragDropModule,
     ReactiveFormsModule,
     NgbModule,
