@@ -49,6 +49,9 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
   debugStatus: string = "Sample debug text";
   colWidths: Array<number> = [];
 
+
+  items = Array(1000).fill(0).map(() => Math.round(Math.random() * 100));
+
   constructor(public appCommon: AppCommonMethodsService) {
     this.normalizeColumns();
   }
@@ -64,7 +67,7 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
             order: 0,
             type: null,
             noFilter: false,
-            fixed: true
+            fixed: false
           },
           {
             heading: "Column 2 Column 2 Column 2 Column 2",

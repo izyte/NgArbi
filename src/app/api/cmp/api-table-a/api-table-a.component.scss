@@ -242,3 +242,22 @@ $varsExist: 1;
 .inContainer {
   position: absolute;
 }
+
+
+.gkz-viewport {
+  height: 200px;
+  width: 200px;
+  border: 1px solid black;
+  .ul{
+    list-style-type: none;
+    display: flex;
+  }
+  .cdk-virtual-scroll-content-wrapper {
+      display: flex;
+      flex-direction: column;
+  }
+  .item {
+      height: 19px;
+      border-bottom: 1px dashed #aaa;
+  }
+}

@@ -41,9 +41,9 @@
 
         <!--details start-->
 
-      
 
-        <cdk-virtual-scroll-viewport  itemSize="20" class="tbody" [ngStyle]="detailStyle">
+
+        <cdk-virtual-scroll-viewport *ngIf="false" itemSize="300" class="tbody" [ngStyle]="detailStyle">
             <ul *cdkVirtualFor="let r of tableData;let ri=index;" class="striped">
                 <div>
                     <li *ngFor="let rc of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]">
@@ -52,7 +52,35 @@
                 </div>
             </ul>
         </cdk-virtual-scroll-viewport>
+
+        <div itemSize="300" class="tbody" [ngStyle]="detailStyle">
+            <ul *ngFor="let r of tableData;let ri=index;" class="striped">
+                <div>
+                    <li *ngFor="let rc of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]">
+                        {{r[rc.data]}}</li>
+
+                </div>
+            </ul>
+        </div>
         <!--details end-->
+
+        <!--test virtual scroll-->
+        <cdk-virtual-scroll-viewport *ngIf="false" class="gkz-viewport" [itemSize]="20*6" style="margin-top:50px;">
+            <ul style="list-style-type: none;" [class.item-alternate]="odd" 
+                *cdkVirtualFor="
+    let item of items;
+    let r of tableData;
+    let count = count;
+    let first = first;
+    let last = last;
+    let even = even;
+    let odd = odd;">
+                <div>
+                    <li class="item">{{r.field_1}}</li>
+                    <li class="item">{{r.field_2}}</li>
+                </div>
+            </ul>
+        </cdk-virtual-scroll-viewport>
 
         <div class="drag-handle" *ngIf="this.showMask" [style.top.px]="handleTop" [style.left.px]="handleLeft"
             [style.height.px]="handleHeight" [style.width.px]="handleWidth">&nbsp;</div>
