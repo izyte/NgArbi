@@ -1,5 +1,6 @@
 // Default color defined
-$tbl-background: none;
+//$tbl-background: none;
+$tbl-background: beige;
 $tbl-header-background: #2b579a;
 
 $tbl-stripe-dark: #f2f2f2;
@@ -10,7 +11,8 @@ $tbl-detail-hover: #ececec;
 $tbl-header-foreground: white;
 $tbl-detail-background: none;
 
-$tbl-border-color: #dee2e6; /* color taken from  bootstrap table border color*/
+//$tbl-border-color: #dee2e6; /* color taken from  bootstrap table border color*/
+$tbl-border-color: red; /* color taken from  bootstrap table border color*/
 $tbl-border-color-table: $tbl-border-color;
 $varsExist: 1;
 
@@ -22,9 +24,95 @@ $varsExist: 1;
 // this import will allow override values for table variable as defined above
 @import "./src/app/AppGlobalVariables.scss";
 
-#tableContainer {
+
+
+
+.api-grid{
+  /*****************************************
+   The main container of the data grid
+   1. acts as the main viewport
+   2.  
+  *****************************************/
+  
+
+  div.drag-handle {
+    // this is the element in between column headings
+    border: none;
+    position: absolute;
+    z-index: 2;
+    background: gray;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+  }
+
+  div.head{
+    top:0px;
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    div.head-row{
+      display: flex;
+      background: red;
+      width: 100%;
+      background:$tbl-header-background;
+      div.head-cell{
+        border-right: 1px solid white;
+        padding: 3px 5px;
+        font-size: 0.8rem;
+  
+        color: white;
+      }
+    }
+  }
+
+  .body{
+
+    padding: 0px 0px;
+    background: $tbl-background;
+    overflow-y: auto;
+    overflow-x: none;
+    //border: 1px solid $tbl-border-color-table;
+  
+    display: flex;
+    flex-direction: column;    
+
+    div.row{
+      display: flex;
+      background: lime;
+      margin-left:0px;
+      //padding-left:30px;
+      border-bottom: 1px solid blue;
+      border-left: 1px solid blue;
+  
+      div.cell{
+        //background: olive;
+        //color: white;
+  
+        border-right: 1px solid $tbl-border-color;
+        //border-bottom: 1px solid $tbl-border-color;
+        padding: 3px 5px;
+        font-size: 0.8rem;
+
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: block;
+    
+      }
+    }
+  
+    div.row:first-child{
+      margin-top: 26px;
+    }
+
+  }
+
+
 }
 
+#tableContainer {
+}
 
 .api-table {
   padding: 0px 0px;
@@ -52,12 +140,11 @@ $varsExist: 1;
     border-left: 1px solid white;
     border-right: 1px solid white;
   }
-  
-  
+
   .thead ul li,
-  .tbody ul li,
   .coltemp ul li,
   .thead ul div li,
+  .tbody ul li,
   .tbody ul div li,
   .coltemp ul div li {
     border-right: 1px solid $tbl-border-color;
@@ -138,10 +225,36 @@ $varsExist: 1;
       }
     }
   }
+
+
   .tbody {
     background: $tbl-detail-background;
     margin-top: 26px;
+    margin-left: 14px;
     width: 100%;
+    flex-direction:column;
+    border:1px solid #c0c0c0;height:400px;
+
+    // using div start
+    div.row{
+      display: flex;
+      /*border:1px solid #c0c0c0;*/
+      div.cell {
+        //flex-grow:1;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: block;
+        
+        border-right: 1px solid $tbl-border-color;
+        border-bottom: 1px solid $tbl-border-color;
+        padding: 3px 5px;
+        font-size: 0.8rem;
+
+      }
+    }
+    // using div end
+
     ul {
       display: flex;
 
@@ -207,11 +320,11 @@ $varsExist: 1;
   }*/
 }
 
-.headerCell{
+.headerCell {
   border-right: 1px solid $tbl-border-color;
   border-bottom: 1px solid $tbl-border-color;
   padding: 3px 5px;
-  font-size: 0.8rem;  
+  font-size: 0.8rem;
   color: $tbl-header-foreground;
 
   text-overflow: ellipsis;
@@ -219,7 +332,6 @@ $varsExist: 1;
   overflow: hidden;
   display: block;
 }
-
 
 .api-table.hovered {
   .tbody {
@@ -243,21 +355,59 @@ $varsExist: 1;
   position: absolute;
 }
 
-
 .gkz-viewport {
   height: 200px;
   width: 200px;
   border: 1px solid black;
-  .ul{
+  .ul {
     list-style-type: none;
     display: flex;
   }
   .cdk-virtual-scroll-content-wrapper {
-      display: flex;
-      flex-direction: column;
+    display: flex;
+    flex-direction: column;
   }
   .item {
-      height: 19px;
-      border-bottom: 1px dashed #aaa;
+    height: 19px;
+    border-bottom: 1px dashed #aaa;
   }
 }
+
+// dev grid classes
+._gridBodyA{
+  padding:0px 5px;
+  padding-top:4px;
+  height: 18px;
+  border:none;
+  border-bottom:1px solid #c0c0c0;
+  border-right:1px solid #c0c0c0;
+  text-align:left;
+  cursor: default;
+  user-select:"none";
+  font-size: 1em;
+}
+._gridBodyAParent {
+  color: black;
+  display: flex;
+}
+
+._gridBodyAParent:nth-child(odd) {
+  background: $tableDetailNormalBackground;
+}
+._gridBodyAParent:nth-child(even) {
+  background: $tableDetailNormalEvenBackground;
+}
+
+._gridBodyAParent:hover {
+  background: $tableDetailHoverBackground;
+}
+
+/*
+
+
+
+
+
+
+
+*/

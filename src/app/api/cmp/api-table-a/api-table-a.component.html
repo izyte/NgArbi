@@ -8,11 +8,32 @@
         <input class="form-control text-center p-0 ml-0" type="text" style="width:75px;font-size: 1em;"
             [value]="this.handleLimitLeft">
 
-        <input class="form-control text-center p-0 ml-0" type="text" style="width:75px;font-size: 1em;"
-            [value]="this.handleLimitRight">
+        ut class="form-control text-center p-0 ml-0" type="text" style="width:75px;font-size: 1em;"
+        [value]="this.handleLimitRight">
 
     </div>
-    <div *ngIf="true" class="api-table" [ngStyle]="tableStyle">
+
+    <div class="api-grid">
+        <div class="head">
+            <div class="head-row">
+                <div class="head-cell" *ngFor="let rc of tableOptions.columns;let i=index;">
+                    {{rc.data}}
+                </div>
+            </div>
+        </div>
+        <cdk-virtual-scroll-viewport itemSize="18" class="body" [ngStyle]="tableStyle" style="position: relative;">
+
+            <div [id]="'row_'+idx" *cdkVirtualFor="let row of tableData;let idx=index;" class="row">
+                <!--div class="cell" *ngFor="let rc of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]"-->
+                <div class="cell" *ngFor="let rc of tableOptions.columns;let i=index;"
+                    style="width: 50px;">
+                    {{row[rc.data]}}
+                </div>
+            </div>
+        </cdk-virtual-scroll-viewport>
+    </div>
+
+    <div *ngIf="false" class="api-table" [ngStyle]="tableStyle">
         <!--template header-->
         <div class="coltemp" [ngStyle]="headerStyle">
             <ul>
@@ -23,7 +44,7 @@
         </div>
 
         <!--displayed header start-->
-        <div class="thead" [ngStyle]="headerStyle">
+        <div *ngIf="false" class="thead" [ngStyle]="headerStyle">
             <ul cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
                 <li *ngFor="let c of tableOptions.columns;let i=index;let last = last"
                     [style.width.px]="this.colWidths[i]-0" class="headerCell" cdkDrag>
@@ -53,7 +74,19 @@
             </ul>
         </cdk-virtual-scroll-viewport>
 
-        <div itemSize="300" class="tbody" [ngStyle]="detailStyle">
+        <cdk-virtual-scroll-viewport itemSize="18" class="tbody">
+            <div [id]="'row_'+idx" *cdkVirtualFor="let row of tableData;let idx=index;" class="row">
+
+                <div class="cell" *ngFor="let rc of tableOptions.columns;let i=index;"
+                    [style.width.px]="this.colWidths[i]">
+                    {{row[rc.data]}}
+                </div>
+                <!--div *ngFor="let col of _headerColumns()" class="_gridBodyA" [ngStyle]="bodyStyle(col)">
+                    {{ShowData(row[col.data],col.type)}}</div-->
+            </div>
+        </cdk-virtual-scroll-viewport>
+
+        <div *ngIf="false" itemSize="300" class="tbody" [ngStyle]="detailStyle">
             <ul *ngFor="let r of tableData;let ri=index;" class="striped">
                 <div>
                     <li *ngFor="let rc of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]">
@@ -66,8 +99,7 @@
 
         <!--test virtual scroll-->
         <cdk-virtual-scroll-viewport *ngIf="false" class="gkz-viewport" [itemSize]="20*6" style="margin-top:50px;">
-            <ul style="list-style-type: none;" [class.item-alternate]="odd" 
-                *cdkVirtualFor="
+            <ul style="list-style-type: none;" [class.item-alternate]="odd" *cdkVirtualFor="
     let item of items;
     let r of tableData;
     let count = count;

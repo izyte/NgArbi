@@ -174,7 +174,7 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
   get tableData(): Array<any> {
     if (this.options.data == undefined) {
 
-      let rows:number = 100;
+      let rows:number = 1000000;
       let cols:number = this.tableOptions.columns.length;
 
       this.options.data = []
@@ -261,13 +261,14 @@ export class ApiTableAComponent implements OnInit, AfterViewInit {
   get tableStyle(): any {
     return {
       width: this._tableWidth,
-      height: "300px"
+      height: "300px",
     };
   }
 
   get _tableWidth(): string {
     if (!this.tableWidth) {
-      return "100%";
+      //return "100%";
+      return "900px";
     } else {
       return this.tableWidth + "px";
     }
