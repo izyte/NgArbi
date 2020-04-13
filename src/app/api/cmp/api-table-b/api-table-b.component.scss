@@ -1,0 +1,124 @@
+#api_table {
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  > div {
+    // common row groups
+    display: flex;
+    flex-direction: column;
+    background-color: lime;
+
+    > div {
+      // common row
+      display: flex;
+      flex-direction: row;
+      > div {
+        // common cell
+        border: 1px solid gray;
+        flex:1 1 0;
+      }
+      // nth child cell (sample only)
+      > div:nth-child(1) {
+        //background-color: yellow;
+      }
+      > div:nth-child(2) {
+        //width: 200px;
+        background-color: pink;
+      }
+    }
+    > div:nth-child(even) {
+      background-color: cyan;
+    }
+  }
+
+  // header rows group
+  >div.head{
+    display: flex;
+    flex-direction: column;
+    //left:0;
+    //right: 0;
+    position: fixed;
+    //position: relative;
+
+
+    background-color: red;
+
+
+
+  }
+
+  > div.headx {
+    display: table-header-group;
+    background-color: darkolivegreen;
+    // makes header rows fixed position
+    position: fixed;
+    > div {
+      // row
+      width: 100%;
+      display: flex;
+      > div {
+        // cell
+        font-weight: bold;
+        text-align: center;
+        background-color: none;
+      }
+    }
+  }
+  // body rows group
+  > div.body {
+    display: table-row-group;
+  }
+  // footer rows group
+  > div.foot {
+    display: table-footer-group;
+  }
+}
+
+#api_table_bak {
+  display: table;
+  //border: 1px solid red;
+  width: 100%;
+  > div {
+    // common row
+    > div {
+      display: table-row;
+      // common cell
+      > div {
+        display: table-cell;
+        border: 1px solid gray;
+      }
+      // nth child cell (sample only)
+      > div:nth-child(1) {
+        width: 200px;
+        background-color: lime;
+        //opacity: .5;
+      }
+    }
+  }
+
+  // header rows group
+  > div.head {
+    display: table-header-group;
+    background-color: darkolivegreen;
+    // makes header rows fixed position
+    position: fixed;
+    > div {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      > div {
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+  }
+  // body rows group
+  > div.body {
+    display: table-row-group;
+  }
+  // footer rows group
+  > div.foot {
+    display: table-footer-group;
+  }
+}

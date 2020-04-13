@@ -1,0 +1,34 @@
+<div #placeholder *ngIf="!renderTable" style="width:100%;background:cyan;height:100%;">
+  <ng-content></ng-content>
+    <span *ngIf="parentWidth!=-1">{{parentWidth}}</span>
+</div>
+
+<div [style.width.px]="parentWidth" [style.height.px]="parentHeight" [style.top.px]="parentTop" [style.left.px]="parentLeft"
+style="background:red;opacity:0.5;position:absolute;z-index:1;">
+&nbsp;
+</div>
+
+<!--Table-->
+<div *ngIf="renderTable" class="bg-light" style="height: 200px;overflow: auto;">
+  <div id="api_table">
+    <div class="head" [style.width]="'750px'">
+      <!--Table Row-->
+      <div>
+        <div>Name</div>
+        <div>Age</div>
+      </div>
+    </div>
+    <!--Table-Row-Group-->
+    <div class="body">
+      <!--Table Row-->
+      <div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+      </div>
+      <div *ngFor="let row of rows;let r=index;">
+        <div>{{row.name}}</div>
+        <div>{{row.age}}</div>
+      </div>
+    </div>
+  </div>
+</div>
