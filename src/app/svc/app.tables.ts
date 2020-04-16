@@ -1,5 +1,5 @@
 /***********************************************************************
-* Automatically generated on 4/15/2020 11:39:50 AM
+* Automatically generated on 4/15/2020 4:38:46 PM
 ***********************************************************************/
 
 import { HttpClient } from '@angular/common/http';
@@ -8,6 +8,72 @@ import { TableRowBase }from '../api/svc/app-common.datarow';
 import { ColumnInfo } from '../api/mod/app-column.model';
 
 
+
+
+
+
+export class TblChangeTracker extends TableBase {
+
+  public rows:Array<TblChangeTrackerRow> = [];
+
+  public tableFieldPrefix="trk_";
+	private _tableLinks:Array<string>=[];
+	private _links:Array<any>=[];
+
+  constructor(public http:HttpClient,public apiUrl:string, public tables?:Array<any>) { 
+    super(http, apiUrl); 
+    
+    this.derivedTable = this;
+
+    this.tableCode="chgTrack";
+
+	this.columns.push(new ColumnInfo('trk_id', 'number', '', '', 0, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('trk_user_login', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('trk_table_code', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('trk_field_name', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('trk_key_value', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('trk_stamp', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('trk_old_value', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
+
+    this.InitializeTable();
+
+  }
+
+  Add(row?:TblChangeTrackerRow):TblChangeTrackerRow
+  {
+    return super.Add(row);
+  }
+
+  NewRow():TblChangeTrackerRow{return new TblChangeTrackerRow();}
+  GetRows():Array<TblChangeTrackerRow>{return this.rows;}
+  public set currentRow(value:TblChangeTrackerRow){super.__currentRow(value);}
+  public get currentRow():TblChangeTrackerRow{return super.__currentRow();}
+  public TableLinks():Array<string>{return this._tableLinks;}
+  public Links():Array<any>{return this._links;}
+  public get dirtyRows():Array<TblChangeTrackerRow>{return super.__dirtyRows();}
+  public get newRows():Array<TblChangeTrackerRow>{return super.__newRows();}
+
+  
+}
+
+export class TblChangeTrackerRow extends TableRowBase{
+	constructor(
+		public trk_id?:number, 
+		public trk_user_login?:string, 
+		public trk_table_code?:string, 
+		public trk_field_name?:string, 
+		public trk_key_value?:string, 
+		public trk_stamp?:string, 
+		public trk_old_value?:string){
+    super();
+ 
+  }
+
+  // Returs the table object where the row is a member of.
+  public get Table():TblChangeTracker{ return super.TableObj; }
+
+ 
+}
 
 
 
