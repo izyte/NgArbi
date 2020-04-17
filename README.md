@@ -1,4 +1,10 @@
-# Ngarbi (Angular 9 - IMSA Client Side)
+# Angular 9 - IMSA Client Side
+
+## Dependencies
+- Angular 9 Framework
+- Bootstrap 4 CSS Framework
+- Fontawesome Library
+- D3.js Data Visualization Library
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
 
