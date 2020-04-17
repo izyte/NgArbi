@@ -7,6 +7,7 @@
 - D3.js Data Visualization Library
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+Upgrated to version 9.0.4.
 
 ## Development server
 
