@@ -1,4 +1,4 @@
-import { TblUsers, TblUsersRow, TblUserPlantRow, TblUserPlant, TblPlantsRow } from './../../svc/app.tables';
+// import { TblUsers, TblUsersRow, TblUserPlantRow, TblUserPlant, TblPlantsRow } from './../../svc/app.tables';
 import { AppDataset } from "./../../svc/app-dataset.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
@@ -40,83 +40,25 @@ export class TestFormAComponent implements OnInit {
 
   ngOnInit() {
 
-    // get user record
-    let userId:number = 2;
-    this.ds.tblUsers.GetRowById(userId,(e)=>{
-      let user:TblUsersRow = this.ds.tblUsers.GetRowById(userId);
+    // // get user record
+    // let userId:number = 2;
+    // this.ds.tblUsers.GetRowById(userId,(e)=>{
+    //   let user:TblUsersRow = this.ds.tblUsers.GetRowById(userId);
 
-      user.ChildRows("upln")
-    });
+    //   user.ChildRows("upln")
+    //});
 
 
-    this.onChanges();
+    //this.onChanges();
 
   }
 
 
-  onChanges(): void {
-    if(!this.frmObj){
-      console.log("Form object is not yet initialized!")
-    }
-    this.frmObj.valueChanges.subscribe(val => {
-      console.log("On change trigger!")
-    });
-  }
 
-
-  TestFunction(){
-    let userId:number = 1;
-    if(this.ds.currentUser){
-      userId=this.ds.currentUser.user_id==1 ? 2 : 1;
-    }
-  this.ds._cl("@current user id",userId);
-    
-    let user:TblUsersRow = this.ds.tblUsers.GetRowById(userId, (e)=>{
-      let u:TblUsersRow=this.ds.tblUsers.GetRowById(userId);
-      this.ds._cl("user!:",u);
-      u.ChildRows("upln");
-
-      u.SetAsCurrent();
-
-      //let up:Array<TblUserPlantRow> = u.ChildRows("upln",(e)=>{
-      //  let up2:Array<TblUserPlantRow> = u.ChildRows("upln");
-      //  this.ds._cl("user:",u,"upln count:",up2.length);
-      //});
-      //if(up.length!=0)this.ds._cl("user:",u,"upln count:",up.length);
-      //this.ds._cl("user:",u,"upln count:");
-    });
-    if(user){
-      user.SetAsCurrent();
-      this.ds._cl("Users:",this.ds.tblUsers,"!Linked Plants: ",user.ChildRows("upln"));
-    }
-  }
-
-  TestFunctionB(){
-    let userId:number = 1;
-    let user:TblUsersRow = this.ds.tblUsers.GetRowById(userId);
-    user.ChildRows("upln")
-
-    let ul:Array<TblUserPlantRow> =  user.ChildRows("upln");
-    this.ds._cl("user plant links:",ul);
-    if(ul.length!=0){
-      let cr:TblPlantsRow = ul[0].ChildRow("plnt");
-      this.ds._cl("plant links[0]:",cr);
-    }
-  }
-
-  TestFunctionC(){
-    if(!this.ds.currentPlant){
-      this.ds._cl("no current plant!")
-    }else{
-      this.ds._cl("ToPostData:",JSON.stringify(this.ds.currentPlant.toPostData));
-    }
-  }
-
-  UserPlantLinks():Array<TblUserPlantRow>{
-    if(!this.ds.currentUser)return[];
-    return this.ds.currentUser.ChildRows("upln");
-    //if(this.ds.currentUser.ChildRows("upln").length==0)return[];
-  }
+  // UserPlantLinks():Array<TblUserPlantRow>{
+  //   if(!this.ds.currentUser)return[];
+  //   return this.ds.currentUser.ChildRows("upln");
+  //   //if(this.ds.currentUser.ChildRows("upln").length==0)return[];
+  // }
 
 }
- 

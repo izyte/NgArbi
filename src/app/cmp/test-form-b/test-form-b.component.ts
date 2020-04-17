@@ -1,10 +1,10 @@
 import { ApiFormAComponent } from './../../api/cmp/api-form-a/api-form-a.component';
 import { KeyValuePair } from './../../api/mod/app-common.model';
-import { TblPlants } from './../../svc/app.tables';
+// import { TblPlants } from './../../svc/app.tables';
 import { FormGroup, FormControl } from "@angular/forms";
 import { AppDataset } from "./../../svc/app-dataset.service";
 import { Component, OnInit, ViewChild, ElementRef} from "@angular/core";
-import { TblPlantsRow } from 'src/app/svc/app.tables';
+// import { TblPlantsRow } from 'src/app/svc/app.tables';
 
 @Component({
   selector: "app-test-form-b",
@@ -14,8 +14,8 @@ import { TblPlantsRow } from 'src/app/svc/app.tables';
 
 export class TestFormBComponent implements OnInit {
 
-  @ViewChild("ctrl", {static:true, read: ElementRef}) ctrl: ElementRef<any>;  
-  @ViewChild("testForm", {static:true, read: ElementRef}) frm: ElementRef<ApiFormAComponent>;  
+  @ViewChild("ctrl", {static:true, read: ElementRef}) ctrl: ElementRef<any>;
+  @ViewChild("testForm", {static:true, read: ElementRef}) frm: ElementRef<ApiFormAComponent>;
 
   @ViewChild(ApiFormAComponent, {static:true}) childForm: ApiFormAComponent ;
 
@@ -27,31 +27,31 @@ export class TestFormBComponent implements OnInit {
   ngOnInit() {
     console.log("Initiializing test-form-b component", this.frmObj);
 
-    let userId: number = 1;
-    this.ds.tblUsers.GetRowById(userId, d => {
-      console.log(
-        "About to extract userplants!",
-        this.ds.tblUsers.GetRowById(1)
-      );
-      this.ds.tblUserPlant.GetRowsByGroup({
-        key: userId,
-        onSuccess: e => {
-          if (this.ds.tblPlants.rows.length != 0) {
-            this.ds.tblPlants.rows[0].SetAsCurrent();
-            // extract all linked table records
-            // a) Materials
-            this.ds.tblRefMaterials.GetRowsByGroup({key:this.ds.currentPlant,onSuccess:(data)=>{
-              console.log("matl:",data);
+    // let userId: number = 1;
+    // this.ds.tblUsers.GetRowById(userId, d => {
+    //   console.log(
+    //     "About to extract userplants!",
+    //     this.ds.tblUsers.GetRowById(1)
+    //   );
+    //   this.ds.tblUserPlant.GetRowsByGroup({
+    //     key: userId,
+    //     onSuccess: e => {
+    //       if (this.ds.tblPlants.rows.length != 0) {
+    //         this.ds.tblPlants.rows[0].SetAsCurrent();
+    //         // extract all linked table records
+    //         // a) Materials
+    //         this.ds.tblRefMaterials.GetRowsByGroup({key:this.ds.currentPlant,onSuccess:(data)=>{
+    //           console.log("matl:",data);
 
-              this.ds.tblRefExtCoats.GetRowsByGroup({key:this.ds.currentPlant,onSuccess:(data)=>{
-                console.log("ecot:",data);
-              }})
-            }})
-          }
-          console.log("App Dataset:",this.ds);
-        }
-      });
-    });
+    //           this.ds.tblRefExtCoats.GetRowsByGroup({key:this.ds.currentPlant,onSuccess:(data)=>{
+    //             console.log("ecot:",data);
+    //           }})
+    //         }})
+    //       }
+    //       console.log("App Dataset:",this.ds);
+    //     }
+    //   });
+    // });
 
     //this.onChanges();
   }
@@ -74,13 +74,13 @@ export class TestFormBComponent implements OnInit {
   }
 
   onFieldChange(event): void {
-    // emits control object 
-    
-    if(this.ds.currentPlant){
-      //console.log("control data", this.ds.currentPlant[event.name], event.ctrl.value);
-      //this.ds.currentPlant[event.name] = event.ctrl.value;
-      //this.ds.currentPlant[event.name] = event.ctrl.target.value;
-    }
+    // emits control object
+
+    // if(this.ds.currentPlant){
+    //   //console.log("control data", this.ds.currentPlant[event.name], event.ctrl.value);
+    //   //this.ds.currentPlant[event.name] = event.ctrl.value;
+    //   //this.ds.currentPlant[event.name] = event.ctrl.target.value;
+    // }
   }
 
   cs(idx, heading?: boolean): any {
@@ -106,16 +106,16 @@ export class TestFormBComponent implements OnInit {
   }
 
   newPlant(){
-    let tblPlant:TblPlants = this.ds.tables["plnt"];
-    let plant:TblPlantsRow = tblPlant.Add();
-    plant.SetAsCurrent();
-    console.log(plant, tblPlant," Rows#", tblPlant.rows.length);
+    // let tblPlant:TblPlants = this.ds.tables["plnt"];
+    // let plant:TblPlantsRow = tblPlant.Add();
+    // plant.SetAsCurrent();
+    // console.log(plant, tblPlant," Rows#", tblPlant.rows.length);
   }
 
   delPlant(){
-    if(this.ds.currentPlant){
-      this.ds.currentPlant.Delete();
-    }
+    // if(this.ds.currentPlant){
+    //   this.ds.currentPlant.Delete();
+    // }
   }
   savePlant(){
     console.log("Save plant!")
@@ -126,16 +126,16 @@ export class TestFormBComponent implements OnInit {
     //console.log(this.frm.nativeElement.testPublic);
     console.log("FormObjectFromParent:",this.frmObj);
     this.childForm.Scatter();
-    
+
   }
 
   setAsCurrent(){
-    let elementRef = this.ctrl;
-    let tblPlant:TblPlants = this.ds.tables["plnt"];
-    console.log("Current Key:",tblPlant.currentKey,elementRef.nativeElement.value);
-    
-    tblPlant.currentKey = elementRef.nativeElement.value;
-    console.log("New Current Key:",tblPlant.currentKey, elementRef.nativeElement.value);
+    // let elementRef = this.ctrl;
+    // let tblPlant:TblPlants = this.ds.tables["plnt"];
+    // console.log("Current Key:",tblPlant.currentKey,elementRef.nativeElement.value);
+
+    // tblPlant.currentKey = elementRef.nativeElement.value;
+    // console.log("New Current Key:",tblPlant.currentKey, elementRef.nativeElement.value);
   }
 
 
