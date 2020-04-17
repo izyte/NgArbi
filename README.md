@@ -1,6 +1,13 @@
-# Ngarbi
+# Angular 9 - IMSA Client Side
+
+## Dependencies
+- Angular 9 Framework
+- Bootstrap 4 CSS Framework
+- Fontawesome Library
+- D3.js Data Visualization Library
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+Upgrated to version 9.0.4.
 
 ## Development server
 
@@ -25,3 +32,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+# Update in progress ...
