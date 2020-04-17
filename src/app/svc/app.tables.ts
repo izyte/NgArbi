@@ -1,5 +1,5 @@
 /***********************************************************************
-* Automatically generated on 4/17/2020 3:24:51 PM
+* Automatically generated on 4/17/2020 5:21:13 PM
 ***********************************************************************/
 
 import { HttpClient } from '@angular/common/http';
@@ -239,6 +239,7 @@ export class TblChangeTracker extends TableBase {
 	this.columns.push(new ColumnInfo('trk_user_login', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('trk_table_code', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('trk_field_name', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('trk_action', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('trk_key_value', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('trk_stamp', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('trk_old_value', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
@@ -270,6 +271,7 @@ export class TblChangeTrackerRow extends TableRowBase{
 		public trk_user_login?:string, 
 		public trk_table_code?:string, 
 		public trk_field_name?:string, 
+		public trk_action?:string, 
 		public trk_key_value?:string, 
 		public trk_stamp?:string, 
 		public trk_old_value?:string){
@@ -667,6 +669,8 @@ export class TblUsers extends TableBase {
 
 	this.columns.push(new ColumnInfo('USER_ID', 'number', '', '', 0, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('USER_NAME', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('USER_NOTES', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
+	this.columns.push(new ColumnInfo('USER_STATUS', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('USER_Created', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('USER_CreatedBy', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('USER_Updated', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
@@ -697,6 +701,8 @@ export class TblUsersRow extends TableRowBase{
 	constructor(
 		public USER_ID?:number, 
 		public USER_NAME?:string, 
+		public USER_NOTES?:string, 
+		public USER_STATUS?:string, 
 		public USER_Created?:Date, 
 		public USER_CreatedBy?:string, 
 		public USER_Updated?:Date, 
