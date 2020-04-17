@@ -1,5 +1,5 @@
 /***********************************************************************
-* Automatically generated on 4/17/2020 12:43:14 PM
+* Automatically generated on 4/17/2020 12:48:32 PM
 ***********************************************************************/
 
 import { HttpClient } from '@angular/common/http';
@@ -16,7 +16,7 @@ export class TblAnomalies extends TableBase {
 
   public rows:Array<TblAnomaliesRow> = [];
 
-  public tableFieldPrefix="an_";
+  public tableFieldPrefix="AN_";
 	private _tableLinks:Array<string>=[];
 	private _links:Array<any>=[];
 
@@ -27,8 +27,7 @@ export class TblAnomalies extends TableBase {
 
     this.tableCode="anom";
 
-	this.columns.push(new ColumnInfo('an_id', 'number', '', '', 0, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_ID', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
+	this.columns.push(new ColumnInfo('AN_ID', 'number', '', '', 0, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('AN_REF', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('AN_ASSET_ID', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('AN_TYPE', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
@@ -130,7 +129,6 @@ export class TblAnomalies extends TableBase {
 
 export class TblAnomaliesRow extends TableRowBase{
 	constructor(
-		public an_id?:number, 
 		public AN_ID?:number, 
 		public AN_REF?:string, 
 		public AN_ASSET_ID?:number, 
