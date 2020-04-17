@@ -1,4 +1,5 @@
 # Angular 9 - IMSA Client Side
+##### (Sandbox Client-Side Angular App to Test Server-Side API output and Auto-Generated TypeScript Angular Table Classes)
 
 ## Dependencies
 - Angular 9 Framework
