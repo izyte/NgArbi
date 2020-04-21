@@ -21,8 +21,6 @@ import { ApiFormBComponent } from './api/cmp/api-form-b/api-form-b.component';
 import { DetPlantComponent } from './cmp/det-plant/det-plant.component';
 import { NavBarComponent } from './cmp/nav-bar/nav-bar.component';
 import { TestSandboxAComponent } from './cmp/test-sandbox-a/test-sandbox-a.component';
-import { TestFormAComponent } from './cmp/test-form-a/test-form-a.component';
-import { TestFormBComponent } from './cmp/test-form-b/test-form-b.component';
 import { SandboxComponent } from './cmp/sandbox/sandbox.component';
 import { ApiTableAComponent } from './api/cmp/api-table-a/api-table-a.component';
 import { ApiTableColumnAComponent } from './api/cmp/api-table-column-a/api-table-column-a.component';
@@ -39,8 +37,6 @@ import { ApiTableBComponent } from './api/cmp/api-table-b/api-table-b.component'
     DetPlantComponent,
     NavBarComponent,
     TestSandboxAComponent,
-    TestFormAComponent,
-    TestFormBComponent,
     SandboxComponent,
     ApiTableAComponent,
     ApiTableColumnAComponent,

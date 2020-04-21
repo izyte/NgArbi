@@ -1,147 +1,143 @@
 <div #tableContainer>
-    <div *ngIf="initialized" class="d-flex" style="font-size:.8em;"><span>Widths:</span>
-        <input *ngFor="let c of tableOptions.columns;let i=index;" type="text" class="form-control text-center p-0 ml-0"
-            style="width:75px;font-size: 1em;" [value]="this.colWidths[i]" />
-        <input class="form-control text-center p-0 ml-0" type="text" style="width:75px;font-size: 1em;"
-            [value]="this.handleLeft">
+  <div *ngIf="initialized" class="d-flex" style="font-size:.8em;"><span>Widths:</span>
+    <input *ngFor="let c of tableOptions.columns;let i=index;" type="text" class="form-control text-center p-0 ml-0"
+      style="width:75px;font-size: 1em;" [value]="this.colWidths[i] + ''" />
+    <input class="form-control text-center p-0 ml-0" type="text" style="width:75px;font-size: 1em;"
+      [value]="this.handleLeft + ''">
 
-        <input class="form-control text-center p-0 ml-0" type="text" style="width:75px;font-size: 1em;"
-            [value]="this.handleLimitLeft">
+    <input class="form-control text-center p-0 ml-0" type="text" style="width:75px;font-size: 1em;"
+      [value]="this.handleLimitLeft + ''">
 
-        ut class="form-control text-center p-0 ml-0" type="text" style="width:75px;font-size: 1em;"
-        [value]="this.handleLimitRight">
+    ut class="form-control text-center p-0 ml-0" type="text" style="width:75px;font-size: 1em;"
+    [value]="this.handleLimitRight">
 
+  </div>
+
+  <div class="api-grid">
+    <div class="head">
+      <div class="head-row">
+        <div class="head-cell" *ngFor="let rc of tableOptions.columns;let i=index;">
+          {{rc.data}}
+        </div>
+      </div>
+    </div>
+    <cdk-virtual-scroll-viewport itemSize="18" class="body" [ngStyle]="tableStyle" style="position: relative;">
+
+      <div [id]="'row_'+idx" *cdkVirtualFor="let row of tableData;let idx=index;" class="row">
+        <!--div class="cell" *ngFor="let rc of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]"-->
+        <div class="cell" *ngFor="let rc of tableOptions.columns;let i=index;" style="width: 50px;">
+          {{row[rc.data]}}
+        </div>
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </div>
+
+  <div *ngIf="false" class="api-table" [ngStyle]="tableStyle">
+    <!--template header-->
+    <div class="coltemp" [ngStyle]="headerStyle">
+      <ul>
+        <li *ngFor="let c of tableOptions.columns;let i=index;" [ngStyle]="headerCellStyle(c)">
+          &nbsp;{{c.heading}}
+        </li>
+      </ul>
     </div>
 
-    <div class="api-grid">
-        <div class="head">
-            <div class="head-row">
-                <div class="head-cell" *ngFor="let rc of tableOptions.columns;let i=index;">
-                    {{rc.data}}
-                </div>
-            </div>
-        </div>
-        <cdk-virtual-scroll-viewport itemSize="18" class="body" [ngStyle]="tableStyle" style="position: relative;">
-
-            <div [id]="'row_'+idx" *cdkVirtualFor="let row of tableData;let idx=index;" class="row">
-                <!--div class="cell" *ngFor="let rc of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]"-->
-                <div class="cell" *ngFor="let rc of tableOptions.columns;let i=index;"
-                    style="width: 50px;">
-                    {{row[rc.data]}}
-                </div>
-            </div>
-        </cdk-virtual-scroll-viewport>
+    <!--displayed header start-->
+    <div *ngIf="false" class="thead" [ngStyle]="headerStyle">
+      <ul cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+        <li *ngFor="let c of tableOptions.columns;let i=index;let last = last" [style.width.px]="this.colWidths[i]-0"
+          class="headerCell" cdkDrag>
+          <div>
+            <span [style.width.px]="this.colWidths[i]-(c.noFilter ? 5 : 30)">{{c.heading}}</span>
+            <i *ngIf="!c.noFilter" class="fa fa-caret-down f-icon" aria-hidden="true" (click)="popupFilter(c)"></i>
+            <div *ngIf="!last && !c.fixed" class="col-sep" (mousemove)="mouseSep($event,i)">&nbsp;</div>
+            <div *ngIf="!last && c.fixed" class="col-sep-fixed">&nbsp;</div>
+          </div>
+        </li>
+      </ul>
     </div>
+    <!--displayed header end-->
 
-    <div *ngIf="false" class="api-table" [ngStyle]="tableStyle">
-        <!--template header-->
-        <div class="coltemp" [ngStyle]="headerStyle">
-            <ul>
-                <li *ngFor="let c of tableOptions.columns;let i=index;" [ngStyle]="headerCellStyle(c)">
-                    &nbsp;{{c.heading}}
-                </li>
-            </ul>
+    <!--details start-->
+
+
+
+    <cdk-virtual-scroll-viewport *ngIf="false" itemSize="300" class="tbody" [ngStyle]="detailStyle">
+      <ul *cdkVirtualFor="let r of tableData;let ri=index;" class="striped">
+        <div>
+          <li *ngFor="let rc of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]">
+            {{r[rc.data]}}</li>
+
         </div>
+      </ul>
+    </cdk-virtual-scroll-viewport>
 
-        <!--displayed header start-->
-        <div *ngIf="false" class="thead" [ngStyle]="headerStyle">
-            <ul cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
-                <li *ngFor="let c of tableOptions.columns;let i=index;let last = last"
-                    [style.width.px]="this.colWidths[i]-0" class="headerCell" cdkDrag>
-                    <div>
-                        <span [style.width.px]="this.colWidths[i]-(c.noFilter ? 5 : 30)">{{c.heading}}</span>
-                        <i *ngIf="!c.noFilter" class="fa fa-caret-down f-icon" aria-hidden="true"
-                            (click)="popupFilter(c)"></i>
-                        <div *ngIf="!last && !c.fixed" class="col-sep" (mousemove)="mouseSep($event,i)">&nbsp;</div>
-                        <div *ngIf="!last && c.fixed" class="col-sep-fixed">&nbsp;</div>
-                    </div>
-                </li>
-            </ul>
+    <cdk-virtual-scroll-viewport itemSize="18" class="tbody">
+      <div [id]="'row_'+idx" *cdkVirtualFor="let row of tableData;let idx=index;" class="row">
+
+        <div class="cell" *ngFor="let rc of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]">
+          {{row[rc.data]}}
         </div>
-        <!--displayed header end-->
-
-        <!--details start-->
-
-
-
-        <cdk-virtual-scroll-viewport *ngIf="false" itemSize="300" class="tbody" [ngStyle]="detailStyle">
-            <ul *cdkVirtualFor="let r of tableData;let ri=index;" class="striped">
-                <div>
-                    <li *ngFor="let rc of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]">
-                        {{r[rc.data]}}</li>
-
-                </div>
-            </ul>
-        </cdk-virtual-scroll-viewport>
-
-        <cdk-virtual-scroll-viewport itemSize="18" class="tbody">
-            <div [id]="'row_'+idx" *cdkVirtualFor="let row of tableData;let idx=index;" class="row">
-
-                <div class="cell" *ngFor="let rc of tableOptions.columns;let i=index;"
-                    [style.width.px]="this.colWidths[i]">
-                    {{row[rc.data]}}
-                </div>
-                <!--div *ngFor="let col of _headerColumns()" class="_gridBodyA" [ngStyle]="bodyStyle(col)">
+        <!--div *ngFor="let col of _headerColumns()" class="_gridBodyA" [ngStyle]="bodyStyle(col)">
                     {{ShowData(row[col.data],col.type)}}</div-->
-            </div>
-        </cdk-virtual-scroll-viewport>
+      </div>
+    </cdk-virtual-scroll-viewport>
 
-        <div *ngIf="false" itemSize="300" class="tbody" [ngStyle]="detailStyle">
-            <ul *ngFor="let r of tableData;let ri=index;" class="striped">
-                <div>
-                    <li *ngFor="let rc of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]">
-                        {{r[rc.data]}}</li>
+    <div *ngIf="false" itemSize="300" class="tbody" [ngStyle]="detailStyle">
+      <ul *ngFor="let r of tableData;let ri=index;" class="striped">
+        <div>
+          <li *ngFor="let rc of tableOptions.columns;let i=index;" [style.width.px]="this.colWidths[i]">
+            {{r[rc.data]}}</li>
 
-                </div>
-            </ul>
         </div>
-        <!--details end-->
+      </ul>
+    </div>
+    <!--details end-->
 
-        <!--test virtual scroll-->
-        <cdk-virtual-scroll-viewport *ngIf="false" class="gkz-viewport" [itemSize]="20*6" style="margin-top:50px;">
-            <ul style="list-style-type: none;" [class.item-alternate]="odd" *cdkVirtualFor="
+    <!--test virtual scroll
+    <cdk-virtual-scroll-viewport *ngIf="false" class="gkz-viewport" [itemSize]="20*6" style="margin-top:50px;">
+      <ul style="list-style-type: none;" [class.item-alternate]="odd" *cdkVirtualFor="
     let item of items;
     let r of tableData;
-    let count = count;
     let first = first;
     let last = last;
     let even = even;
     let odd = odd;">
-                <div>
-                    <li class="item">{{r.field_1}}</li>
-                    <li class="item">{{r.field_2}}</li>
-                </div>
-            </ul>
-        </cdk-virtual-scroll-viewport>
-
-        <div class="drag-handle" *ngIf="this.showMask" [style.top.px]="handleTop" [style.left.px]="handleLeft"
-            [style.height.px]="handleHeight" [style.width.px]="handleWidth">&nbsp;</div>
-        <div class="drag-mask" *ngIf="this.showMask" (mouseup)="mouseMask($event)" (mousedown)="mouseMask($event)"
-            (mouseout)="mouseMask($event)" (mousemove)="mouseMask($event)" style="position:absolute;background: white;opacity: 0.3;
+        <div>
+          <li class="item">{{r.field_1}}</li>
+          <li class="item">{{r.field_2}}</li>
+        </div>
+      </ul>
+    </cdk-virtual-scroll-viewport>
+-->
+    <div class="drag-handle" *ngIf="this.showMask" [style.top.px]="handleTop" [style.left.px]="handleLeft"
+      [style.height.px]="handleHeight" [style.width.px]="handleWidth">&nbsp;</div>
+    <div class="drag-mask" *ngIf="this.showMask" (mouseup)="mouseMask($event)" (mousedown)="mouseMask($event)"
+      (mouseout)="mouseMask($event)" (mousemove)="mouseMask($event)" style="position:absolute;background: white;opacity: 0.3;
                 z-index:3;width:100%; height:100%;top:0px;left:0px;cursor:ew-resize;"
-            [ngStyle]="{opacity:(_beginDrag ? 0.3 : 0.1)}">&nbsp;</div>
+      [ngStyle]="{opacity:(_beginDrag ? 0.3 : 0.1)}">&nbsp;</div>
 
-    </div>
-    <app-api-data-filter-a></app-api-data-filter-a>
-    <div *ngIf="false" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)"
-        style="display: flex;background: cyan;width:100%;">
-        <div style="flex-grow: 1;" cdkDrag>1</div>
-        <div style="flex-grow: 1;" cdkDrag>2</div>
-        <div style="flex-grow: 1;" cdkDrag>3</div>
-        <div style="flex-grow: 1;" cdkDrag>4</div>
-        <div style="flex-grow: 1;" cdkDrag>5</div>
-        <div style="flex-grow: 1;" cdkDrag>6</div>
-        <div style="flex-grow: 1;" cdkDrag>7</div>
-    </div>
-    <div class="d-flex">
-        <span class="mr-1">{{this.appCommon.browserName}}</span>
-        <button class="btn btn-sm btn-primary mr-1" (click)="testMe()">Test Me</button>
-        <button class="btn btn-sm btn-primary mr-1" (click)="insertColumn(tableOptions.columns.length-1,0)">Move
-            Column</button>
+  </div>
+  <app-api-data-filter-a></app-api-data-filter-a>
+  <div *ngIf="false" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)"
+    style="display: flex;background: cyan;width:100%;">
+    <div style="flex-grow: 1;" cdkDrag>1</div>
+    <div style="flex-grow: 1;" cdkDrag>2</div>
+    <div style="flex-grow: 1;" cdkDrag>3</div>
+    <div style="flex-grow: 1;" cdkDrag>4</div>
+    <div style="flex-grow: 1;" cdkDrag>5</div>
+    <div style="flex-grow: 1;" cdkDrag>6</div>
+    <div style="flex-grow: 1;" cdkDrag>7</div>
+  </div>
+  <div class="d-flex">
+    <span class="mr-1">{{this.appCommon.browserName}}</span>
+    <button class="btn btn-sm btn-primary mr-1" (click)="testMe()">Test Me</button>
+    <button class="btn btn-sm btn-primary mr-1" (click)="insertColumn(tableOptions.columns.length-1,0)">Move
+      Column</button>
 
-        <div [innerHTML]="debugStatus"></div>
-    </div>
-    <h5>Icon:<i class="fa fa-caret-down" aria-hidden="true"></i></h5>
+    <div [innerHTML]="debugStatus"></div>
+  </div>
+  <h5>Icon:<i class="fa fa-caret-down" aria-hidden="true"></i></h5>
 
 
 
