@@ -1,5 +1,5 @@
 /***********************************************************************
-* Automatically generated on 4/20/2020 4:48:55 PM
+* Automatically generated on 4/21/2020 1:18:16 PM
 ***********************************************************************/
 
 import { HttpClient } from '@angular/common/http';
@@ -28,83 +28,6 @@ export class TblAnomalies extends TableBase {
     this.tableCode="anom";
 
 	this.columns.push(new ColumnInfo('AN_ID', 'number', '', '', 0, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_REF', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_ASSET_ID', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_TYPE', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_STATUS', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_RAISED_BY', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_RAISED_DATE', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_ORIG_CLASS', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_CURR_CLASS', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_REVNO', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_ASS_DATE', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_ASS_BY', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_ACT_BY_DATE', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_ACT_PARTY', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_MAINT_REQ', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_WO_REF', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_WO_STATUS', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_DATE_IDENT', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_ACT_REQ', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_EQ_FAILURE', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_TA_APPROVED', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_TA_NAME', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_TA_APPR_DATE', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_ORIG_AVAIL_CLASS', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_CURR_AVAIL_CLASS', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_AVAIL_UPD_DATE', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_AVAIL_UPD_BY', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_UPD_DATE', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_UPD_BY', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_FNCR_REQUIRED', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_FNCR', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_LIFE_TERM', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_PORTFOLIO_APPL', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_RISK_RANK_SEVERITY', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_RISK_RANK_LIKELIHOOD', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_START_EAST', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_END_EAST', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_DESC', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
-	this.columns.push(new ColumnInfo('AN_START_NORTH', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_END_NORTH', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_NOTIFICATION_REF', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_RECCMD', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
-	this.columns.push(new ColumnInfo('AN_NOTIFICATION_STATUS', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_ASSMNT', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
-	this.columns.push(new ColumnInfo('AN_DELETED', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_AVAIL_COMMENTS', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
-	this.columns.push(new ColumnInfo('AN_TITLE', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_ATTACHMENTS', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('AN_RISK_RANK_COMMENTS', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
-	this.columns.push(new ColumnInfo('ITV_ANOM_REF', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_DATE_MOBIL', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_DATE_PROD_RSTO', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_TYPE', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_TIME_DIAGNOSTIC', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_VESSEL_TYPE', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_CATEGORY', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_TIME_PLAN_PROC', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_TIME_MOBIL', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_TIME_ACTUAL', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_TIME_DEMOB', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_TTIME_WEATHER', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_TTIME_ROV', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_TTIME_VESSEL', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_TTIME_VEND_EQPT', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_TTIME_OTHER', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_AFE_COST', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_ACTUAL_COST', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_DATE_ACTUAL_COST', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_WBS_NUMBER', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_UPDATED', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_UPDATED_BY', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_SUMMARY', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
-	this.columns.push(new ColumnInfo('ITV_VESSEL_NAME', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_PARENT_ANOM_REV', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_LEARNING', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
-	this.columns.push(new ColumnInfo('ITV_AFE_SHELL_SHARE', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_VESSEL_DAY_RATE', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITV_WELL_DOWNTIME', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 
     this.InitializeTable();
 
@@ -129,84 +52,7 @@ export class TblAnomalies extends TableBase {
 
 export class TblAnomaliesRow extends TableRowBase{
 	constructor(
-		public AN_ID?:number, 
-		public AN_REF?:string, 
-		public AN_ASSET_ID?:number, 
-		public AN_TYPE?:number, 
-		public AN_STATUS?:number, 
-		public AN_RAISED_BY?:string, 
-		public AN_RAISED_DATE?:Date, 
-		public AN_ORIG_CLASS?:number, 
-		public AN_CURR_CLASS?:number, 
-		public AN_REVNO?:string, 
-		public AN_ASS_DATE?:Date, 
-		public AN_ASS_BY?:string, 
-		public AN_ACT_BY_DATE?:Date, 
-		public AN_ACT_PARTY?:string, 
-		public AN_MAINT_REQ?:number, 
-		public AN_WO_REF?:string, 
-		public AN_WO_STATUS?:number, 
-		public AN_DATE_IDENT?:Date, 
-		public AN_ACT_REQ?:number, 
-		public AN_EQ_FAILURE?:number, 
-		public AN_TA_APPROVED?:number, 
-		public AN_TA_NAME?:string, 
-		public AN_TA_APPR_DATE?:Date, 
-		public AN_ORIG_AVAIL_CLASS?:number, 
-		public AN_CURR_AVAIL_CLASS?:number, 
-		public AN_AVAIL_UPD_DATE?:Date, 
-		public AN_AVAIL_UPD_BY?:string, 
-		public AN_UPD_DATE?:Date, 
-		public AN_UPD_BY?:string, 
-		public AN_FNCR_REQUIRED?:number, 
-		public AN_FNCR?:string, 
-		public AN_LIFE_TERM?:number, 
-		public AN_PORTFOLIO_APPL?:number, 
-		public AN_RISK_RANK_SEVERITY?:number, 
-		public AN_RISK_RANK_LIKELIHOOD?:number, 
-		public AN_START_EAST?:number, 
-		public AN_END_EAST?:number, 
-		public AN_DESC?:string, 
-		public AN_START_NORTH?:number, 
-		public AN_END_NORTH?:number, 
-		public AN_NOTIFICATION_REF?:string, 
-		public AN_RECCMD?:string, 
-		public AN_NOTIFICATION_STATUS?:string, 
-		public AN_ASSMNT?:string, 
-		public AN_DELETED?:number, 
-		public AN_AVAIL_COMMENTS?:string, 
-		public AN_TITLE?:string, 
-		public AN_ATTACHMENTS?:number, 
-		public AN_RISK_RANK_COMMENTS?:string, 
-		public ITV_ANOM_REF?:string, 
-		public ITV_DATE_MOBIL?:Date, 
-		public ITV_DATE_PROD_RSTO?:Date, 
-		public ITV_TYPE?:number, 
-		public ITV_TIME_DIAGNOSTIC?:number, 
-		public ITV_VESSEL_TYPE?:number, 
-		public ITV_CATEGORY?:number, 
-		public ITV_TIME_PLAN_PROC?:number, 
-		public ITV_TIME_MOBIL?:number, 
-		public ITV_TIME_ACTUAL?:number, 
-		public ITV_TIME_DEMOB?:number, 
-		public ITV_TTIME_WEATHER?:number, 
-		public ITV_TTIME_ROV?:number, 
-		public ITV_TTIME_VESSEL?:number, 
-		public ITV_TTIME_VEND_EQPT?:number, 
-		public ITV_TTIME_OTHER?:number, 
-		public ITV_AFE_COST?:number, 
-		public ITV_ACTUAL_COST?:number, 
-		public ITV_DATE_ACTUAL_COST?:Date, 
-		public ITV_WBS_NUMBER?:string, 
-		public ITV_UPDATED?:Date, 
-		public ITV_UPDATED_BY?:string, 
-		public ITV_SUMMARY?:string, 
-		public ITV_VESSEL_NAME?:string, 
-		public ITV_PARENT_ANOM_REV?:string, 
-		public ITV_LEARNING?:string, 
-		public ITV_AFE_SHELL_SHARE?:number, 
-		public ITV_VESSEL_DAY_RATE?:number, 
-		public ITV_WELL_DOWNTIME?:number){
+		public AN_ID?:number){
     super();
  
   }
@@ -236,13 +82,6 @@ export class TblChangeTracker extends TableBase {
     this.tableCode="chgTrack";
 
 	this.columns.push(new ColumnInfo('trk_id', 'number', '', '', 0, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('trk_user_login', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('trk_table_code', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('trk_field_name', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('trk_action', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('trk_key_value', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('trk_stamp', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('trk_old_value', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
 
     this.InitializeTable();
 
@@ -267,14 +106,7 @@ export class TblChangeTracker extends TableBase {
 
 export class TblChangeTrackerRow extends TableRowBase{
 	constructor(
-		public trk_id?:number, 
-		public trk_user_login?:string, 
-		public trk_table_code?:string, 
-		public trk_field_name?:string, 
-		public trk_action?:string, 
-		public trk_key_value?:string, 
-		public trk_stamp?:string, 
-		public trk_old_value?:string){
+		public trk_id?:number){
     super();
  
   }
@@ -305,31 +137,6 @@ export class TblLookups extends TableBase {
 
 	this.columns.push(new ColumnInfo('LKP_ID', 'number', '', '', 0, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('LKP_GRP_ID', 'number', '', '', -1, -1, 0, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_DESC_A', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_DESC_B', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_TEXT_50_1', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_TEXT_50_2', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_TEXT_255_1', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_TEXT_255_2', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_LONG_1', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_LONG_2', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_LONG_3', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_LONG_4', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_DOUBLE_1', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_DOUBLE_2', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_DOUBLE_3', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_BOOLEAN_1', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_BOOLEAN_2', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_BOOLEAN_3', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_DATE_1', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_ORDER', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_SWITCHES', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_MEMO_1', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
-	this.columns.push(new ColumnInfo('LKP_OLE_1', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
-	this.columns.push(new ColumnInfo('LKP_Created', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_CreatedBy', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_Updated', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LKP_UpdatedBy', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 
     this.InitializeTable();
 
@@ -355,32 +162,7 @@ export class TblLookups extends TableBase {
 export class TblLookupsRow extends TableRowBase{
 	constructor(
 		public LKP_ID?:number, 
-		public LKP_GRP_ID?:number, 
-		public LKP_DESC_A?:string, 
-		public LKP_DESC_B?:string, 
-		public LKP_TEXT_50_1?:string, 
-		public LKP_TEXT_50_2?:string, 
-		public LKP_TEXT_255_1?:string, 
-		public LKP_TEXT_255_2?:string, 
-		public LKP_LONG_1?:number, 
-		public LKP_LONG_2?:number, 
-		public LKP_LONG_3?:number, 
-		public LKP_LONG_4?:number, 
-		public LKP_DOUBLE_1?:number, 
-		public LKP_DOUBLE_2?:number, 
-		public LKP_DOUBLE_3?:number, 
-		public LKP_BOOLEAN_1?:number, 
-		public LKP_BOOLEAN_2?:number, 
-		public LKP_BOOLEAN_3?:number, 
-		public LKP_DATE_1?:Date, 
-		public LKP_ORDER?:number, 
-		public LKP_SWITCHES?:number, 
-		public LKP_MEMO_1?:string, 
-		public LKP_OLE_1?:string, 
-		public LKP_Created?:Date, 
-		public LKP_CreatedBy?:string, 
-		public LKP_Updated?:Date, 
-		public LKP_UpdatedBy?:string){
+		public LKP_GRP_ID?:number){
     super();
  
   }
@@ -410,36 +192,6 @@ export class TblNodesAttrib extends TableBase {
     this.tableCode="node";
 
 	this.columns.push(new ColumnInfo('REC_TAG', 'number', '', '', 0, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('NODE_ID', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('NODE_DESC', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('NODE_GROUP', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('NODE_CLASS', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('NODE_TAG', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('NODE_ASSET_TYPE', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('SAP_REF', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('SAP_TAG', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('SAP_DESC', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('REF_DWG', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('SPLI', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('VUL_EQUT', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('VUL_CAT', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('NODE_GROUP_B', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITEM_TYPE', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('OREDA_CLSS', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('OREDA_SUBUNIT', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('OREDA_CPNT', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('LL_FOLDER_OBJID', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('REC_UPDATED', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITEM_TYPE_TAG', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('HAZ_REFERENCE', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('POF_GROUP_ID', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('RBI_INCLUDE', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('SCE', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('ITEM_USED', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('NODE_Created', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('NODE_CreatedBy', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('NODE_Updated', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('NODE_UpdatedBy', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 
     this.InitializeTable();
 
@@ -464,37 +216,7 @@ export class TblNodesAttrib extends TableBase {
 
 export class TblNodesAttribRow extends TableRowBase{
 	constructor(
-		public REC_TAG?:number, 
-		public NODE_ID?:string, 
-		public NODE_DESC?:string, 
-		public NODE_GROUP?:string, 
-		public NODE_CLASS?:number, 
-		public NODE_TAG?:number, 
-		public NODE_ASSET_TYPE?:string, 
-		public SAP_REF?:string, 
-		public SAP_TAG?:number, 
-		public SAP_DESC?:string, 
-		public REF_DWG?:number, 
-		public SPLI?:string, 
-		public VUL_EQUT?:string, 
-		public VUL_CAT?:string, 
-		public NODE_GROUP_B?:string, 
-		public ITEM_TYPE?:string, 
-		public OREDA_CLSS?:string, 
-		public OREDA_SUBUNIT?:string, 
-		public OREDA_CPNT?:string, 
-		public LL_FOLDER_OBJID?:string, 
-		public REC_UPDATED?:Date, 
-		public ITEM_TYPE_TAG?:number, 
-		public HAZ_REFERENCE?:string, 
-		public POF_GROUP_ID?:number, 
-		public RBI_INCLUDE?:number, 
-		public SCE?:number, 
-		public ITEM_USED?:number, 
-		public NODE_Created?:Date, 
-		public NODE_CreatedBy?:string, 
-		public NODE_Updated?:Date, 
-		public NODE_UpdatedBy?:string){
+		public REC_TAG?:number){
     super();
  
   }
@@ -525,13 +247,6 @@ export class TblUserParam extends TableBase {
 
 	this.columns.push(new ColumnInfo('PARAM_ID', 'number', '', '', 0, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('PARAM_USER_ID', 'number', '', '', -1, -1, 0, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('PARAM_TYP_LKP_ID', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('PARAM_VAL_LKP_ID', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('PARAM_TEXT', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('PARAM_Created', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('PARAM_CreatedBy', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('PARAM_Updated', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('PARAM_UpdatedBy', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 
     this.InitializeTable();
 
@@ -557,14 +272,7 @@ export class TblUserParam extends TableBase {
 export class TblUserParamRow extends TableRowBase{
 	constructor(
 		public PARAM_ID?:number, 
-		public PARAM_USER_ID?:number, 
-		public PARAM_TYP_LKP_ID?:number, 
-		public PARAM_VAL_LKP_ID?:number, 
-		public PARAM_TEXT?:string, 
-		public PARAM_Created?:Date, 
-		public PARAM_CreatedBy?:string, 
-		public PARAM_Updated?:Date, 
-		public PARAM_UpdatedBy?:string){
+		public PARAM_USER_ID?:number){
     super();
  
   }
@@ -595,15 +303,6 @@ export class TblTreeStruc extends TableBase {
 
 	this.columns.push(new ColumnInfo('TRE_NOD_TAG', 'number', '', '', 0, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('TRE_NOD_TAG_PAR', 'number', '', '', -1, -1, 0, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('TRE_NOD_LOC', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('TRE_NOD_ORDER', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('TRE_DAT_TYPE', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('TRE_DAT_TAG', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('TRE_NOD_SEL', 'number', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('TRE_Created', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('TRE_CreatedBy', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('TRE_Updated', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('TRE_UpdatedBy', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 
     this.InitializeTable();
 
@@ -629,16 +328,7 @@ export class TblTreeStruc extends TableBase {
 export class TblTreeStrucRow extends TableRowBase{
 	constructor(
 		public TRE_NOD_TAG?:number, 
-		public TRE_NOD_TAG_PAR?:number, 
-		public TRE_NOD_LOC?:string, 
-		public TRE_NOD_ORDER?:number, 
-		public TRE_DAT_TYPE?:number, 
-		public TRE_DAT_TAG?:number, 
-		public TRE_NOD_SEL?:number, 
-		public TRE_Created?:Date, 
-		public TRE_CreatedBy?:string, 
-		public TRE_Updated?:Date, 
-		public TRE_UpdatedBy?:string){
+		public TRE_NOD_TAG_PAR?:number){
     super();
  
   }
@@ -668,13 +358,6 @@ export class TblUsers extends TableBase {
     this.tableCode="user";
 
 	this.columns.push(new ColumnInfo('USER_ID', 'number', '', '', 0, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('USER_NAME', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('USER_NOTES', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
-	this.columns.push(new ColumnInfo('USER_STATUS', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('USER_Created', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('USER_CreatedBy', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('USER_Updated', 'Date', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('USER_UpdatedBy', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 
     this.InitializeTable();
 
@@ -699,14 +382,7 @@ export class TblUsers extends TableBase {
 
 export class TblUsersRow extends TableRowBase{
 	constructor(
-		public USER_ID?:number, 
-		public USER_NAME?:string, 
-		public USER_NOTES?:string, 
-		public USER_STATUS?:string, 
-		public USER_Created?:Date, 
-		public USER_CreatedBy?:string, 
-		public USER_Updated?:Date, 
-		public USER_UpdatedBy?:string){
+		public USER_ID?:number){
     super();
  
   }
