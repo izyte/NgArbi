@@ -1,5 +1,5 @@
 /***********************************************************************
-* Automatically generated on 4/22/2020 1:06:03 AM
+* Automatically generated on 4/22/2020 11:53:59 AM
 ***********************************************************************/
 
 import { HttpClient } from '@angular/common/http';
@@ -242,7 +242,7 @@ export class TblChangeTracker extends TableBase {
 	this.columns.push(new ColumnInfo('trk_action', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('trk_key_value', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
 	this.columns.push(new ColumnInfo('trk_stamp', 'string', '', '', -1, -1, -1, -1, -1, false, false, false, this));
-	this.columns.push(new ColumnInfo('trk_old_value', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
+	this.columns.push(new ColumnInfo('trk_rec_info', 'string', '', '', -1, -1, -1, -1, -1, false, false, true, this));
 
     this.InitializeTable();
 
@@ -274,7 +274,7 @@ export class TblChangeTrackerRow extends TableRowBase{
 		public trk_action?:string, 
 		public trk_key_value?:string, 
 		public trk_stamp?:string, 
-		public trk_old_value?:string){
+		public trk_rec_info?:string){
     super();
 
   }
