@@ -15,7 +15,7 @@ Upgrated to version 9.0.4.
 ```
 ng new <project path> --style=scss
 ```
-  To get more help on setting up new Angular 9 (9.1.3) project with bootstrap 4 and font awesome [Setup New Angular 9 Project from Scratch using Latest Angular CLI](https://www.positronx.io/setup-angular-6-project-using-bootstrap-4-sass-font-awesome-ng-bootstrap/).
+  To get more help on setting up new Angular 9.1.3 (CLI: 1.6.9) project with bootstrap 4 and font awesome [Setup New Angular 9 Project from Scratch using Latest Angular CLI](https://www.positronx.io/setup-angular-6-project-using-bootstrap-4-sass-font-awesome-ng-bootstrap/).
 
 
 - Copy src/app/api folder and its contents
