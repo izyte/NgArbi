@@ -52,7 +52,6 @@ export class ApiTableBComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.htmlElement = this.elem.nativeElement;
-
     setTimeout(()=>this.setPlaceHolderParams());
   }
 
